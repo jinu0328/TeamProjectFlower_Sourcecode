@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <aside th:fragment="menus">
+        <a th:href="@{/admin/user}" th:classappend="${menuCode} == 'user' ? 'on'"><i class="xi-user-o"></i>회원관리</a>
+    </aside>
+</html>

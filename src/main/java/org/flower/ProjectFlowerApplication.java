@@ -1,13 +1,15 @@
-package com.FlowerProject.flower;
+package org.flower;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-public class FlowerApplication {
+@SpringBootApplication
+public class ProjectFlowerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FlowerApplication.class, args);
+
+		SpringApplication.run(ProjectFlowerApplication.class, args);
 	}
 
 }
