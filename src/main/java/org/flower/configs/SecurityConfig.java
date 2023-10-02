@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig {
 
-    /* 이부분도 좀 더 봐야 할 것 같음,, 
+    /* 이부분도 좀 더 봐야 할 것 같음,,
     @Override
     public void configure(WebSecurity web) {
         web
