@@ -2,7 +2,6 @@ package org.flower.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
 @Configuration
 public class SecurityConfig {
@@ -17,7 +16,7 @@ public class SecurityConfig {
     }
     */
 
-
+    /*
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return w -> w.ignoring() // 시큐리티가 무시할 정적 경로 설정
@@ -33,4 +32,6 @@ public class SecurityConfig {
                         "/admin/css/**",
                         "/uploads/**");
     }
+
+     */
 }
