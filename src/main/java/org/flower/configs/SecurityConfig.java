@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class SecurityConfig {
 
+    /* 이부분도 좀 더 봐야 할 것 같음,, 
     @Override
     public void configure(WebSecurity web) {
         web
@@ -14,6 +15,8 @@ public class SecurityConfig {
                 .antMatchers("/resources/**") // 정적 리소스 무시
                 .antMatchers("/h2-console/**"); // h2-console 무시
     }
+    */
+
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
