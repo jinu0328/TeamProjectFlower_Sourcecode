@@ -27,7 +27,9 @@ public abstract class BaseEntity {
     *   @MappedSuperclass : 이 클래스를 엔티티 클래스로 직접 사용하지 않고, 다른 엔티티 클래가 이 클래스를 상속 받아 사용하도록 하는 어노테이션
     *  */
 
-    
+    /*
+    * 허동균 바보
+    * */
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdAt;    // 생성 일시
