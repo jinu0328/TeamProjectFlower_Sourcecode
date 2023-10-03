@@ -20,6 +20,7 @@
           th:href="@{/admin/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
 
+
     <!-- 자바 스크립트 적용하기 위한 코드 -->
     <script th:src="@{/admin/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
