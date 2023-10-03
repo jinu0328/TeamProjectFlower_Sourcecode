@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <!-- CSRF라는 해킹 공격을 막기 위한 보안 방법 -->
+    <!-- 지금 얘 때문에 오류나서 공부하고 나서 적용하도록 합시다.
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    -->
+
+    <!-- 페이지 이름 설정 -->
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+
+    <!-- 아이콘 적용하기 위한 코드 -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+    <!-- css 적용하기 위한 코드 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}" \
+          th:href="@{/admin/css/{file}.css(file=${cssFile})}">
+    <th:block layout:fragment="addCss"></th:block>
+
+
+    <!-- 자바 스크립트 적용하기 위한 코드 -->
+    <script th:src="@{/admin/js/common.js}"></script>
+    <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+</head>
+<body th:class="${bodyClass}">
+    <!-- 위의 헤더 부분 -->
+    <header th:replace="~{admin/outlines/header::common}"></header>
+
+    <main>
+        <!-- 왼쪽에 있는 사이드 바 부분 -->
+        <aside th:replace="~{admin/outlines/side::menus}"></aside>
+
+        <!-- 이곳이 메인 부분 -->
+        <section id="main_content" layout:fragment="content"></section>
+    </main>
+<iframe name="ifrmProcess" class="dn"></iframe>
+</body>
+</html>
