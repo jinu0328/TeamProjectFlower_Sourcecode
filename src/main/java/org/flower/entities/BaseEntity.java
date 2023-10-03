@@ -28,7 +28,7 @@ public abstract class BaseEntity {
     *  */
 
     /*
-    * 허동균 바보 멍충이
+    * 허동균 바보 멍충이 똥개
     * */
     @CreatedDate
     @Column(updatable = false)
