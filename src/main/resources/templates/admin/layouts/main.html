@@ -3,10 +3,9 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <!-- CSRF라는 해킹 공격을 막기 위한 보안 방법 -->
-    <!-- 지금 얘 때문에 오류나서 공부하고 나서 적용하도록 합시다.
+    <!-- 지금 얘 때문에 오류나서 공부하고 나서 적용하도록 합시다.-->
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
-    -->
 
     <!-- 페이지 이름 설정 -->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
@@ -27,6 +26,8 @@
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body th:class="${bodyClass}">
+    <!--타임리프 csrf 토큰 (임의로 추가)-->
+    <input type="hidden" th:name="_csrf" th:value="${_csrf.token}"/>
     <!-- 위의 헤더 부분 -->
     <header th:replace="~{admin/outlines/header::common}"></header>
 
