@@ -1,15 +1,14 @@
-package org.flower.controllers.mypage.profile;
-
+package org.flower.controllers.user.mypage;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/mypage/profile/profilePage")
-public class ProfileController {
+@RequestMapping("/mypage")
+public class MypageHomeController {
     @GetMapping
     public String main(){
-        return "/mypage/profile/profilePage";
+        return "/mypage/main/home";
     }
 }
