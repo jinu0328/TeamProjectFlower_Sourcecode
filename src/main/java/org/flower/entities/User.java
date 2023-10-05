@@ -43,7 +43,7 @@ public class User extends BaseEntity{
     private String cellPhone;       // 전화번호
 
     @Column(nullable = false, length = 100)
-    private String adress;          // 주소
+    private String address;          // 주소
 
     @Column(length = 13)
     private String birth;           // 생년월일
