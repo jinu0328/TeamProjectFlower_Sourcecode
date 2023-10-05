@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+
+<main layout:fragment="content" class="@">
+    <h1 th:text="${pageTitle}"></h1>
+    <form id="frmLogin" class="user_form" name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
+        <div class="error global" th:if="${session.loginFail != null}" th:text="${session.loginFail}"></div>
+        <div class="@">
+            <input type="text" name="userEmail" th:placeholder="#{userEmail}" th:field="*{userEmail}">
+            <div class="error" th:if="${session.requiredUserEmail != null}" th:text="${session.requiredUserEmail}"></div>
+        </div>
+        <div class="@">
+            <input type="password" name="userPw" th:placeholder="#{userPw}" th:field="*{userPw}">
+            <div class="error" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
+        </div>
+        <button type="submit" th:text="#{user.login.action}"></button>
+        <div class="@">
+            <a th:href="@{/user/find_id}"><i class="xi-lock"></i>[[#{user.login.findId}]]</a>
+            <a th:href="@{/user/find_pw}"><i class="xi-key"></i>[[#{user.login.findPw}]]</a>
+            <a th:href="@{/user/join}"><i class="xi-user-plus"></i>[[#{user.join.action}]]</a>
+        </div>
+    </form>
+</main>
+
+</html>

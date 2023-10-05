@@ -24,10 +24,10 @@ public class UserJoinService {
                 .userEmail(join.getUserEmail())
                 .userPw(hash)
                 .userNm(join.getUserNm())
+                .userNickNm(join.getUserNickNm())
                 .cellPhone(join.getCellPhone())
                 .role(UserRole.USER)    // 기본
                 .birth(join.getBirth())
-                .address(join.getAddress())
                 .build();
 
         repository.save(user);
