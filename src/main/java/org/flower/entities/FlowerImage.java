@@ -1,4 +1,4 @@
-package org.flower.entities;
+/* package org.flower.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,3 +19,5 @@ public class FlowerImage {
     @JoinColumn(name = "flowerNo")
     private flowerinfo flower;
 }
+
+ */

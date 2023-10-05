@@ -1,4 +1,4 @@
-package org.flower.entities;
+/* package org.flower.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,7 +23,7 @@ public class Flower extends BaseEntity{
      *
      * @GeneratedValue(strategy = GenerationType.IDENTITY)
      * 기본키의 값이 데이터베이스에 자동으로 생성되도록 지정한다.
-     * */
+     *
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long flowerNo;            // 꽃 식별자
@@ -47,3 +47,7 @@ public class Flower extends BaseEntity{
     private Set<FlowerImage> flowerIamges;
 
 }
+
+
+ */
+
