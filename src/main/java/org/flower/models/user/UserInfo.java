@@ -24,6 +24,7 @@ public class UserInfo implements UserDetails {
     private String userPw;          // 비밀번호
     private String userPwCk;        // 비밀번호 체크
     private String userNm;          // 회원명
+    private String userNickNm;      // 닉네임
     private String cellPhone;       // 전화번호
     private String address;          // 주소
 

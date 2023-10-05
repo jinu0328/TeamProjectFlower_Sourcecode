@@ -36,14 +36,14 @@ public class User extends BaseEntity{
     @Column(nullable = false, length = 35)
     private String userNm;          // 회원명
 
+    @Column(nullable = false, length = 40)
+    private String userNickNm;      // 닉네임
+
     @Column(nullable = false, length = 65)
     private String userPw;          // 비밀번호
 
     @Column(length = 11)
     private String cellPhone;       // 전화번호
-
-    @Column(nullable = false, length = 100)
-    private String address;          // 주소
 
     @Column(length = 13)
     private String birth;           // 생년월일

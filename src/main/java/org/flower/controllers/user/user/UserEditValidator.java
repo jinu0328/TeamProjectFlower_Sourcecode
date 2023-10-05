@@ -1,4 +1,4 @@
 package org.flower.controllers.user.user;
 
-public class UserEditValidation {
+public class UserEditValidator {
 }

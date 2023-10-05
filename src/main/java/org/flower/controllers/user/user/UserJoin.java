@@ -25,11 +25,12 @@ public class UserJoin {
     @NotBlank
     private String userNm;      // 회원명
 
+    @NotBlank
+    private String userNickNm;  // 닉네임
+
     private String birth;       // 생년월일
 
     private String cellPhone;   // 휴대전화번호
-
-    private String address;     // 주소
 
     @AssertTrue
     private boolean termsAgree; // 회원가입 약관동의

@@ -51,8 +51,8 @@ public class UserInfoService implements UserDetailsService {
                 .userEmail(user.getUserEmail())
                 .userNm(user.getUserNm())
                 .userPw(user.getUserPw())
+                .userNickNm(user.getUserNickNm())
                 .cellPhone(user.getCellPhone())
-                .address(user.getAddress())
                 .authorities(authorities)
                 .build();
     }
