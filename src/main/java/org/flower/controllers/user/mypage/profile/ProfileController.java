@@ -10,6 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProfileController {
     @GetMapping
     public String main(){
-        return "/mypage/profile/profilePage";
+        return "/front/mypage/profile/profilePage";
     }
 }
