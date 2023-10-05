@@ -21,7 +21,7 @@ public class MvcConfig implements WebMvcConfigurer {
     private CommonInterceptor commonInterceptor;
 
     /**
-     * 정적 경로 설정
+     * 정적 경로 설정!
      *
      */
     public void addResourceHandlers(ResourceHandlerRegistry registry){
