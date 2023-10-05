@@ -12,11 +12,7 @@ import org.flower.commons.constants.UserRole;
 @NoArgsConstructor      // 파라미터가 없는 기본 생성자를 생성
 @AllArgsConstructor     // 모든 필드를 파라미터로 갖는 생성자를 생성
 @Entity                 // 이 클래스가 JPA 엔티티임을 나타낸다. 즉 이 클래스의 인스턴스들은 데이터베이스의 레코드와 매핑된다.
-@Table(name="flowerinfo"    // 'name' 속성으로 해당 엔티티가 매핑될 테이블의 이름을 지정함
-        ,indexes = {    // 이메일 및 사용자 역할은 조회가 많이 될 수 있으므로 인덱스 부여
-        // 관리자 페이지에서 최신 회원순으로 조회를 많이 할 수 있으므로 인덱스 부여
-        @Index(name = "idx_user_createdAt", columnList = "createdAt DESC")  // createdAt 컬럼에 대한 내림차순 인덱스
-})
+@Table(name="flowerinfo")    // 'name' 속성으로 해당 엔티티가 매핑될 테이블의 이름을 지정함
 public class Flower extends BaseEntity{
     /*
      * @ID
