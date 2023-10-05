@@ -1,10 +1,11 @@
-/* package org.flower.entities;
+package org.flower.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.util.*;
 import org.flower.commons.constants.UserRole;
 
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
@@ -23,7 +24,7 @@ public class Flower extends BaseEntity{
      *
      * @GeneratedValue(strategy = GenerationType.IDENTITY)
      * 기본키의 값이 데이터베이스에 자동으로 생성되도록 지정한다.
-     *
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long flowerNo;            // 꽃 식별자
@@ -40,14 +41,11 @@ public class Flower extends BaseEntity{
     @Column(length = 10)
     private String season;               // 봄, 여름, 가을, 겨울
 
-    @Column(length = 10)
-    private String season;               // 봄
-
     @OneToMany(mappedBy = "flower", cascade = CascadeType.ALL)
     private Set<FlowerImage> flowerIamges;
 
 }
 
 
- */
+
 
