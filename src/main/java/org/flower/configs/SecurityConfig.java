@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -41,6 +43,19 @@ public class SecurityConfig {
                         "/mobile/css/**",
                         "/admin/css/**",
                         "/uploads/**");
+    }
+
+    /*
+    * PasswordEncoder 빈 생성
+    * 이 인터페이스는 Spring Security에서 제공하며, 사용자의 비밀번호를 안전하게 인코딩 하는 데 사용
+    *
+    * BCryptPasswordEncoder
+    * BCrypt 해시 함수를 사용해서 비밀번호를 인코딩함. BCrypt는 솔트를 사용하여 해시를 생성하고, 솔트가 자동으로
+    * 해시와 함께 저장되므로 매번 다른 해시 값을 생성하여 보안성을 높인다.
+    * */
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }
