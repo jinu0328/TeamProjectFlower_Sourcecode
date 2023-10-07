@@ -1,0 +1,12 @@
+.draggable {
+    cursor: move;
+}
+#basket {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    border: 2px solid #ccc;
+}
+#basket li {
+    cursor: move;
+}
