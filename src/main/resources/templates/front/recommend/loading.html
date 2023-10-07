@@ -2,7 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Loading</title>
+    <!--css 파일 적용하기-->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/recommend/css/style.css}">
+    <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
+          th:href="@{/front/css/{file}.css(file=${cssFile})}">
+    <th:block layout:fragment="addCss"></th:block>
+
+    <!--js 파일 적용하기 -->
+    <script th:src="@{/front/recommend/js/common.js}"></script>
+    <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+
+    <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 </head>
 <body>
 <h1>당신에게 어울릴 꽃을 찾고있어요...</h1>

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 public class SecurityConfig {
@@ -31,6 +32,7 @@ public class SecurityConfig {
                 .logoutUrl("/user/logout")          // 로그아웃 요청 URL 지정
                 .logoutSuccessUrl("/")              // 로그아웃 성공 후 리다이렉트 될 URL 지정
                 .invalidateHttpSession(true)        // 로그아웃 시 HTTP 세션 무효화 여부
+                .logoutRequestMatcher(new AntPathRequestMatcher("/user/logout"))
                 .deleteCookies("JSESSIONID");
 
         http.authorizeHttpRequests()
