@@ -3,6 +3,13 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <header th:fragment="common">
     <nav class="@">
+        <section class="left">
+            <!-- 왼쪽 상단 로고 누르면 홈페이지로 -->
+            <a th:href="@{/}"> <!-- Add Link to Home -->
+                <!--img 파일을 넣어두면 됨-->
+                로고
+            </a>
+        </section>
         <section class="right">
             <div class="buttons">
                 <th:block sec:authorize="isAuthenticated()">

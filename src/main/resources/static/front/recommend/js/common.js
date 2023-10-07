@@ -56,6 +56,7 @@ document.getElementById('recommendBtn').addEventListener('click', function() {
 });*/
 
 // js 적용을 외부 파일에서 동적으로 바꾸는 과정에서 오류가 생겨서 일부 바꿨습니다.
+// 각각 코드에 대한 간단한 주석도 추가하면 좋을 것 같아용
 // 다시 확인해주시면 감사하겠습니다. 확인 후 이 주석은 지우셔도 됩니다. -대윤-
 
 function allowDrop(ev) {
