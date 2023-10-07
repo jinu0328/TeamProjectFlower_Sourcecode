@@ -19,7 +19,7 @@
     </style>
 </head>
 <body>
-<h1>마음에 드는 키워드를 바구니에 드래그 해주세요!</h1>
+<h1>마음에 드는 순서대로 키워드를 바구니에 드래그 해주세요!</h1>
 
 <ul>
     <!-- Thymeleaf로 키워드 렌더링 -->
@@ -71,16 +71,14 @@
     }
 
     function removeItem(ev, item) {
-        // Check if the item is outside of the basket
         var basketRect = document.getElementById("basket").getBoundingClientRect();
         if (
             ev.clientX < basketRect.left || ev.clientX > basketRect.right ||
             ev.clientY < basketRect.top || ev.clientY > basketRect.bottom
         ) {
-            // Remove the item from the basket list
             item.remove();
 
-            // If basket is empty, show placeholder text
+
             if (document.querySelector("#basket ul").childElementCount === 0) {
                 document.querySelector("#basket p").style.display = "block";
             }
@@ -92,15 +90,15 @@
     });
 
     document.getElementById('recommendBtn').addEventListener('click', function() {
-        // 바구니의 모든 키워드를 가져옵니다.
+        // 바구니의 모든 키워드를 가져옴
         var keywords = Array.from(document.querySelector("#basket ul").children).map(function(li) {
             return li.innerText;
         });
 
-        // 키워드를 하나의 문자열로 결합합니다. (예: "rose,tulip,lily")
+        // 키워드를 하나의 문자열로 결합
         document.getElementById('selectedKeywords').value = keywords.join(',');
 
-        // 폼을 제출하여 키워드를 '/loading' 경로로 POST합니다.
+        // 폼을 제출하여 키워드를 '/loading' 경로로 POST
         document.getElementById('keywordsForm').submit();
     });
 

@@ -9,10 +9,10 @@ public class LoadingController {
 
     @PostMapping("/loading")
     public String loadingPage(@RequestParam String selectedKeywords, Model model) {
-        // 컴마로 구분하여 키워드를 배열로 변환합니다.
+        // 컴마로 구분하여 키워드를 배열로 변환
         String[] keywords = selectedKeywords.split(",");
 
-        // 키워드를 모델에 추가하여 뷰에서 사용할 수 있게 합니다.
+        // 키워드를 모델에 추가하여 뷰에서 사용
         model.addAttribute("selectedKeywords", keywords);
 
         return "front/recommend/loading";

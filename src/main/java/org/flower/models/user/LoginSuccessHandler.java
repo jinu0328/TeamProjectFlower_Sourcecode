@@ -42,7 +42,8 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         * response.sendRedircect(url)
         * 사용자의 브라우저에 주어진 URL로 리다이렉트하라는 지시를 보냄
         * */
-        String url = request.getContextPath();
+        // 메인페이지로 가기위해 "/" 추가
+        String url = request.getContextPath() + "/";
         response.sendRedirect(url);
     }
 }
