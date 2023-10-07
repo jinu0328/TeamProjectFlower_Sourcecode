@@ -1,5 +1,7 @@
 package org.flower.configs;
 
+import org.flower.models.user.LoginFailureHandler;
+import org.flower.models.user.LoginSuccessHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,7 +20,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
 
-        http.authorizeRequests()
+        http.formLogin()
+                .loginPage("/user/login")
+                .successHandler(new LoginSuccessHandler())
+                .usernameParameter("userEmail")
+                .passwordParameter("userPw")
+                .failureHandler(new LoginFailureHandler());
+
+        http.logout()
+                .logoutUrl("/user/logout")          // 로그아웃 요청 URL 지정
+                .logoutSuccessUrl("/")              // 로그아웃 성공 후 리다이렉트 될 URL 지정
+                .invalidateHttpSession(true)        // 로그아웃 시 HTTP 세션 무효화 여부
+                .deleteCookies("JSESSIONID");
+
+        http.authorizeHttpRequests()
                 .anyRequest().permitAll();
         /*
         * authorizeRequests() -> HttpServletRequest에 대한 액세스 제한을 설정
