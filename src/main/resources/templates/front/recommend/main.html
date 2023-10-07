@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>꽃 추천</title>
+    <style>
+        .draggable {
+            cursor: move;
+        }
+        #basket {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            border: 2px solid #ccc;
+        }
+        #basket li {
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<h1>마음에 드는 키워드를 바구니에 드래그 해주세요!</h1>
+
+<ul>
+    <!-- Thymeleaf로 키워드 렌더링 -->
+    <li th:each="keyword : ${keywords}"
+        th:text="${keyword}"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)">
+    </li>
+</ul>
+
+<div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <p>바구니에 담긴 키워드가 없습니다.</p>
+    <ul></ul>
+</div>
+
+<form id="keywordsForm" method="post" action="/loading">
+    <!-- 키워드를 담을 숨겨진 input 필드 -->
+    <input type="hidden" name="selectedKeywords" id="selectedKeywords">
+    <!-- CSRF 토큰을 포함 -->
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+</form>
+
+<button id="recommendBtn">꽃 추천받기</button>
+
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.innerText);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var basketList = document.querySelector("#basket ul");
+        var placeholderText = document.querySelector("#basket p");
+
+        var newListItem = document.createElement("li");
+        newListItem.innerText = data;
+        newListItem.draggable = true;
+        newListItem.ondragstart = drag;
+        newListItem.ondragend = function(e) { removeItem(e, newListItem); };
+
+        basketList.appendChild(newListItem);
+        placeholderText.style.display = "none";
+    }
+
+    function removeItem(ev, item) {
+        // Check if the item is outside of the basket
+        var basketRect = document.getElementById("basket").getBoundingClientRect();
+        if (
+            ev.clientX < basketRect.left || ev.clientX > basketRect.right ||
+            ev.clientY < basketRect.top || ev.clientY > basketRect.bottom
+        ) {
+            // Remove the item from the basket list
+            item.remove();
+
+            // If basket is empty, show placeholder text
+            if (document.querySelector("#basket ul").childElementCount === 0) {
+                document.querySelector("#basket p").style.display = "block";
+            }
+        }
+    }
+
+    document.getElementById('recommendBtn').addEventListener('click', function () {
+        window.location.href = "user/recommend/loading";
+    });
+
+    document.getElementById('recommendBtn').addEventListener('click', function() {
+        // 바구니의 모든 키워드를 가져옵니다.
+        var keywords = Array.from(document.querySelector("#basket ul").children).map(function(li) {
+            return li.innerText;
+        });
+
+        // 키워드를 하나의 문자열로 결합합니다. (예: "rose,tulip,lily")
+        document.getElementById('selectedKeywords').value = keywords.join(',');
+
+        // 폼을 제출하여 키워드를 '/loading' 경로로 POST합니다.
+        document.getElementById('keywordsForm').submit();
+    });
+
+</script>
+</body>
+</html>
