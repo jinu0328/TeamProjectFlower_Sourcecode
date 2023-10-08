@@ -4,6 +4,7 @@
       layout:decorate="~{front/layouts/main}">
 
 <main layout:fragment="content" class="@">
+
     <h1 th:text="${pageTitle}"></h1>
     <form id="frmLogin" class="user_form" name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
         <div class="error global" th:if="${session.loginFail != null}" th:text="${session.loginFail}"></div>
@@ -22,6 +23,7 @@
             <a th:href="@{/user/join}"><i class="xi-user-plus"></i>[[#{user.join.action}]]</a>
         </div>
     </form>
+
 </main>
 
 </html>
