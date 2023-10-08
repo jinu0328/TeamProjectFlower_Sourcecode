@@ -3,12 +3,13 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content" class=".">
+    <main layout:fragment="content" class="body-gray-background">
+        <!--
       <h1 th:text="${pageTitle}"></h1>
       <form method="post" name="frmSave" th:action="@{/user/join}" th:object="${userJoin}" autocomplete="off">
         <div class="." th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <th:block th:replace="~{front/user/_form::user_form}"></th:block>
-            <!--공통 양식 x : 회원가입시에만 존재함.-->
+            공통 양식 x : 회원가입시에만 존재함.
         <div class="terms">
             <input type="checkbox" name="termsAgree" value="true" th:field="*{termsAgree}" id="termsAgree">
             <label for="termsAgree" th:text="#{user.join.termsAgree}"></label>
@@ -16,50 +17,35 @@
         </div>
         <button type="submit" th:text="#{user.join.action}"></button>
       </form>
+        -->
+
+        <!-- Signup Form -->
+
+
+
+        <div id="signup-form" class="form-modal transition-element">
+            <div class="form-image">
+                <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
+            </div>
+            <div class="form-content">
+            <form>
+                <h2>Sign Up</h2>
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" required>
+
+                <label for="signup-username">Username:</label>
+                <input type="text" id="signup-username" name="username" required>
+
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" required>
+
+                <label for="signup-confirm-password">Confirm Password:</label>
+                <input type="password" id="signup-confirm-password" name="confirm_password" required>
+
+                <button type="submit">Sign Up</button>
+            </form>
+            </div>
+        </div>
+
     </main>
 </html>
-
-<div class="container">
-    <div class="welcome">
-        <div class="pinkbox">
-            <div class="signup nodisplay">
-                <h1>register</h1>
-                <form autocomplete="off">
-                    <input type="text" placeholder="username">
-                    <input type="email" placeholder="email">
-                    <input type="password" placeholder="password">
-                    <input type="password" placeholder="confirm password">
-                    <button class="button submit">create account </button>
-                </form>
-            </div>
-            <div class="signin">
-                <h1>sign in</h1>
-                <form class="more-padding" autocomplete="off">
-                    <input type="text" placeholder="username">
-                    <input type="password" placeholder="password">
-                    <div class="checkbox">
-                        <input type="checkbox" id="remember" /><label for="remember">remember me</label>
-                    </div>
-
-                    <button class="button submit">login</button>
-                </form>
-            </div>
-        </div>
-        <div class="leftbox">
-            <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
-            <p class="desc">pick your perfect <span>bouquet</span></p>
-            <img class="flower smaller" src="https://image.ibb.co/d5X6pn/1357d638624297b.jpg" alt="1357d638624297b" border="0">
-            <p class="account">have an account?</p>
-            <button class="button" id="signin">login</button>
-        </div>
-        <div class="rightbox">
-            <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
-            <p class="desc"> pick your perfect <span>bouquet</span></p>
-            <img class="flower" src="https://preview.ibb.co/jvu2Un/0057c1c1bab51a0.jpg"/>
-            <p class="account">don't have an account?</p>
-            <button class="button" id="signup">sign up</button>
-        </div>
-    </div>
-</div>
-
-</div>
