@@ -38,7 +38,10 @@ public class Flower {
     private String season;               // 봄, 여름, 가을, 겨울
 
     @Column(length = 255)
-    private String fliamges;   // 꽃 추천 시 뜨는 이미지
+    private String flowerIamges;   // 꽃 추천 시 뜨는 이미지
+
+    @OneToMany(mappedBy = "flower") // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
+    private List<FlowerKeywordMapping> flowerKeywordMappings = new ArrayList<>();
 
 }
 

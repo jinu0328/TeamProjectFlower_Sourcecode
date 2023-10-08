@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.flower.commons.constants.UserRole;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
 @NoArgsConstructor      // 파라미터가 없는 기본 생성자를 생성
 @AllArgsConstructor     // 모든 필드를 파라미터로 갖는 생성자를 생성
@@ -56,4 +59,7 @@ public class User extends BaseEntity{
     @Enumerated(EnumType.STRING)
     @Column(length = 30, nullable = false)
     private UserRole role = UserRole.USER;      // 사용자 권한, 기본값은 USER(일반 사용자)
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // mappedBy 속성은 KeywordSelect 엔터티의 user 필드를 나타냄
+    private List<KeywordSelect> keywordSelects = new ArrayList<>();
 }
