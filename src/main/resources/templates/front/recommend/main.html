@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <!--css 파일 적용하기-->
     <link rel="stylesheet" type="text/css" th:href="@{/front/recommend/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
     <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
@@ -18,6 +19,7 @@
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 </head>
 <body>
+<header th:replace="~{front/outlines/header::common}"></header>
 <h1>마음에 드는 순서대로 키워드를 바구니에 드래그 해주세요!</h1>
 
 <ul>
