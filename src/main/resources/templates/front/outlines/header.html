@@ -7,18 +7,18 @@
             <!-- 왼쪽 상단 로고 누르면 홈페이지로 -->
             <a th:href="@{/}"> <!-- Add Link to Home -->
                 <!--img 파일을 넣어두면 됨-->
-                로고
+                dohwada
             </a>
         </section>
         <section class="right">
             <div class="buttons">
                 <th:block sec:authorize="isAuthenticated()">
-                    <a th:href="@{/user/logout}" th:text="#{user.logout}" class="btn1">로그아웃</a>
-                    <a th:href="@{/user/mypage}" th:text="#{mypage}" class="btn1 red">마이페이지</a>
+                    <a th:href="@{/user/logout}" th:text="#{user.logout}" class="btn1">logout</a>
+                    <a th:href="@{/user/mypage}" th:text="#{mypage}" class="btn1 red">mypage</a>
                 </th:block>
                 <th:block sec:authorize="isAnonymous()">
-                    <a th:href="@{/user/login}" th:text="#{user.login}" class="btn1">로그인</a>
-                    <a th:href="@{/user/join}" th:text="#{user.join}" class="btn1 red">회원가입</a>
+                    <a th:href="@{/user/login}" th:text="#{user.login}" class="btn1">login</a>
+                    <a th:href="@{/user/join}" th:text="#{user.join}" class="btn1 red">join</a>
                 </th:block>
             </div>
         </section>
