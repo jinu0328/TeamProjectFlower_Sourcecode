@@ -13,7 +13,9 @@
     <!--css 적용-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playfair+Display&display=swap" rel="stylesheet"><link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link rel="stylesheet" type="text/css" href="/front/css/test.css">
     <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
@@ -34,6 +36,6 @@
 
 <!-- 푸터부분 -->
 <footer th:replace="~{front/outlines/footer::common}"></footer>
-<iframe name="ifrmProcess" class="dn"></iframe>
+<!--<iframe name="ifrmProcess" class="dn"></iframe>-->
 </body>
 </html>
