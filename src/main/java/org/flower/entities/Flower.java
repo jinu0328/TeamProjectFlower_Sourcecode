@@ -37,8 +37,8 @@ public class Flower extends BaseEntity{
     @Column(length = 10)
     private String season;               // 봄, 여름, 가을, 겨울
 
-    @OneToMany(mappedBy = "flower", cascade = CascadeType.ALL)
-    private Set<FlowerImage> flowerIamges;   // 각 꽃의 이미지 경로를 일대다 관계로 관리
+    @Column(length = 255)
+    private String fliamges;   // 꽃 추천 시 뜨는 이미지
 
 }
 
