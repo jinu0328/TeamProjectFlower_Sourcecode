@@ -16,12 +16,12 @@ public class KeywordSelect {
     private Long SelectionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userNo")
+    @JoinColumn(name = "userNo", nullable = false)
     private User user;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "keywordNo")
+    @JoinColumn(name = "keywordNo", nullable = false)
     private Keywords keyword;
 
     @Column(name = "weight", nullable = false, columnDefinition = "INT DEFAULT 0")

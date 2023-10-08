@@ -62,4 +62,12 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // mappedBy 속성은 KeywordSelect 엔터티의 user 필드를 나타냄
     private List<KeywordSelect> keywordSelects = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // mappedBy 속성은 Store 엔터티의 user 필드를 나타냄
+    private List<Store> storeOwner = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // mappedBy 속성은 Order 엔터티의 user 필드를 나타냄
+    private List<Order> userOrder = new ArrayList<>();
+
+
 }

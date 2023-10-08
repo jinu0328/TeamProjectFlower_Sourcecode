@@ -16,13 +16,13 @@ public class FlowerKeywordMapping {
     private Long id;
 
     @ManyToOne // 다대일 관계
-    @JoinColumn(name = "flowerNo", referencedColumnName = "flowerNo")
+    @JoinColumn(name = "flowerNo", referencedColumnName = "flowerNo", nullable = false)
     // @JoinColumn으로 연관관계를 관리하는 테이블의 컬럼 이름을 명시
     // referencedColumnName은 참조하고 있는 다른 엔티티의 컬럼 이름을 명시
     private Flower flower;
 
     @ManyToOne
-    @JoinColumn(name = "keywordNo", referencedColumnName = "keywordNo")
+    @JoinColumn(name = "keywordNo", referencedColumnName = "keywordNo", nullable = false)
     private Keywords keyword;
 
     private Integer weight;
