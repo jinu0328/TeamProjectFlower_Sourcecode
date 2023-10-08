@@ -62,9 +62,10 @@
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
     max-width: 500px;  /* 원하는 최대 너비 설정 */
     position: relative;
+    border: none;
 }
 
 .profile-image {
@@ -159,4 +160,9 @@ ul.sidebar li a {
 ul.sidebar li a.active {
     background-color: #f0f0f0;
     color: black;
+}
+
+.all {
+    margin : auto;
+    padding: initial;
 }

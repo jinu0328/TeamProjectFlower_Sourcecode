@@ -12,4 +12,6 @@ public class ProfileController {
     public String main(){
         return "/front/mypage/profile/profilePage";
     }
+
+
 }
