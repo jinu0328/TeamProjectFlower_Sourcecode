@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
-    <link rel="stylesheet" type="text/css" href="/front/mypage/css/style.css" th:href="@{/front/mypage/css/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">
+    <!-- 헤더 통일하기 위해 css 파일 하나 더 추가함 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
+          th:href="@{/front/css/{file}.css(file=${cssFile})}">
+    <th:block layout:fragment="addCss"></th:block>
     <!-- ... -->
 </head>
 <body>
+<!-- 헤더 부분 중 마이페이지로 들어갔을 때 마이페이지 대신 알람창이 뜰 수 있도록 하면 좋을 것 같음 -대윤- -->
+<header th:replace="~{front/outlines/header::common}"></header>
 
-<header th:replace="~{admin/outlines/header::common}"></header>
-<!-- <div class = "profile-and-status-container"> -->
-
-<div>
-    <!-- <a th:href="@{/user/mypage/profile/profilePage}" class="block-link">-->
+<div class ="all">
     <div class="profile-container">
         <img src="https://cdn.pixabay.com/photo/2014/04/02/10/25/man-303792_1280.png" alt="프로필 사진" class="profile-image">
 
@@ -24,7 +28,6 @@
         </div>
 
     </div>
-    <!-- </a>-->
     <div class="shippingStatusContainer">
 
         <div class="title">
@@ -72,27 +75,24 @@
         </div>
     </div>
 </div>
-<!-- </div> -->
-</div>
-
 <div>
-<ul class = "sidebar">
-    <li><a th:href="@{/user/mypage/main/home}">주문 내역</a></li>
-    <li><a th:href="@{/user/mypage/main/main_review}">상품 후기</a></li>
-    <li><a class="active" th:href="@{/user/mypage/main/main_inquire}">상품 문의</a></li>
-</ul>
+    <ul class = "sidebar">
+        <li><a th:href="@{/user/mypage/main/home}">주문 내역</a></li>
+        <li><a th:href="@{/user/mypage/main/main_review}">상품 후기</a></li>
+        <li><a class="active" th:href="@{/user/mypage/main/main_inquire}">상품 문의</a></li>
+    </ul>
 
-<div class = "content">
-    상품 후기를 열람할 수 있습니다. 게시판에서 참조합니다.
+    <div class = "content">
+        상품 후기를 열람할 수 있습니다. 게시판에서 참조합니다.
 
+
+    </div>
 
 </div>
-
 </div>
 
-<div class = "content1">
-    <footer th:replace="~{front/outlines/footer::common}"></footer>
-</div>
+
+
 
 </body>
 </html>
