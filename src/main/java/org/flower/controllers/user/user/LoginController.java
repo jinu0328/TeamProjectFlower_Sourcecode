@@ -21,4 +21,5 @@ public class LoginController {
 
         return "front/user/login";
     }
+
 }

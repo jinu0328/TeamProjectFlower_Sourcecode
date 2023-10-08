@@ -3,7 +3,7 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content" class=".">
+    <main layout:fragment="content" class="body-gray-background">
         <!--
       <h1 th:text="${pageTitle}"></h1>
       <form method="post" name="frmSave" th:action="@{/user/join}" th:object="${userJoin}" autocomplete="off">
@@ -20,8 +20,14 @@
         -->
 
         <!-- Signup Form -->
-        <!--
+
+
+
         <div id="signup-form" class="form-modal transition-element">
+            <div class="form-image">
+                <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
+            </div>
+            <div class="form-content">
             <form>
                 <h2>Sign Up</h2>
                 <label for="signup-email">Email:</label>
@@ -38,7 +44,8 @@
 
                 <button type="submit">Sign Up</button>
             </form>
+            </div>
         </div>
-        -->
+
     </main>
 </html>

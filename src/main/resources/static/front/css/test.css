@@ -1,7 +1,9 @@
 .form-modal {
+    display: flex;
+    align-items: stretch;
     background-color: #fff;
     padding: 20px;
-    width: 350px;
+    width: 700px;
     margin: 100px auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -45,4 +47,44 @@ button {
 
 button:hover {
     background-color: #ff6591;
+}
+
+.form-image {
+    padding: 20px;
+    width: 350px;
+    height: 400px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.form-image img {
+    width: 100%; /* 이미지를 부모 요소의 전체 너비로 설정합니다. */
+    height: 100%; /* 이미지를 부모 요소의 전체 높이로 설정합니다. */
+    object-fit: cover; /* 이미지의 비율을 유지하면서, 지정한 높이와 너비에 꽉 차게 만듭니다. */
+}
+
+.form-content, .form-image {
+    flex: 1;
+    padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-modal {
+        flex-direction: column;
+    }
+}
+
+.body-gray-background {
+    background-color: rgba(255, 216, 216, 0.3); /* 투명한 ??색 배경 */
+    margin: auto; /* 브라우저 기본 여백 제거 */
+    display: flex; /* Flexbox 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    min-height: 100vh; /* 화면을 꽉 채우기 위해 뷰포트 높이를 최소로 설정 */
 }

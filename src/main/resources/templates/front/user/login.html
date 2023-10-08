@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 
-<main layout:fragment="content" class="@">
+<main layout:fragment="content" class="body-gray-background">
     <!--
     <h1 th:text="${pageTitle}"></h1>
     <form id="frmLogin" class="user_form" name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
@@ -25,8 +25,10 @@
     </form>
     -->
     <!-- Login Form -->
-    <!--
+
+
     <div id="login-form" class="form-modal transition-element">
+        <div class="form-content">
         <form>
             <h2>Login</h2>
             <label for="login-username">Username:</label>
@@ -37,8 +39,13 @@
 
             <button type="submit">Login</button>
         </form>
+        </div>
+        <div class="form-image">
+            <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
+        </div>
     </div>
-    -->
+
+
 
 </main>
 
