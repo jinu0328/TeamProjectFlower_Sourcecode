@@ -5,18 +5,24 @@
     layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
     <section class="half" id="left">
-        <div class="overlay-text">RECOMMENDATION</div>
-        <img src="https://i.ibb.co/b1j4G1j/image.png" alt="Recommendation Image">
+        <a th:href="@{/recommend}">
+            <div class="overlay-text patrick-hand">RECOMMENDATION</div>
+            <div class="image" style="background-image: url('https://i.ibb.co/b1j4G1j/image.png');"></div>
+        </a>
     </section>
     <section class="half" id="right">
-        <div class="quarter">
-            <div class="overlay-text">ORDER</div>
-            <img src="https://i.ibb.co/C87SPzN/image.png" alt="Order Image">
-        </div>
-        <div class="quarter">
-            <div class="overlay-text">COMMUNITY</div>
-            <img src="https://i.ibb.co/wCTrMgv/image.png" alt="Community Image">
-        </div>
+        <a th:href="@{/}">
+            <div class="quarter">
+                <div class="overlay-text patrick-hand">ORDER</div>
+                <div class="image" style="background-image: url('https://i.ibb.co/C87SPzN/image.png');"></div>
+            </div>
+        </a>
+        <a th:href="@{/}">
+            <div class="quarter">
+                <div class="overlay-text patrick-hand">COMMUNITY</div>
+                <div class="image" style="background-image: url('https://i.ibb.co/wCTrMgv/image.png');"></div>
+            </div>
+        </a>
     </section>
 </main>
 </html>

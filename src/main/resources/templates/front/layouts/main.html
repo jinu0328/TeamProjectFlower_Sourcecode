@@ -16,6 +16,8 @@
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
 
+
+
     <!--자바 스크립트 적용-->
     <script th:src="@{/front/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
