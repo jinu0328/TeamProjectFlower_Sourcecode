@@ -24,7 +24,7 @@ public class KeywordSelect {
     @JoinColumn(name = "keywordNo")
     private Keywords keyword;
 
-    @Column(name = "weight", columnDefinition = "INT DEFAULT 0")
+    @Column(name = "weight", nullable = false, columnDefinition = "INT DEFAULT 0")
     private int weight;
 
 }
