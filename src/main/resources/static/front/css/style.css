@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playfair+Display&display=swap');
+
 body, header, footer, section, nav, img {
     margin: 0;
     padding: 0;
@@ -123,6 +125,7 @@ footer {
     height: 60px;
 }
 
-.patrick-hand {
-    font-family: 'Patrick Hand', cursive;
+.playfair-display {
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Playfair Display', serif;
 }
