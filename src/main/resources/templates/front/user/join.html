@@ -3,7 +3,7 @@
     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
     layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content" class="body-gray-background">
+    <main layout:fragment="content" class="body-background">
         <!--
       <h1 th:text="${pageTitle}"></h1>
       <form method="post" name="frmSave" th:action="@{/user/join}" th:object="${userJoin}" autocomplete="off">
@@ -28,21 +28,21 @@
                 <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
             </div>
             <div class="form-content">
-            <form>
-                <h2>Sign Up</h2>
-                <label for="signup-email">Email:</label>
-                <input type="email" id="signup-email" name="email" required>
+            <form method="post" name="frmSave" th:action="@{/user/join}" th:object="${userJoin}" autocomplete="off">
+                <h2 th:text="${pageTitle}"></h2>
+                <div class="." th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 
-                <label for="signup-username">Username:</label>
-                <input type="text" id="signup-username" name="username" required>
+                <!-- 공통 양식 x : 회원가입시에만 존재함 -->
+                <th:block th:replace="~{front/user/_form::user_form}"></th:block>
 
-                <label for="signup-password">Password:</label>
-                <input type="password" id="signup-password" name="password" required>
+                <!-- 회원가입 동의 버튼 -->
+                <div class="terms">
+                    <input type="checkbox" name="termsAgree" value="true" th:field="*{termsAgree}" id="termsAgree">
+                    <label for="termsAgree" th:text="#{user.join.termsAgree}"></label>
+                    <div class="error" th:each="err : ${#fields.errors('termsAgree')}" th:text="${err}"></div>
+                </div>
 
-                <label for="signup-confirm-password">Confirm Password:</label>
-                <input type="password" id="signup-confirm-password" name="confirm_password" required>
-
-                <button type="submit">Sign Up</button>
+                <button type="submit" th:text="#{user.join.action}"></button>
             </form>
             </div>
         </div>
