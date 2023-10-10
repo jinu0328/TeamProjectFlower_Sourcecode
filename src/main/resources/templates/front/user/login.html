@@ -31,27 +31,32 @@
         <div class="form-content">
         <form name="frmLogin" method="post" th:action="@{/user/login}" autocomplete="off" th:object="${userLogin}">
             <h2 th:text="${pageTitle}"></h2>
-            <div class="error global" th:if="${session.loginFail != null}" th:text="${session.loginFail}"></div>
+            <div class="error global" th:if="${loginFail != null}" th:text="${loginFail}"></div>
             <div>
-                <label for="login-userEmail">Email:</label>
-                <input type="text" name="userEmail" id="login-userEmail" th:placeholder="#{userEmail}" th:field="*{userEmail}">
-                <div class="error" th:if="${session.requiredUserEmail != null}" th:text="${session.requiredUserEmail}"></div>
+                <div class="rows">
+                    <label for="login-userEmail">Email:</label>
+                    <input type="text" name="userEmail" id="login-userEmail" th:placeholder="#{userEmail}" th:field="*{userEmail}">
+                    <div class="error" th:if="${requiredUserEmail != null}" th:text="${requiredUserEmail}"></div>
+                </div>
             </div>
-
             <div>
-                <label for="login-password">Password:</label>
-                <input type="password" id="login-password" name="userPw" th:placeholder="#{userPw}" th:field="*{userPw}">
-                <div class="error" th:if="${session.requiredUserPw != null}" th:text="${session.requiredUserPw}"></div>
+                <div class="rows">
+                    <label for="login-password">Password:</label>
+                    <input type="password" id="login-password" name="userPw" th:placeholder="#{userPw}" th:field="*{userPw}">
+                    <div class="error" th:if="${requiredUserPw != null}" th:text="${requiredUserPw}"></div>
+                </div>
             </div>
-            <button type="submit" th:text="#{user.login.action}"></button>
+            <div>
+                <a th:href="@{/user/find_id}"><i class="xi-lock"></i>[[#{user.login.findId}]]</a>
+                <a th:href="@{/user/find_pw}"><i class="xi-key"></i>[[#{user.login.findPw}]]</a>
+                <a th:href="@{/user/join}"><i class="xi-user-plus"></i>[[#{user.join.action}]]</a>
+            </div>
+            <button class="login_Btn" type="submit" th:text="#{user.login.action}"></button>
         </form>
         </div>
         <div class="form-image">
             <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
         </div>
     </div>
-
-
-
 </main>
 </html>

@@ -3,7 +3,7 @@
     align-items: stretch;
     background-color: #fff;
     padding: 20px;
-    width: 700px;
+    width: 750px;
     margin: 100px auto;
     border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -14,28 +14,31 @@
     transition: all 0.5s ease-in-out;
 }
 
-form h2 {
+/* 공통 부분 수정 필요 */
+.form-content form h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
 }
 
-label {
+/* 공통 부분 수정하기 */
+.form-content label {
     display: block;
     margin-bottom: 5px;
     color: #555;
 }
 
-input {
+/* 공통 부분 수정 필요 */
+.form-content input {
     width: calc(100% - 20px);
     padding: 10px;
-    margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-button {
+/* 공통 부분 수정 필요*/
+.form-content button {
     background-color: #ff87a2;
     color: #fff;
     padding: 10px 15px;
@@ -45,9 +48,11 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+/* 공통 부분 수정 필요 */
+.form-content button:hover {
     background-color: #ff6591;
 }
+.login_Btn{margin-top: 20px;}
 
 .form-image {
     padding: 20px;
@@ -62,6 +67,11 @@ button:hover {
     align-items: center;
     padding: 20px;
 }
+
+.form-content form{
+    width: auto;
+}
+
 
 .form-image img {
     width: 100%; /* 이미지를 부모 요소의 전체 너비로 설정합니다. */
@@ -88,3 +98,41 @@ button:hover {
     justify-content: center; /* 가로 중앙 정렬 */
     min-height: 100vh; /* 화면을 꽉 채우기 위해 뷰포트 높이를 최소로 설정 */
 }
+
+/* 회원가입, 로그인 에러 메세지 출력 */
+.error { box-shadow: 2px 2px 4px #666; padding: 10px; border-radius: 5px; margin: 5px 0; color: red; font-size: 12px;  width: 85%;}
+
+/* 각 문항 마다 준 간격 */
+.rows{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 20px;
+}
+.tits{
+    margin-bottom: 3px;
+}
+
+/* 회원가입 동의 부분 S */
+.terms {
+    display: flex;
+    flex-direction: column;
+    align-items: start; /* Aligns items to the start, you can use "center" to center them */
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center; /* Vertically centers the checkbox and label */
+}
+
+.terms input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px; /* Adjust space between checkbox and label */
+}
+
+.terms label {
+    margin: 0; /* Remove default margin */
+}
+/* 회원가입 동의 부분 E */

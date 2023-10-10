@@ -19,10 +19,7 @@
       </form>
         -->
 
-        <!-- Signup Form -->
-
-
-
+        <!-- Join Form -->
         <div id="signup-form" class="form-modal transition-element">
             <div class="form-image">
                 <img src="https://i.ibb.co/C87SPzN/image.png" alt="Description of the image">
@@ -37,8 +34,10 @@
 
                 <!-- 회원가입 동의 버튼 -->
                 <div class="terms">
-                    <input type="checkbox" name="termsAgree" value="true" th:field="*{termsAgree}" id="termsAgree">
-                    <label for="termsAgree" th:text="#{user.join.termsAgree}"></label>
+                    <div class="input-group">
+                        <input type="checkbox" name="termsAgree" value="true" th:field="*{termsAgree}" id="termsAgree">
+                        <label for="termsAgree" th:text="#{user.join.termsAgree}"></label>
+                    </div>
                     <div class="error" th:each="err : ${#fields.errors('termsAgree')}" th:text="${err}"></div>
                 </div>
 
