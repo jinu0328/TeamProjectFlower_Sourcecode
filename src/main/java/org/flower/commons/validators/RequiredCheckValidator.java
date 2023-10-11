@@ -8,7 +8,7 @@ public interface RequiredCheckValidator {
      * @param o
      * @param e
     * */
-    default void nullcheck(Object o, CommonException e){
+    default void nullCheck(Object o, CommonException e){
         if(o == null){
             throw e;
         }
