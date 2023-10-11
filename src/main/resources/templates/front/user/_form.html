@@ -8,6 +8,15 @@
         <div class="error" th:each="err : ${#fields.errors('userEmail')}" th:text="${err}"></div>
     </div>
 
+    <!-- 닉네임 -->
+    <div class="flex-container">
+        <div class="input-group">
+            <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
+            <span id="nickNmCheck" class="nickNmCheck">중복 확인</span>
+        </div>
+        <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
+    </div>
+
     <!-- 비밀번호 -->
     <div class="rows">
     <input type="password" name="userPw" th:field="*{userPw}" th:placeholder="#{userPw}">
@@ -20,11 +29,6 @@
         <div class="error" th:each="err : ${#fields.errors('userPwCk')}" th:text="${err}"></div>
     </div>
 
-    <!-- 닉네임 -->
-    <div class="rows">
-        <input type="text" name="text" th:field="*{userNickNm}" th:placeholder="#{userNickNm}">
-        <div class="error" th:each="err : ${#fields.errors('userNickNm')}" th:text="${err}"></div>
-    </div>
 
     <!-- 회원명 -->
     <div class="rows">

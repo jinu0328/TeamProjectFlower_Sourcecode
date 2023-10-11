@@ -1,3 +1,4 @@
+/* 회원가입, 로그인 관련 css */
 .form-modal {
     display: flex;
     align-items: stretch;
@@ -30,7 +31,8 @@
 
 /* 공통 부분 수정 필요 */
 .form-content input {
-    width: calc(100% - 20px);
+    /*width: calc(100% - 20px);*/
+    width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -108,6 +110,7 @@
     flex-direction: column;
     align-items: start;
     margin-bottom: 20px;
+    /*width: calc(100% - 40px);*/
 }
 .tits{
     margin-bottom: 3px;
@@ -136,3 +139,37 @@
     margin: 0; /* Remove default margin */
 }
 /* 회원가입 동의 부분 E */
+
+/* 닉네임 중복 부분 S */
+.nickNmCheck{
+    white-space: nowrap;  /* 줄바꿈 방지 */
+    background-color: #ff87a2;
+    color: #fff;
+    padding: 8px 12px; /* 패딩을 추가하여 버튼이 클릭하기 좋은 크기가 되도록 합니다. */
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* transform 속성도 transition에 추가합니다. */
+    font-size: 13px;
+    text-align: center; /* 글자를 가운데 정렬합니다. */
+    line-height: 1.5; /* 글자의 라인 높이를 조절합니다. */
+    letter-spacing: 0.05em; /* 글자 간 간격을 조절합니다. */
+}
+
+.nickNmCheck:hover, .nickNmCheck:focus {
+    background-color: #ff6591;
+    transform: scale(1.05); /* 버튼을 약간 확대합니다. */
+}
+
+.nickNmCheck:active {
+    background-color: #ff497b;
+    transform: scale(0.95); /* 클릭 시 버튼을 약간 축소합니다. */
+}
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-bottom: 20px;
+}
+/* 닉네임 중복 부분 S */

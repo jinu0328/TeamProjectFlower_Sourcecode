@@ -3,13 +3,16 @@ package org.flower.controllers.user.user;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.flower.models.user.UserJoinService;
+import org.flower.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/user/join")
@@ -22,6 +25,8 @@ public class JoinController {
     // 회원 정보 저장 서비스(가입, 수정)
     private final UserJoinService service;
 
+    private final UserRepository repository;
+
     // 회원가입 양식 - GET / user
     @GetMapping
     public String join(@ModelAttribute UserJoin userJoin, Model model){
@@ -31,6 +36,15 @@ public class JoinController {
         model.addAttribute("minDate", "1900-01-01");
 
         return "front/user/join";
+    }
+
+    @GetMapping("/checkNickNm")
+    @ResponseBody
+    public Map<String, Boolean> checkNickname(@RequestParam String nickNm) {
+        boolean exists = repository.isNickNmExists(nickNm);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return response;
     }
 
     // 회원가입 처리 - POST / user

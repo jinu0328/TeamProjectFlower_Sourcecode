@@ -39,7 +39,7 @@ public class User extends BaseEntity{
     @Column(nullable = false, length = 35)
     private String userNm;          // 회원명
 
-    @Column(nullable = false, length = 40)
+    @Column(unique = true, nullable = false, length = 40)
     private String userNickNm;      // 닉네임
 
     @Column(nullable = false, length = 65)

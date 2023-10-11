@@ -37,4 +37,19 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
         return cnt > 0;
     }
 
+    /**
+     * 닉네임 중복 관련
+     *
+     * @param userNickNm
+     * @return {boolean}
+     */
+    default boolean isNickNmExists(String userNickNm){
+        QUser user = QUser.user;
+        BooleanBuilder builder = new BooleanBuilder();
+        builder.and(user.userNickNm.eq(userNickNm));
+
+        long cnt = this.count(builder);
+        return cnt > 0;
+    }
+
 }
