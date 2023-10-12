@@ -7,10 +7,10 @@
     <!--내용 집어넣으면 됨-->
     <form method="post" th:action="@{/admin/user}">
         <div role="region" aria-label="data table" tabindex="0" class="primary">
-            <table>
+            <table class="user-table">
                 <thead>
-                <tr>
-                    <th class = "checkbox">
+                <tr class="header-row">
+                    <th class = "checkbox-col">
                         <input type="checkbox">
                     </th>
                     <th>회원번호</th>
@@ -26,9 +26,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="user : ${users}" th:object="${user}">
+                <tr class="data-row" th:each="user : ${users}" th:object="${user}">
                     <!-- 체크 박스 -->
-                    <td>
+                    <td class="checkbox-col">
                         <input type="checkbox" th:value="*{userNo}">
                     </td>
                     <!-- 회원 번호 -->
@@ -46,9 +46,10 @@
                     <!-- 생년월일 -->
                     <td th:text="*{birth}"></td>
                     <!-- 가입일시 -->
-                    <td th:text="*{createdAt}"></td>
+                    <td th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
                     <!-- 탈퇴일시 -->
-                    <td th:text="*{deletedAt}"></td>
+                    <td th:if="${user.deletedAt != null}" th:text="${#temporals.format(user.deletedAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                    <td th:if="${user.deletedAt == null}">NULL</td>
                     <!-- 관리 -->
                     <td>
                         <a th:href="." class="btn2">

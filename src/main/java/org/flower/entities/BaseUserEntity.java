@@ -8,6 +8,10 @@ import lombok.Setter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
 * @Getter @Setter
 * Lombok 라이브러리의 어노테이션으로, 컴파일 시점에 자동으로 getter와 setter 메서드를 생성
@@ -40,5 +44,4 @@ public class BaseUserEntity extends BaseEntity{
     @LastModifiedBy
     @Column(insertable = false)
     private String modifiedBy;
-
 }
