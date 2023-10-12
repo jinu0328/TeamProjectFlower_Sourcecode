@@ -5,5 +5,61 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/user/_submenu::menus}"></nav>
     <!--내용 집어넣으면 됨-->
+    <form method="post" th:action="@{/admin/user}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table>
+                <thead>
+                <tr>
+                    <th class = "checkbox">
+                        <input type="checkbox">
+                    </th>
+                    <th>회원번호</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th>회원명</th>
+                    <th>회원구분</th>
+                    <th>전화번호</th>
+                    <th>생년월</th>
+                    <th>가입일시</th>
+                    <th>탈퇴일시</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <!-- 체크 박스 -->
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <!-- 회원 번호 -->
+                    <td>1</td>
+                    <!-- 이메일 -->
+                    <td>hy010309@naver.com</td>
+                    <!-- 닉네임 -->
+                    <td>구댕</td>
+                    <!-- 회원명 -->
+                    <td>구대윤</td>
+                    <!-- 회원구분 -->
+                    <td>관리자</td>
+                    <!-- 전화번호 -->
+                    <td>01012341234</td>
+                    <!-- 생년월일 -->
+                    <td>2023/01/03</td>
+                    <!-- 가입일시 -->
+                    <td>2023-04-15</td>
+                    <!-- 탈퇴일시 -->
+                    <td></td>
+                    <!-- 관리 -->
+                    <td>
+                        <a th:href="." class="btn2">
+                            주문내역 보기</a>
+                        <a th:href="@{/admin/user/userInfo}" class="btn2">
+                            회원정보</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
 </section>
 </html>
