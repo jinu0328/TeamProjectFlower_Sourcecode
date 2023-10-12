@@ -7,6 +7,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.flower.commons.constants.UserRole;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +70,4 @@ public class User extends BaseEntity{
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true) // mappedBy 속성은 Order 엔터티의 user 필드를 나타냄
     private List<Order> userOrder = new ArrayList<>();
-
-
 }
