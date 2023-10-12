@@ -5,5 +5,61 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/user/_submenu::menus}"></nav>
     <!--내용 집어넣으면 됨-->
+    <form method="post" th:action="@{/admin/user}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table>
+                <thead>
+                <tr>
+                    <th class = "checkbox">
+                        <input type="checkbox">
+                    </th>
+                    <th>회원번호</th>
+                    <th>이메일</th>
+                    <th>닉네임</th>
+                    <th>회원명</th>
+                    <th>회원구분</th>
+                    <th>전화번호</th>
+                    <th>생년월일</th>
+                    <th>가입일시</th>
+                    <th>탈퇴일시</th>
+                    <th>관리</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}" th:object="${user}">
+                    <!-- 체크 박스 -->
+                    <td>
+                        <input type="checkbox" th:value="*{userNo}">
+                    </td>
+                    <!-- 회원 번호 -->
+                    <td th:text="*{userNo}"></td>
+                    <!-- 이메일 -->
+                    <td th:text="*{userEmail}"></td>
+                    <!-- 닉네임 -->
+                    <td th:text="*{userNickNm}"></td>
+                    <!-- 회원명 -->
+                    <td th:text="*{userNm}"></td>
+                    <!-- 회원구분 -->
+                    <td th:text="*{role}"></td>
+                    <!-- 전화번호 -->
+                    <td th:text="*{cellPhone}"></td>
+                    <!-- 생년월일 -->
+                    <td th:text="*{birth}"></td>
+                    <!-- 가입일시 -->
+                    <td th:text="*{createdAt}"></td>
+                    <!-- 탈퇴일시 -->
+                    <td th:text="*{deletedAt}"></td>
+                    <!-- 관리 -->
+                    <td>
+                        <a th:href="." class="btn2">
+                            주문내역 보기</a>
+                        <a th:href="@{/admin/user/userInfo}" class="btn2">
+                            회원정보</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
 </section>
 </html>

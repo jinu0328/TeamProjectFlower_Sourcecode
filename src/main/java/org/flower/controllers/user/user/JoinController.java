@@ -38,6 +38,7 @@ public class JoinController {
         return "front/user/join";
     }
 
+    // 닉네임 중복 관련 처리 - GET / UserRepository
     @GetMapping("/checkNickNm")
     @ResponseBody
     public Map<String, Boolean> checkNickname(@RequestParam String nickNm) {
