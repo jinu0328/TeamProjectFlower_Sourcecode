@@ -16,6 +16,8 @@ import java.util.List;
 @RequestMapping("/admin/user")
 public class UserController {
 
+    @Autowired
+    private UserInfoService userInfoService;
     /*
     * <회원관리> 클릭시 나오는 페이지
     * == 회원 목록
@@ -24,6 +26,8 @@ public class UserController {
     * */
     @GetMapping
     public String index(Model model){
+        List<User> user = userInfoService.getAllUsers();
+        model.addAttribute("users", user);
 
         return "admin/user/index";
     }

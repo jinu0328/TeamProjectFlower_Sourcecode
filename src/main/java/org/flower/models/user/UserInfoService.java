@@ -57,6 +57,11 @@ public class UserInfoService implements UserDetailsService {
                 .build();
     }
 
+    // User에서 모든 정보를 가져옴
+    public List<User> getAllUsers(){
+        return repository.findAll();
+    }
+
     /*
     * UserInfoService는 사용자 인증 시 사용자명을 기반으로 사용자 정보를 데이터 소스에서 조회하고,
     * 이를 Spring Security에서 사용할 수 있는 UserDetails 타입으로 반환하여 인증과 권환 확인 과정에서 활용됨

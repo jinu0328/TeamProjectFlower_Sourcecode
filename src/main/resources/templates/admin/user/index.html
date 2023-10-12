@@ -19,36 +19,36 @@
                     <th>회원명</th>
                     <th>회원구분</th>
                     <th>전화번호</th>
-                    <th>생년월</th>
+                    <th>생년월일</th>
                     <th>가입일시</th>
                     <th>탈퇴일시</th>
                     <th>관리</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="user : ${users}" th:object="${user}">
                     <!-- 체크 박스 -->
                     <td>
-                        <input type="checkbox">
+                        <input type="checkbox" th:value="*{userNo}">
                     </td>
                     <!-- 회원 번호 -->
-                    <td>1</td>
+                    <td th:text="*{userNo}"></td>
                     <!-- 이메일 -->
-                    <td>hy010309@naver.com</td>
+                    <td th:text="*{userEmail}"></td>
                     <!-- 닉네임 -->
-                    <td>구댕</td>
+                    <td th:text="*{userNickNm}"></td>
                     <!-- 회원명 -->
-                    <td>구대윤</td>
+                    <td th:text="*{userNm}"></td>
                     <!-- 회원구분 -->
-                    <td>관리자</td>
+                    <td th:text="*{role}"></td>
                     <!-- 전화번호 -->
-                    <td>01012341234</td>
+                    <td th:text="*{cellPhone}"></td>
                     <!-- 생년월일 -->
-                    <td>2023/01/03</td>
+                    <td th:text="*{birth}"></td>
                     <!-- 가입일시 -->
-                    <td>2023-04-15</td>
+                    <td th:text="*{createdAt}"></td>
                     <!-- 탈퇴일시 -->
-                    <td></td>
+                    <td th:text="*{deletedAt}"></td>
                     <!-- 관리 -->
                     <td>
                         <a th:href="." class="btn2">
