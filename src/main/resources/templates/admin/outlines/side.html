@@ -3,7 +3,7 @@
     <aside th:fragment="menus">
         <a th:href="@{/admin/user}" th:classappend="${menuCode} == 'user' ? 'on'"><i class="xi-user-o"></i>회원관리</a>
         <a th:href="@{/admin/recommend}" th:classappend="${menuCode} == 'recommend' ? 'on'"><i class="xi-garden"></i>꽃추천관리</a>
-        <a th:href="@{/admin/order}" th:classappend="${menuCode} == 'recommend' ? 'on'"><i class="xi-basket"></i>주문관리</a>
+        <a th:href="@{/admin/order}" th:classappend="${menuCode} == 'recommend' ? 'on'"><i class="xi-shop"></i>주문관리</a>
         <a th:href="@{/admin/community}" th:classappend="${menuCode} == 'recommend' ? 'on'"><i class="xi-forum-o"></i>커뮤니티관리</a>
     </aside>
 </html>
