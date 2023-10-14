@@ -13,14 +13,7 @@ public class KeywordInfoService {
     @Autowired
     private KeywordRepository keywordRepository;
 
-    /* 
-    * 키워드 추가
-    * */
-    public void addKeyword(String keywordNm){
-        Keywords newKeyword = new Keywords();
-        newKeyword.setKeywordNm(keywordNm);
-        keywordRepository.save(newKeyword);
-    }
+
 
     /*
     * Keywords(엔티티) 에서 모든 정보를 가져옴
