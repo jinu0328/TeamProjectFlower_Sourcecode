@@ -1,6 +1,7 @@
 package org.flower.controllers.recommend;
 
 import org.flower.entities.Keywords;
+import org.flower.models.recommend.keyword.KeywordInfoService;
 import org.flower.repositories.KeywordRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,15 +21,16 @@ import static org.flower.entities.QKeywords.keywords;
 @RequestMapping("/recommend")
 public class RecommendController {
     @Autowired
-    KeywordRepository keywordRepository;
+    private KeywordInfoService keywordInfoService;
+
     @GetMapping
     public String recommend(Model model) {
-        List<Keywords> keywordsList = keywordRepository.findAll();
-        model.addAttribute("keywordsList", keywordsList);
+
+        List<Keywords> keywordsList = keywordInfoService.getAllKeywords();
 
         // 키워드를 모델에 추가하여 뷰에서 사용
-        model.addAttribute("keywords", keywords);
         model.addAttribute("pageTitle", "꽃 추천");
+        model.addAttribute("keywordsList", keywordsList);
 
         return "front/recommend/main";
     }

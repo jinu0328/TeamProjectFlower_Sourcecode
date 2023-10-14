@@ -30,13 +30,22 @@
                 </tr>
                 </tbody>
             </table>
+            <!-- 키워드 입력 폼 -->
+            <div id="keywordAddForm" style="display: none;">
+                <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
+                <form method="post" th:action="@{/admin/recommend/addKeyword}">
+                    <input type="text" name="keywordNm" placeholder="새 키워드" required>
+                    <button type="submit" class="btn">저장</button>
+                </form>
+            </div>
             <!-- 추가, 수정, 삭제 버튼 -->
             <div style="text-align: right; margin-top: 15px;">
-                <button type="button" class="btn">추가</button>
+                <button type="button" class="btn" onclick="showAddKeywordForm()">추가</button>
                 <button type="button" class="btn">수정</button>
                 <button type="button" class="btn">삭제</button>
             </div>
         </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
     </form>
 </section>
 </html>
