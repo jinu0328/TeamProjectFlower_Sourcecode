@@ -47,7 +47,7 @@ public class User extends BaseEntity{
     @Column(nullable = false, length = 65)
     private String userPw;          // 비밀번호
 
-    @Column(length = 11)
+    @Column(length = 20)
     private String cellPhone;       // 전화번호
 
     @Column(length = 13)

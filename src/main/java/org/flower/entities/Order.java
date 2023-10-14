@@ -22,7 +22,36 @@ public class Order extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "userNo" , nullable = false)
-    private User user; // 주문한 사용자의 ID
+    private User user;
+
+
+    @Column(nullable = false, length = 45)
+    private String userEmail; // 아이디(이메일)
+
+    @Column(nullable = false, length = 35)
+    private String userNm; // 회원명
+
+    @Column(nullable = false, length = 40)
+    private String userNickNm; // 닉네임
+
+    @Column(nullable = false, length = 20)
+    private String cellPhone;       // 전화번호
+
+    public String getUserEmail() {
+        return user.getUserEmail();
+    }
+
+    public String getUserNm() {
+        return user.getUserNm();
+    }
+
+    public String getUserNickNm() {
+        return user.getUserNickNm();
+    }
+
+    public String getCellPhone() {
+        return user.getCellPhone();
+    }
 
     @Column(nullable = false, length = 20)
     private LocalDate pickupDate;       // 주문 픽업 날짜
@@ -42,7 +71,8 @@ public class Order extends BaseEntity{
     @Column(length = 255)
     private String message;       // 고객이 전달하고 싶은 메세지 내용
 
-    // 주문의 현재 상태를 '접수중', '매장 선택중','매칭 실패', '매칭 완료' 로 제한
+    @Column(nullable = false, length = 30)
+    private String orderStatus;  // '접수중', '매장 선택중','매칭 실패', '매칭 완료' 중 하나의 상태
 
 
 }
