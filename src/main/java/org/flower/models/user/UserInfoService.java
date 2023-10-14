@@ -31,7 +31,7 @@ public class UserInfoService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = repository.findByUserEmail(username);       // username 을 매개변수로 받아, 해당 사용자의 정보를 데이터 소스에서 조회
 
-        if(user == null){       // 조회된 상용자 정보가 null인 경우, UsernameNotFoundException 발생
+        if(user == null){       // 조회된 사용자 정보가 null인 경우, UsernameNotFoundException 발생
             throw new UsernameNotFoundException(username);
         }
 
