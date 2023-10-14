@@ -97,6 +97,7 @@ function removeItem(ev, item) {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', function() {
 
     var recommendBtn = document.getElementById('recommendBtn');
