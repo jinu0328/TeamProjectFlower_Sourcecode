@@ -1,5 +1,8 @@
 package org.flower.controllers.recommend;
 
+import org.flower.entities.Keywords;
+import org.flower.repositories.KeywordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,14 +13,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.flower.entities.QKeywords.keywords;
+
 @Controller
 @RequestMapping("/recommend")
 public class RecommendController {
+    @Autowired
+    KeywordRepository keywordRepository;
     @GetMapping
     public String recommend(Model model) {
-        // 키워드 추가하기 위한 부분
-        // 나중에 이 부분은 model에서 따로 받아와야함 -대윤-
-        List<String> keywords = Arrays.asList("졸업식", "연인", "부모님");
+        List<Keywords> keywordsList = keywordRepository.findAll();
+        model.addAttribute("keywordsList", keywordsList);
 
         // 키워드를 모델에 추가하여 뷰에서 사용
         model.addAttribute("keywords", keywords);

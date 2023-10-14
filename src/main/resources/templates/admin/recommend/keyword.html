@@ -5,6 +5,38 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
     <!-- 키워드 부분 -->
-    키워드 리스트
+    <form method="post" th:action="@{/admin/recommend/keyword}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table class="keywords-table">
+                <thead>
+                <tr class="header-row">
+                    <th class = "checkbox-col">
+                        <input type="checkbox">
+                    </th>
+                    <th>키워드번호</th>
+                    <th>키워드명</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="data-row" th:each="keyword : ${keywordsList}" th:object="${keyword}">
+                    <!-- 체크 박스 -->
+                    <td class="checkbox-col">
+                        <input type="checkbox" th:value="*{keywordNo}">
+                    </td>
+                    <!-- 키워드 번호 -->
+                    <td th:text="*{keywordNo}"></td>
+                    <!-- 키워드 이름 -->
+                    <td th:text="*{keywordNm}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- 추가, 수정, 삭제 버튼 -->
+            <div style="text-align: right; margin-top: 15px;">
+                <button type="button" class="btn">추가</button>
+                <button type="button" class="btn">수정</button>
+                <button type="button" class="btn">삭제</button>
+            </div>
+        </div>
+    </form>
 </section>
 </html>
