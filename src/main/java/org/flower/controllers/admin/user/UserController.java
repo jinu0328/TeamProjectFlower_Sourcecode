@@ -2,6 +2,7 @@ package org.flower.controllers.admin.user;
 
 import lombok.Data;
 import org.flower.entities.User;
+import org.flower.models.user.UserEditService;
 import org.flower.models.user.UserInfo;
 import org.flower.models.user.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
