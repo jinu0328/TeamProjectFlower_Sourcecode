@@ -24,6 +24,7 @@
           <th>가격대</th>
           <th>메세지</th>
           <th>매칭된매장</th>
+          <th>회원 정보</th>
         </tr>
         </thead>
         <tbody>
@@ -54,6 +55,12 @@
           <td th:text="*{pricerange}"></td>
           <!-- 메세지-->
           <td th:text="*{message}"></td>
+          <!-- 매칭된 매장 -->
+          <td></td> <!-- 주문-매장 매핑 엔티티 구현 후 작성 예정 -->
+          <td>
+            <a th:href="@{/admin/user/userInfo}" class="btn2">
+              회원 상세 정보</a>
+          </td>
 
          <script>
           function toggleCheckboxes() {
