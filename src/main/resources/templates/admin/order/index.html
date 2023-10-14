@@ -4,33 +4,68 @@
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
   <nav th:replace="~{admin/order/_submenu::menus}"></nav>
-  <!--내용 집어넣으면 됨-->
   <form method="post" th:action="@{/admin/order}">
-
-  <!--내용 집어넣으면 됨-->
-
     <div role="region" aria-label="data table" tabindex="0" class="primary">
       <table class="order-table">
         <thead>
         <tr class="header-row">
           <th class = "checkbox-col">
-            <input type="checkbox">
+            <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
           </th>
           <th>주문번호</th>
           <th>주문일시</th>
           <th>닉네임</th>
           <th>회원명</th>
-          <th>회원번호</th>
           <th>전화번호</th>
           <th>픽업날짜</th>
           <th>픽업시간</th>
+          <th>꽃 종류</th>
+          <th>꽃다발 색상</th>
           <th>가격대</th>
           <th>메세지</th>
           <th>매칭된매장</th>
         </tr>
         </thead>
         <tbody>
+        <tr class="data-row" th:each="order : ${orders}" th:object="${order}">
+          <!-- 체크 박스 -->
+          <td class="checkbox-col">
+            <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
+          </td>
+          <!-- 주문 번호 -->
+          <td th:text="${orderNo}"></td>
+          <!-- 주문 일시 -->
+          <td th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <!-- 닉네임 -->
+          <td th:text="*{userNickNm}"></td>
+          <!-- 회원명 -->
+          <td th:text="*{userNm}"></td>
+          <!-- 전화번호 -->
+          <td th:text="*{cellPhone}"></td>
+          <!-- 픽업 날짜 -->
+          <td th:text="*{pickupDate}"></td>
+          <!-- 픽업 시간 -->
+          <td th:text="*{pickupTime}"></td>
+          <!-- 원하는 꽃 종류 -->
+          <td th:text="*{flowertype}"></td>
+          <!-- 원하는 꽃다발 색상 -->
+          <td th:text="*{flowertype}"></td>
+          <!-- 가격대 -->
+          <td th:text="*{pricerange}"></td>
+          <!-- 메세지-->
+          <td th:text="*{message}"></td>
 
+         <script>
+          function toggleCheckboxes() {
+            const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
+            const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkvox"]');
+
+            checkboxes.forEach(checkbox => {
+              checkbox.checked = masterCheckbox.checked;
+            })
+          }
+          </script>
+        </tr>
         </tbody>
       </table>
     </div>
