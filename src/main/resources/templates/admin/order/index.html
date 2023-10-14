@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+  <nav th:replace="~{admin/order/_submenu::menus}"></nav>
+  <!--내용 집어넣으면 됨-->
+  <form method="post" th:action="@{/admin/order}">
+
+  <!--내용 집어넣으면 됨-->
+
+    <div role="region" aria-label="data table" tabindex="0" class="primary">
+      <table class="order-table">
+        <thead>
+        <tr class="header-row">
+          <th class = "checkbox-col">
+            <input type="checkbox">
+          </th>
+          <th>주문번호</th>
+          <th>주문일시</th>
+          <th>닉네임</th>
+          <th>회원명</th>
+          <th>회원번호</th>
+          <th>전화번호</th>
+          <th>픽업날짜</th>
+          <th>픽업시간</th>
+          <th>가격대</th>
+          <th>메세지</th>
+          <th>매칭된매장</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+  </form>
+</section>
+</html>
