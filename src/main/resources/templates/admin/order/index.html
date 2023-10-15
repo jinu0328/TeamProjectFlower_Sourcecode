@@ -34,9 +34,9 @@
             <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
           </td>
           <!-- 주문 번호 -->
-          <td th:text="${orderNo}"></td>
+          <td th:text="*{orderNo}"></td>
           <!-- 주문 일시 -->
-          <td th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <td th:text="*{#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
           <!-- 닉네임 -->
           <td th:text="*{userNickNm}"></td>
           <!-- 회원명 -->
@@ -58,7 +58,7 @@
           <!-- 매칭된 매장 -->
           <td></td> <!-- 주문-매장 매핑 엔티티 구현 후 작성 예정 -->
           <td>
-            <a th:href="@{/admin/user}" class="btn2">
+            <a th:href="@{/admin/user/userInfo}" class="btn2">
               회원 상세 정보</a>
           </td>
 
