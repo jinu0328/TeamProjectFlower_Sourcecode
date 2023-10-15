@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/order/_submenu::menus}"></nav>
+    <!-- 주문서와 매칭된 매장 확인 부분-->
+    주문서와 매칭된 매장을 확인하기 위한 탭
+</section>
+</html>
