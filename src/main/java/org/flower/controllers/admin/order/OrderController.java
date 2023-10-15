@@ -5,16 +5,14 @@ import org.flower.models.order.order.OrderEditService;
 import org.flower.models.order.order.OrderInfo;
 import org.flower.models.order.order.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/order")
@@ -26,6 +24,9 @@ public class OrderController {
     @Autowired
     private OrderEditService orderEditService;
 
+    /*
+    *   주문 리스트 - GET
+    * */
     @GetMapping("/orderList")
     public String orderlist(Model model) {
         List<Order> orderList = orderInfoService.getAllOrders(); // 주문 목록을 가져오는 서비스 메서드 호출
@@ -34,16 +35,29 @@ public class OrderController {
         return "admin/order/index";
     }
 
-    @PostMapping("/orderList")
-    public ResponseEntity<String> addOrderList(@RequestBody OrderInfo orderInfo){
-        System.out.println(orderInfo);
+    /*
+    *   주문추가 - GET
+    * */
+    @GetMapping("/addOrderList")
+    public String showAddOrderForm() {
+        return "admin/order/addorderlist"; // 주문 추가 페이지 템플릿 경로
+    }
+
+    /*
+    *   주문추가 - POST
+    * */
+    @PostMapping("/addOrderList")
+    public String addOrderList(@ModelAttribute OrderInfo orderInfo, RedirectAttributes redirectAttributes) {
         try {
             orderEditService.addOrderList(orderInfo);
-            // 정상 응답인 경우에도 JSON 형식의 응답 본문을 전달합니다.
-            return new ResponseEntity<>("{\"message\":\"주문 리스트가 성공적으로 추가되었습니다.\"}", HttpStatus.OK);
-        }catch (Exception e){
-            // 에러 응답의 경우에도 마찬가지입니다.
-            return new ResponseEntity<>("{\"message\":\"주문 리스트 추가 중 에러가 생겼습니다.\"}",  HttpStatus.INTERNAL_SERVER_ERROR);
+            redirectAttributes.addFlashAttribute("status", "success");
+            redirectAttributes.addFlashAttribute("message", "주문이 성공적으로 추가되었습니다.");
+            return "redirect:/admin/order/orderList";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("status", "error");
+            redirectAttributes.addFlashAttribute("message", "주문 추가 중 오류가 발생했습니다: " + e.getMessage());
+            return "redirect:/admin/order/addOrderList";
         }
     }
+
 }

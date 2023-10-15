@@ -16,9 +16,7 @@ import java.time.LocalTime;
 public class OrderInfo {
 
     private Long orderNo;
-
     private Long userNo;
-
     private String userEmail;
     private String userNm;
     private String userNickNm;

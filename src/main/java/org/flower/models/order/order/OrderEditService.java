@@ -1,5 +1,6 @@
 package org.flower.models.order.order;
 
+import org.flower.commons.constants.OrderState;
 import org.flower.entities.Order;
 import org.flower.entities.User;
 import org.flower.repositories.OrderRepository;
@@ -21,8 +22,7 @@ public class OrderEditService {
     *  관리자 페이지 주문 추가 기능
     * */
     public void addOrderList(OrderInfo orderInfo){
-        System.out.println("UserNo: " + orderInfo.getUserNo());
-        // 유저를 먼저 찾습니다.
+        // 유저 번호를 먼저 찾습니다.
         User user = userRepository.findByUserNo(orderInfo.getUserNo());
         if(user == null) {
             throw new IllegalArgumentException("No user found with userNo " + orderInfo.getUserNo());
@@ -30,18 +30,15 @@ public class OrderEditService {
 
         Order order = Order.builder()
                 .user(user)
-                .userEmail(orderInfo.getUserEmail())
-                .userNm(orderInfo.getUserNm())
-                .userNickNm(orderInfo.getUserNickNm())
-                .cellPhone(orderInfo.getCellPhone())
                 .pickupDate(orderInfo.getPickupDate())
                 .pickupTime(orderInfo.getPickupTime())
                 .flowertype(orderInfo.getFlowertype())
                 .flowercolor(orderInfo.getFlowercolor())
                 .pricerange(orderInfo.getPricerange())
                 .message(orderInfo.getMessage())
-                .orderStatus("접수중")
+                .orderStatus(OrderState.ACCEPTING)
                 .build();
+
 
         orderRepository.save(order);
     }
