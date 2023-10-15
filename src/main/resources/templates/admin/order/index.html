@@ -13,7 +13,9 @@
             <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
           </th>
           <th>주문번호</th>
+          <th>회원번호</th>
           <th>주문일시</th>
+          <th>이메일</th>
           <th>닉네임</th>
           <th>회원명</th>
           <th>전화번호</th>
@@ -34,9 +36,13 @@
             <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
           </td>
           <!-- 주문 번호 -->
-          <td th:text="${orderNo}"></td>
+          <td th:text="*{orderNo}"></td>
+          <!-- 회원 번호 -->
+          <td th:text="${order.user.userNo}"></td>
           <!-- 주문 일시 -->
           <td th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+          <!-- 이메일 -->
+          <td th:text="*{userEmail}"></td>
           <!-- 닉네임 -->
           <td th:text="*{userNickNm}"></td>
           <!-- 회원명 -->
@@ -61,7 +67,6 @@
             <a th:href="@{/admin/user}" class="btn2">
               회원 상세 정보</a>
           </td>
-
          <script>
           function toggleCheckboxes() {
             const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
@@ -77,5 +82,8 @@
       </table>
     </div>
   </form>
+  <div>
+    <button id="addOrderButton" type="button">주문 추가</button>
+  </div>
 </section>
 </html>

@@ -3,6 +3,7 @@ package org.flower.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.flower.models.order.order.OrderInfo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -25,13 +26,13 @@ public class Order extends BaseEntity{
     private User user;
 
 
-    @Column(nullable = false, length = 45)
+    @Column(nullable = true, length = 45)
     private String userEmail; // 아이디(이메일)
 
-    @Column(nullable = false, length = 35)
+    @Column(nullable = true, length = 35)
     private String userNm; // 회원명
 
-    @Column(nullable = false, length = 40)
+    @Column(nullable = true, length = 40)
     private String userNickNm; // 닉네임
 
     @Column(nullable = false, length = 20)
@@ -73,6 +74,5 @@ public class Order extends BaseEntity{
 
     @Column(nullable = false, length = 30)
     private String orderStatus;  // '접수중', '매장 선택중','매칭 실패', '매칭 완료' 중 하나의 상태
-
 
 }
