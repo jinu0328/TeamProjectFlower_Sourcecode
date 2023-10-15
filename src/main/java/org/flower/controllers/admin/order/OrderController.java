@@ -24,4 +24,15 @@ public class OrderController {
         model.addAttribute("orders", orderList); // 모델에 주문 목록을 추가하여 뷰로 전
         return "admin/order/index";
     }
+
+    @GetMapping("/store")
+    public String storeList(){
+
+        return "admin/order/store";
+    }
+    @GetMapping("/ordermatching")
+    public String orderstoreMatch(){
+
+        return "admin/order/ordermatching";
+    }
 }

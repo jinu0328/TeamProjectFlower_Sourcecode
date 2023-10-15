@@ -41,8 +41,8 @@
             <!-- 추가, 수정, 삭제 버튼 -->
             <div style="text-align: right; margin-top: 15px;">
                 <button type="button" class="btn" onclick="showAddKeywordForm()">추가</button>
-                <button type="button" class="btn">수정</button>
-                <button type="button" class="btn">삭제</button>
+                <button type="button" class="btn" onclick="editKeyword()">수정</button>
+                <button type="button" class="btn" onclick="deleteKeywords()">삭제</button>
             </div>
         </div>
         <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
