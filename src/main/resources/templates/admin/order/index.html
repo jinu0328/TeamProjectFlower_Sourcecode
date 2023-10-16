@@ -82,5 +82,18 @@
     <a class="btn2" th:href="@{/admin/order/addOrderList}" id="addOrderButton">주문 추가</a>
   </div>
   <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+  <!-- 주문 추가 처리 후 alert 메세지 출력 -->
+  <input type="hidden" id="message" th:value="${message}" />
+  <input type="hidden" id="status" th:value="${status}" />
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var status = document.getElementById("status").value;
+      var message = document.getElementById("message").value;
+
+      if(status && message) {
+        alert(message);
+      }
+    });
+  </script>
 </section>
 </html>
