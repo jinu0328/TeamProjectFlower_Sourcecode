@@ -43,6 +43,11 @@ public class Flower {
     @OneToMany(mappedBy = "flower") // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
     private List<FlowerKeywordMapping> flowerKeywordMappings = new ArrayList<>();
 
+    // 좋아요 수를 저장할 필드
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int likes = 0; // 초기값은 0으로 설정
+
+
 }
 
 
