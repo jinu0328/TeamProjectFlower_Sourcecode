@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/layouts/main}">
+<section layout:fragment="content">
+    <nav th:replace="~{admin/order/_submenu::menus}"></nav>
+    <!-- 주문 추가를 눌렀을 때 페이지 이동 후 주문 추가를 할 수 있도록 함 -->
+    <h2>주문 추가</h2>
+    <form method="post" th:action="@{/admin/order/addOrderList}" enctype="application/x-www-form-urlencoded">
+        <label for="userNo">회원번호:</label>
+        <input type="text" id="userNo" name="userNo"><br><br>
+
+        <label for="pickupDate">픽업날짜:</label>
+        <input type="date" id="pickupDate" name="pickupDate"><br><br>
+
+        <label for="pickupDate">픽업시간:</label>
+        <input type="time" id="pickupTime" name="pickupTime"><br><br>
+
+        <label for="pickupDate">꽃 종류:</label>
+        <input type="text" id="flowertype" name="flowertype"><br><br>
+
+        <label for="pickupDate">꽃 색깔:</label>
+        <input type="text" id="flowercolor" name="flowercolor"><br><br>
+
+        <label for="pickupDate">가격대:</label>
+        <input type="text" id="pricerange" name="pricerange"><br><br>
+
+        <label for="pickupDate">메세지:</label>
+        <input type="text" id="message" name="message"><br><br>
+
+        <button class="btn2" type="submit">주문 추가</button>
+        <a class="btn2" th:href="@{/admin/order/orderList}">취소</a>
+    </form>
+</section>
+</html>

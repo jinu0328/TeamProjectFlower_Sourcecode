@@ -18,6 +18,7 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
     // Spring Data JPA가 메서드 이름을 파싱하여 JPQL을 생성하고, 해당 쿼리를 실행
     User findByUserEmail(String userEmail);
 
+    User findByUserNo(Long userNo);
     /**
      * 이메일을 기준으로 회원이 등록되어 있는지 체크
      *

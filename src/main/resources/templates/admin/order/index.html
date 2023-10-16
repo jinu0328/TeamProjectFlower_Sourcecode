@@ -23,7 +23,7 @@
           <th>꽃다발 색상</th>
           <th>가격대</th>
           <th>메세지</th>
-          <th>매칭된매장</th>
+          <th>매칭상태</th>
           <th>회원 정보</th>
         </tr>
         </thead>
@@ -36,7 +36,9 @@
           <!-- 주문 번호 -->
           <td th:text="*{orderNo}"></td>
           <!-- 주문 일시 -->
-          <td th:text="*{#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+
+          <td th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+
           <!-- 닉네임 -->
           <td th:text="*{userNickNm}"></td>
           <!-- 회원명 -->
@@ -50,7 +52,7 @@
           <!-- 원하는 꽃 종류 -->
           <td th:text="*{flowertype}"></td>
           <!-- 원하는 꽃다발 색상 -->
-          <td th:text="*{flowertype}"></td>
+          <td th:text="*{flowercolor}"></td>
           <!-- 가격대 -->
           <td th:text="*{pricerange}"></td>
           <!-- 메세지-->
@@ -61,21 +63,27 @@
             <a th:href="@{/admin/user/userInfo}" class="btn2">
               회원 상세 정보</a>
           </td>
-
-         <script>
-          function toggleCheckboxes() {
-            const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
-            const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkbox"]');
-
-            checkboxes.forEach(checkbox => {
-              checkbox.checked = masterCheckbox.checked;
-            })
-          }
-          </script>
         </tr>
         </tbody>
       </table>
     </div>
   </form>
+  <div>
+    <a class="btn2" th:href="@{/admin/order/addOrderList}" id="addOrderButton">주문 추가</a>
+  </div>
+  <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+  <!-- 주문 추가 처리 후 alert 메세지 출력 -->
+  <input type="hidden" id="message" th:value="${message}" />
+  <input type="hidden" id="status" th:value="${status}" />
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var status = document.getElementById("status").value;
+      var message = document.getElementById("message").value;
+
+      if(status && message) {
+        alert(message);
+      }
+    });
+  </script>
 </section>
 </html>
