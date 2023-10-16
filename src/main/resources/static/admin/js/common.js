@@ -94,5 +94,12 @@ function deleteKeywords() {
         .catch(error => console.error('Error:', error));
 }
 
-/* 주문 추가 S*/
-/* 주문 추가 E*/
+// 리스트 체크박스 전체 선택 기능
+function toggleCheckboxes() {
+    const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkbox"]');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = masterCheckbox.checked;
+    })
+}

@@ -63,16 +63,6 @@
             <a th:href="@{/admin/user/userInfo}" class="btn2">
               회원 상세 정보</a>
           </td>
-         <script>
-          function toggleCheckboxes() {
-            const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
-            const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkbox"]');
-
-            checkboxes.forEach(checkbox => {
-              checkbox.checked = masterCheckbox.checked;
-            })
-          }
-          </script>
         </tr>
         </tbody>
       </table>
