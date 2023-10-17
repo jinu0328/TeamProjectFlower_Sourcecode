@@ -21,31 +21,33 @@
                 <tr class="data-row" th:each="keyword, iterStat : ${keywordsList}" th:object="${keyword}">
                     <!-- 체크 박스 -->
                     <td class="checkbox-col">
-                        <input type="checkbox" th:value="${iterStat.index}">
+                        <input type="checkbox" th:value="*{keywordNo}">
                     </td>
-                    <!-- 키워드 번호 -->
+                    <!-- 키워드 번호 (정렬된 값 ) -->
                     <td th:text="${iterStat.index + 1}"></td>
                     <!-- 키워드 이름 -->
                     <td th:text="*{keywordNm}"></td>
                 </tr>
                 </tbody>
             </table>
-            <!-- 키워드 입력 폼 -->
-            <div id="keywordAddForm" style="display: none;">
-                <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
-                <form method="post" th:action="@{/admin/recommend/addKeyword}">
-                    <input type="text" name="keywordNm" placeholder="새 키워드" required>
-                    <button type="submit" class="btn">저장</button>
-                </form>
-            </div>
-            <!-- 추가, 수정, 삭제 버튼 -->
-            <div style="text-align: right; margin-top: 15px;">
-                <button type="button" class="btn2" onclick="showAddKeywordForm()">추가</button>
-                <button type="button" class="btn2" onclick="editKeyword()">수정</button>
-                <button type="button" class="btn2" onclick="deleteKeywords()">삭제</button>
-            </div>
+
         </div>
         <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
     </form>
+    <!-- 키워드 입력 폼 -->
+    <div id="keywordAddForm" style="display: none;">
+        <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
+        <!-- form 태그 안에 form 태그를 넣어서 postMapping이 바깥으로 들어가게 된 것이었음..-->
+        <form method="post" th:action="@{/admin/recommend/addKeyword}">
+            <input type="text" name="keywordNm" placeholder="새 키워드" required>
+            <button type="submit" class="btn">저장</button>
+        </form>
+    </div>
+    <!-- 추가, 수정, 삭제 버튼 -->
+    <div style="text-align: right; margin-top: 15px;">
+        <button type="button" class="btn2" onclick="showAddKeywordForm()">추가</button>
+        <button type="button" class="btn2" onclick="editKeyword()">수정</button>
+        <button type="button" class="btn2" onclick="deleteKeywords()">삭제</button>
+    </div>
 </section>
 </html>
