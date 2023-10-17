@@ -9,6 +9,9 @@ import org.flower.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class OrderEditService {
 
@@ -48,11 +51,39 @@ public class OrderEditService {
     *   관리자페이지 주문 리스트 수정 기능
     * */
     @Transactional
-    public void editOrderList(OrderInfo orderInfo) throws Exception {
-        // 주문 정보 검증
-        if (orderInfo == null || orderInfo.getOrderNo() == null) {
-            throw new IllegalArgumentException("주문 정보가 유효하지 않습니다.");
+    public List<OrderEditInfo> editOrderList(List<OrderInfo> orderInfos) throws Exception {
+        List<OrderEditInfo> updatedOrderInfos = new ArrayList<>();
+
+        for (OrderInfo orderInfo : orderInfos) {
+            Order order = orderRepository.findById(orderInfo.getOrderNo())
+                    .orElseThrow(() -> new Exception("Order with ID " + orderInfo.getOrderNo() + " not found"));
+
+            // Update order fields based on orderInfo
+            order.setPickupDate(orderInfo.getPickupDate());
+            order.setPickupTime(orderInfo.getPickupTime());
+            order.setFlowertype(orderInfo.getFlowertype());
+            order.setFlowercolor(orderInfo.getFlowercolor());
+            order.setPricerange(orderInfo.getPricerange());
+            order.setMessage(orderInfo.getMessage());
+            order.setOrderStatus(OrderState.valueOf(orderInfo.getOrderStatus()));
+            order = orderRepository.save(order);
+
+            // Convert updated order to SimpleOrderInfo and add to the list
+            OrderEditInfo updatedOrderInfo = new OrderEditInfo(
+                    order.getOrderNo(),
+                    order.getPickupDate(),
+                    order.getPickupTime(),
+                    order.getFlowertype(),
+                    order.getFlowercolor(),
+                    order.getPricerange(),
+                    order.getMessage(),
+                    order.getOrderStatus().name()
+            );
+            updatedOrderInfos.add(updatedOrderInfo);
         }
 
+        return updatedOrderInfos;
     }
+
+
 }
