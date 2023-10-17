@@ -18,13 +18,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="data-row" th:each="keyword : ${keywordsList}" th:object="${keyword}">
+                <tr class="data-row" th:each="keyword, iterStat : ${keywordsList}" th:object="${keyword}">
                     <!-- 체크 박스 -->
                     <td class="checkbox-col">
-                        <input type="checkbox" th:value="*{keywordNo}">
+                        <input type="checkbox" th:value="${iterStat.index}">
                     </td>
                     <!-- 키워드 번호 -->
-                    <td th:text="*{keywordNo}"></td>
+                    <td th:text="${iterStat.index + 1}"></td>
                     <!-- 키워드 이름 -->
                     <td th:text="*{keywordNm}"></td>
                 </tr>

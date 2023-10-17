@@ -3,6 +3,10 @@ function showAddKeywordForm() {
     document.getElementById('keywordAddForm').style.display = 'block';
 }
 
+function showAddFlowerForm() {
+    document.getElementById('keywordAddForm').style.display = 'block';
+}
+
 function getSelectedKeywordNo() {
     // 선택된 체크박스의 keywordNo 값을 반환
     let checkboxes = document.querySelectorAll('.checkbox-col input[type=checkbox]:checked');
