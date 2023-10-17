@@ -3,6 +3,10 @@ function showAddKeywordForm() {
     document.getElementById('keywordAddForm').style.display = 'block';
 }
 
+function showAddFlowerForm() {
+    document.getElementById('keywordAddForm').style.display = 'block';
+}
+
 function getSelectedKeywordNo() {
     // 선택된 체크박스의 keywordNo 값을 반환
     let checkboxes = document.querySelectorAll('.checkbox-col input[type=checkbox]:checked');
@@ -103,3 +107,94 @@ function toggleCheckboxes() {
         checkbox.checked = masterCheckbox.checked;
     })
 }
+
+/* 주문 리스트 수정 S */
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editButton = document.getElementById('editButton');
+
+    if (editButton) {
+        editButton.addEventListener('click', function() {
+            const isEditing = editButton.getAttribute('data-editing') === 'true';
+
+            if (isEditing) {
+                saveChanges();
+                editButton.innerText = '수정';
+                editButton.setAttribute('data-editing', 'false');
+            } else {
+                enableEditingMode();
+                editButton.innerText = '저장';
+                editButton.setAttribute('data-editing', 'true');
+            }
+        });
+    } else {
+        console.error("Element with ID 'editButton' not found!");
+    }
+});
+
+function enableEditingMode() {
+    const checkboxes = document.querySelectorAll('input[name="selectedOrders"]:checked');
+    const tbody = document.querySelector('.order-table tbody');
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const cells = row.querySelectorAll('td:not(:first-child)');
+
+        cells.forEach(cell => {
+            const originalText = cell.innerText;
+            cell.innerHTML = `<input type="text" value="${originalText}">`;
+        });
+
+        tbody.appendChild(row);
+    });
+}
+
+function saveChanges() {
+    const checkboxes = document.querySelectorAll('input[name="selectedOrders"]:checked');
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const orderId = row.getAttribute('data-orderId');
+        const cells = row.querySelectorAll('td:not(:first-child)');
+
+        const updatedRowData = {};
+        cells.forEach(cell => {
+            const input = cell.querySelector('input');
+            const field = cell.getAttribute('data-field');
+            if (input && field) {
+                updatedRowData[field] = input.value;
+                cell.innerText = input.value;
+            }
+        });
+
+        var csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+        fetch('/admin/order/editOrderList', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken
+            },
+            body: JSON.stringify(updatedRowData)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    alert(`Order ID ${orderId} 성공적으로 수정되었습니다.`);
+                } else {
+                    alert(`Order ID ${orderId} 수정에 실패하였습니다: ` + data.error);
+                }
+            })
+            .catch(error => {
+                alert('서버 통신 오류: ' + error);
+            });
+    });
+}
+
+
+/* 주문 리스트 수정 E */

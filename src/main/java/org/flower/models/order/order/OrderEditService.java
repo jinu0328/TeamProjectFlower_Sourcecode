@@ -1,5 +1,6 @@
 package org.flower.models.order.order;
 
+import jakarta.transaction.Transactional;
 import org.flower.commons.constants.OrderState;
 import org.flower.entities.Order;
 import org.flower.entities.User;
@@ -41,5 +42,17 @@ public class OrderEditService {
 
 
         orderRepository.save(order);
+    }
+
+    /*
+    *   관리자페이지 주문 리스트 수정 기능
+    * */
+    @Transactional
+    public void editOrderList(OrderInfo orderInfo) throws Exception {
+        // 주문 정보 검증
+        if (orderInfo == null || orderInfo.getOrderNo() == null) {
+            throw new IllegalArgumentException("주문 정보가 유효하지 않습니다.");
+        }
+
     }
 }
