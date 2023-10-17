@@ -28,8 +28,10 @@
         </tr>
         </thead>
         <tbody>
+
         <tr class="data-row" th:each="order, iterStat : ${orders}" th:object="${order}">
           <!-- 체크 박스 -->
+
           <td class="checkbox-col">
             <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
           </td>
@@ -60,8 +62,7 @@
           <!-- 매칭된 매장 -->
           <td></td> <!-- 주문-매장 매핑 엔티티 구현 후 작성 예정 -->
           <td>
-            <a th:href="@{/admin/user/userInfo}" class="btn2">
-              회원 상세 정보</a>
+            <a th:href="@{/admin/user/userInfo}" class="btn2">회원 상세 정보</a>
           </td>
         </tr>
         </tbody>
@@ -69,7 +70,9 @@
     </div>
   </form>
   <div>
-    <a class="btn2" th:href="@{/admin/order/addOrderList}" id="addOrderButton">주문 추가</a>
+    <a class="btn2" th:href="@{/admin/order/addOrderList}" id="addOrderButton">추가</a>
+    <button type="button" class="btn2" id="editButton">수정</button>
+    <button type="button" class="btn2" >삭제</button>
   </div>
   <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
   <!-- 주문 추가 처리 후 alert 메세지 출력 -->
