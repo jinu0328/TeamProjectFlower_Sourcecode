@@ -36,14 +36,14 @@ public class RecoMegmentController {
 
     // 꽃 관련 메소드들
     // 들어가면 바로 꽃 리스트 보이게 하려고 주소 추가로 할당 안함
-    @GetMapping
+    @GetMapping()
     public String flowerList(Model model){
         List<Flower> flowersList = flowerInfoService.getAllFlowers();
         model.addAttribute("flowersList", flowersList);
         return "admin/recommend/index";
     }
     // 꽃 추가 - Post
-    @PostMapping
+    @PostMapping("/addFlower")
     public String addFlower(@RequestParam String flowerNm, String flowerMean, String bloomseason, String season, String flowerIamges, RedirectAttributes redirectAttributes) {
         try {
             flowerEditService.addFlower(flowerNm, flowerMean, bloomseason, season, flowerIamges);
@@ -66,7 +66,7 @@ public class RecoMegmentController {
     * 키워드 추가 - POST
     *
     * */
-    @PostMapping("/keyword")
+    @PostMapping("/addKeyword")
     public String addKeyword(@RequestParam String keywordNm, RedirectAttributes redirectAttributes){
         try {
             keywordEditService.addKeyword(keywordNm);
