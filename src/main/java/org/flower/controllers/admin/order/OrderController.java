@@ -1,6 +1,7 @@
 package org.flower.controllers.admin.order;
 
 import org.flower.entities.Order;
+import org.flower.models.order.order.OrderEditInfo;
 import org.flower.models.order.order.OrderEditService;
 import org.flower.models.order.order.OrderInfo;
 import org.flower.models.order.order.OrderInfoService;
@@ -63,22 +64,23 @@ public class OrderController {
         }
     }
 
+    /**
+     *  주문 수정 - GET
+     * */
+
     /*
      *   주문 수정 - POST
      * */
     @PostMapping("/editOrderList")
-    public ResponseEntity<Map<String, Object>> editOrder(@RequestBody OrderInfo orderInfo) {
-        Map<String, Object> response = new HashMap<>();
+    public ResponseEntity<?> editOrders(@RequestBody List<OrderInfo> orderInfo) {
+        System.out.println(orderInfo);
         try {
-            orderEditService.editOrderList(orderInfo);
-            response.put("success", true);
-            response.put("message", "주문 리스트가 성공적으로 수정되었습니다.");
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            List<OrderEditInfo> updatedOrderInfos = orderEditService.editOrderList(orderInfo);
+            return ResponseEntity.ok(updatedOrderInfos);
         } catch (Exception e) {
-            response.put("success", false);
-            response.put("message", "키워드 수정 중 오류가 발생했습니다.");
             e.printStackTrace();
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 }

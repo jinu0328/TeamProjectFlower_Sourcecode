@@ -3,10 +3,6 @@ function showAddKeywordForm() {
     document.getElementById('keywordAddForm').style.display = 'block';
 }
 
-function showAddFlowerForm() {
-    document.getElementById('keywordAddForm').style.display = 'block';
-}
-
 function getSelectedKeywordNo() {
     // 선택된 체크박스의 keywordNo 값을 반환
     let checkboxes = document.querySelectorAll('.checkbox-col input[type=checkbox]:checked');
@@ -138,7 +134,7 @@ function enableEditingMode() {
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const cells = row.querySelectorAll('td:not(:first-child)');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
 
         cells.forEach(cell => {
             const originalText = cell.innerText;
@@ -151,49 +147,54 @@ function enableEditingMode() {
 
 function saveChanges() {
     const checkboxes = document.querySelectorAll('input[name="selectedOrders"]:checked');
+    const updatedDataArray = []; // 여러 주문의 데이터를 저장하는 배열
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const orderId = row.getAttribute('data-orderId');
-        const cells = row.querySelectorAll('td:not(:first-child)');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
 
         const updatedRowData = {};
         cells.forEach(cell => {
             const input = cell.querySelector('input');
             const field = cell.getAttribute('data-field');
+            let value = input.value;
             if (input && field) {
-                updatedRowData[field] = input.value;
-                cell.innerText = input.value;
+                if (field === 'orderNo') {
+                    value = parseInt(value, 10);
+                    console.log('Converted orderNo:', value); // 이 부분을 추가
+                }
+                updatedRowData[field] = value;
+                cell.innerText = value;
             }
         });
 
-        var csrfToken = document.querySelector('input[name="_csrf"]').value;
-
-        fetch('/admin/order/editOrderList', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken
-            },
-            body: JSON.stringify(updatedRowData)
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    alert(`Order ID ${orderId} 성공적으로 수정되었습니다.`);
-                } else {
-                    alert(`Order ID ${orderId} 수정에 실패하였습니다: ` + data.error);
-                }
-            })
-            .catch(error => {
-                alert('서버 통신 오류: ' + error);
-            });
+        updatedDataArray.push(updatedRowData); // 배열에 추가
     });
+
+    var csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+    fetch('/admin/order/editOrderList', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify(updatedDataArray)
+    })
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            console.log("Server response:", data); // 서버 응답 출력
+
+            if (Array.isArray(data) && data.length > 0) {  // 응답이 배열이고 그 길이가 0보다 큰지 확인
+                alert(`성공적으로 수정되었습니다.`);
+            } else {
+                alert(`수정에 실패하였습니다: Unknown error`);
+            }
+        })
+        .catch(error => {
+            console.error("Error during fetch:", error); // 오류를 콘솔에 출력
+            alert('서버 통신 오류: ' + error.message);
+        });
 }
 
 
