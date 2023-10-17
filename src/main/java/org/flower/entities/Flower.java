@@ -25,7 +25,7 @@ public class Flower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long flowerNo;            // 꽃 식별자
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String flowerNm;       // 꽃 이름
 
     @Column(nullable = false, length = 255)
