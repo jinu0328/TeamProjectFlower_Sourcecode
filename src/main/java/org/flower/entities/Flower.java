@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.*;
 import org.flower.commons.constants.UserRole;
+import org.flower.models.recommend.flower.FlowerInfo;
 
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
 @NoArgsConstructor      // 파라미터가 없는 기본 생성자를 생성

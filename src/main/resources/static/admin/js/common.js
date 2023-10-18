@@ -1,3 +1,47 @@
+// 꽃 추가
+function showAddFlowerForm() {
+    document.getElementById('flowerAddForm').style.display = 'block';
+}
+
+// 꽃 삭제
+function deleteFlower() {
+    // 선택된 키워드 번호들을 담을 배열
+    var flowerNos = [];
+    // 체크된 체크박스의 값을 배열에 담기
+    document.querySelectorAll('.flower-table input[type="checkbox"]:checked').forEach(function (checkbox) {
+        flowerNos.push(checkbox.value);
+    });
+
+    // 체크된 키워드가 없으면 함수 종료
+    if (flowerNos.length === 0) {
+        alert('삭제할 키워드를 선택하세요.');
+        return;
+    }
+
+    // 서버에 삭제 요청
+    fetch('/admin/recommend/deleteFlower', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            // CSRF 토큰을 헤더에 추가
+            'X-CSRF-Token': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify({ flowerNos: flowerNos })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('꽃이 삭제되었습니다.');
+                // 페이지 새로고침 혹은 다시 데이터를 불러와 UI 업데이트
+                location.reload();
+            } else {
+                alert('삭제 중 오류 발생: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+}
+
+
 /* 키워드 추가 */
 function showAddKeywordForm() {
     document.getElementById('keywordAddForm').style.display = 'block';
