@@ -26,7 +26,7 @@
                 <tr class="data-row" th:each="flower, iterStat : ${flowersList}" th:object="${flower}">
                     <!-- 체크 박스 -->
                     <td class="checkbox-col">
-                        <input type="checkbox" th:value="${iterStat.index}">
+                        <input type="checkbox" th:value="*{flowerNo}">
                     </td>
                     <!-- 꽃 번호 -->
                     <td th:text="${iterStat.index + 1}"></td>
@@ -43,25 +43,27 @@
                 </tr>
                 </tbody>
             </table>
-            <div id="flowerAddForm" style="display: none;">
-                <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
-                <form method="post" th:action="@{/admin/recommend}">
-                    <input type="text" name="flowerNm" placeholder="꽃 이름" required>
-                    <input type="text" name="flowerMean" placeholder="꽃말" required>
-                    <input type="text" name="bloomseason" placeholder="개화시기" required>
-                    <input type="text" name="season" placeholder="계절" required>
-                    <input type="text" name="flowerIamges" placeholder="사진경로">
-                    <button type="submit" class="btn">저장</button>
-                </form>
-            </div>
-            <!-- 추가, 수정, 삭제 버튼 -->
-            <div style="text-align: right; margin-top: 15px;">
-                <button type="button" class="btn" onclick="showAddFlowerForm()">추가</button>
-                <button type="button" class="btn">수정</button>
-                <button type="button" class="btn">삭제</button>
-            </div>
         </div>
         <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
     </form>
+    <div id="flowerAddForm" style="display: none;">
+        <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
+        <form method="post" th:action="@{/admin/recommend/addFlower}">
+            <input type="text" name="flowerNm" placeholder="꽃 이름" required>
+            <input type="text" name="flowerMean" placeholder="꽃말" required>
+            <input type="text" name="bloomseason" placeholder="개화시기" required>
+            <input type="text" name="season" placeholder="계절" required>
+            <input type="text" name="flowerIamges" placeholder="사진경로">
+            <button type="submit" class="btn">저장</button>
+        </form>
+    </div>
+
+    <!-- 추가, 수정, 삭제 버튼 -->
+    <div style="text-align: right; margin-top: 15px;">
+        <button type="button" class="btn" onclick="showAddFlowerForm()">추가</button>
+        <button type="button" class="btn">수정</button>
+        <button type="button" class="btn" onclick="deleteFlower()">삭제</button>
+    </div>
+
 </section>
 </html>

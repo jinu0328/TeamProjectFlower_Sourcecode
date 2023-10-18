@@ -3,13 +3,18 @@ package org.flower.controllers.admin.recommend;
 import org.flower.entities.Flower;
 import org.flower.models.recommend.flower.FlowerEditService;
 import org.flower.models.recommend.flower.FlowerInfoService;
+import org.flower.models.recommend.flower.FlowerInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin/recommend")
@@ -31,14 +36,32 @@ public class FlowerController {
     }
     // 꽃 추가 - Post
     @PostMapping("/addFlower")
-    public String addFlower(@RequestParam String flowerNm, String flowerMean, String bloomseason, String season, String flowerIamges, RedirectAttributes redirectAttributes) {
+    public String addFlower(@ModelAttribute FlowerInfo flowerInfo, RedirectAttributes redirectAttributes) {
         try {
-            flowerEditService.addFlower(flowerNm, flowerMean, bloomseason, season, flowerIamges);
+            flowerEditService.addFlower(flowerInfo);
             redirectAttributes.addFlashAttribute("successMessage", "꽃 성공적으로 추가되었습니다.");
         }catch (Exception e){
             redirectAttributes.addFlashAttribute("errorMessage", "꽃 추가 중 오류가 발생했습니다.");
         }
+
         return "redirect:/admin/recommend";
+    }
+
+    @DeleteMapping("/deleteFlower")
+    public ResponseEntity<Map<String, Object>> deleteFlower(@RequestBody Map<String, List<Long>> payload){
+        Map<String, Object> response = new HashMap<>();
+        try {
+            List<Long> flowerNos = payload.get("flowerNos");
+            flowerEditService.deleteFlower(flowerNos);
+            response.put("success", true);
+            response.put("message", "꽃 성공적으로 삭제되었습니다.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (Exception e){
+            response.put("success", false);
+            response.put("message", "꽃 삭제 중 오류가 발생했습니다.");
+            e.printStackTrace();
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }
