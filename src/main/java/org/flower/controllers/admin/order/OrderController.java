@@ -64,10 +64,6 @@ public class OrderController {
         }
     }
 
-    /**
-     *  주문 수정 - GET
-     * */
-
     /*
      *   주문 수정 - POST
      * */
