@@ -44,8 +44,8 @@ function enableFlowerEditingMode() {
 }
 
 function saveFlowerChanges() {
-    const checkboxes = document.querySelectorAll('input[name="selectedFlowers"]:checked');
-    const updatedDataArray = []; // 여러 주문의 데이터를 저장하는 배열
+    const checkboxes = document.querySelectorAll('input[name="selectedFlower"]:checked');
+    const updatedDataArray = []; // 여러 꽃의 데이터를 저장하는 배열
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');

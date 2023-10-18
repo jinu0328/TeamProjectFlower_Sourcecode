@@ -1,6 +1,8 @@
 package org.flower.controllers.admin.recommend;
 
 import org.flower.entities.Flower;
+import org.flower.models.order.order.OrderEditInfo;
+import org.flower.models.order.order.OrderInfo;
 import org.flower.models.recommend.flower.FlowerEditService;
 import org.flower.models.recommend.flower.FlowerInfoService;
 import org.flower.models.recommend.flower.FlowerInfo;
@@ -48,18 +50,13 @@ public class FlowerController {
     }
 
     @PostMapping("/editFlower")
-    public ResponseEntity<Map<String, Object>> editFlower(@RequestBody FlowerInfo flowerInfo){
-        Map<String, Object> response = new HashMap<>();
+    public ResponseEntity<?> editFlower(@RequestBody List<FlowerInfo> flowerInfo){
         try {
-            flowerEditService.editFlower(flowerInfo);
-            response.put("success", true);
-            response.put("message", "꽃이 성공적으로 수정되었습니다.");
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            List<FlowerInfo> updatedFlowerInfos = flowerEditService.editFlower(flowerInfo);
+            return ResponseEntity.ok(updatedFlowerInfos);
         } catch (Exception e) {
-            response.put("success", false);
-            response.put("message", "꽃 수정 중 오류가 발생했습니다.");
             e.printStackTrace();
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
