@@ -26,7 +26,7 @@
                 <tr class="data-row" th:each="flower, iterStat : ${flowersList}" th:object="${flower}">
                     <!-- 체크 박스 -->
                     <td class="checkbox-col">
-                        <input type="checkbox" th:value="*{flowerNo}">
+                        <input type="checkbox" th:value="*{flowerNo}" name="selectedFlower">
                     </td>
                     <!-- 꽃 번호 -->
                     <td th:text="${iterStat.index + 1}"></td>
@@ -61,7 +61,7 @@
     <!-- 추가, 수정, 삭제 버튼 -->
     <div style="text-align: right; margin-top: 15px;">
         <button type="button" class="btn" onclick="showAddFlowerForm()">추가</button>
-        <button type="button" class="btn">수정</button>
+        <button type="button" class="btn" id="editFlowerButton">수정</button>
         <button type="button" class="btn" onclick="deleteFlower()">삭제</button>
     </div>
 
