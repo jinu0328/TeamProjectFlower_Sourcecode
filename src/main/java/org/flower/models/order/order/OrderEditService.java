@@ -85,5 +85,21 @@ public class OrderEditService {
         return updatedOrderInfos;
     }
 
+    /*
+    *   관리자 페이지 주문 리스트 삭제 기능
+    * */
+    @Transactional
+    public void deleteOrders(List<Long> orderIds) {
+        if(orderIds == null || orderIds.isEmpty()) {
+            throw new IllegalArgumentException("Order IDs cannot be null or empty");
+        }
 
+        // 주문을 찾아서 삭제합니다.
+        for(Long orderId : orderIds) {
+            if(!orderRepository.existsById(orderId)) {
+                throw new IllegalArgumentException("Order with ID " + orderId + " not found");
+            }
+            orderRepository.deleteById(orderId);
+        }
+    }
 }
