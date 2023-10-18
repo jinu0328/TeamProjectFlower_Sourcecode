@@ -4,6 +4,7 @@ import org.flower.entities.Flower;
 import org.flower.models.recommend.flower.FlowerEditService;
 import org.flower.models.recommend.flower.FlowerInfoService;
 import org.flower.models.recommend.flower.FlowerInfo;
+import org.flower.models.recommend.keyword.KeywordInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,6 @@ public class FlowerController {
     @Autowired
     private FlowerEditService flowerEditService;
 
-    // 꽃 관련 메소드들
     // 들어가면 바로 꽃 리스트 보이게 하려고 주소 추가로 할당 안함
     @GetMapping()
     public String flowerList(Model model){
@@ -45,6 +45,22 @@ public class FlowerController {
         }
 
         return "redirect:/admin/recommend";
+    }
+
+    @PostMapping("/editFlower")
+    public ResponseEntity<Map<String, Object>> editFlower(@RequestBody FlowerInfo flowerInfo){
+        Map<String, Object> response = new HashMap<>();
+        try {
+            flowerEditService.editFlower(flowerInfo);
+            response.put("success", true);
+            response.put("message", "꽃이 성공적으로 수정되었습니다.");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.put("success", false);
+            response.put("message", "꽃 수정 중 오류가 발생했습니다.");
+            e.printStackTrace();
+            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @DeleteMapping("/deleteFlower")

@@ -3,6 +3,99 @@ function showAddFlowerForm() {
     document.getElementById('flowerAddForm').style.display = 'block';
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const editFlowerButton = document.getElementById('editFlowerButton');
+
+    if (editFlowerButton) {
+        editFlowerButton.addEventListener('click', function() {
+            const isEditing = editFlowerButton.getAttribute('data-editing') === 'true';
+
+            if (isEditing) {
+                saveFlowerChanges();
+                editFlowerButton.innerText = '수정';
+                editFlowerButton.setAttribute('data-editing', 'false');
+            } else {
+                enableFlowerEditingMode();
+                editFlowerButton.innerText = '저장';
+                editFlowerButton.setAttribute('data-editing', 'true');
+            }
+        });
+    } else {
+        console.error("Element with ID 'editButton' not found!");
+    }
+});
+
+// 꽃 수정
+function enableFlowerEditingMode() {
+    const checkboxes = document.querySelectorAll('input[name="selectedFlower"]:checked');
+    const tbody = document.querySelector('.flower-table tbody');
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
+
+        cells.forEach(cell => {
+            const originalText = cell.innerText;
+            cell.innerHTML = `<input type="text" value="${originalText}">`;
+        });
+
+        tbody.appendChild(row);
+    });
+}
+
+function saveFlowerChanges() {
+    const checkboxes = document.querySelectorAll('input[name="selectedFlowers"]:checked');
+    const updatedDataArray = []; // 여러 주문의 데이터를 저장하는 배열
+
+    checkboxes.forEach(checkbox => {
+        const row = checkbox.closest('tr');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
+
+        const updatedRowData = {};
+        cells.forEach(cell => {
+            const input = cell.querySelector('input');
+            const field = cell.getAttribute('data-field');
+            let value = input.value;
+            if (input && field) {
+                if (field === 'flowerNo') {
+                    value = parseInt(value, 10);
+                    console.log('Converted flowerNo:', value); // 이 부분을 추가
+                }
+                updatedRowData[field] = value;
+                cell.innerText = value;
+            }
+        });
+
+        updatedDataArray.push(updatedRowData); // 배열에 추가
+    });
+
+    var csrfToken = document.querySelector('input[name="_csrf"]').value;
+
+    fetch('/admin/recommend/editFlower', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': csrfToken
+        },
+        body: JSON.stringify(updatedDataArray)
+    })
+        .then(response => response.json()) // 응답을 JSON으로 변환
+        .then(data => {
+            console.log("Server response:", data); // 서버 응답 출력
+
+            if (Array.isArray(data) && data.length > 0) {  // 응답이 배열이고 그 길이가 0보다 큰지 확인
+                alert(`성공적으로 수정되었습니다.`);
+            } else {
+                alert(`수정에 실패하였습니다: Unknown error`);
+            }
+        })
+        .catch(error => {
+            console.error("Error during fetch:", error); // 오류를 콘솔에 출력
+            alert('서버 통신 오류: ' + error.message);
+        });
+}
+
+
 // 꽃 삭제
 function deleteFlower() {
     // 선택된 키워드 번호들을 담을 배열
