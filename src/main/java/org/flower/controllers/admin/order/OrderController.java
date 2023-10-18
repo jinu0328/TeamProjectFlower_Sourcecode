@@ -79,4 +79,21 @@ public class OrderController {
         }
     }
 
+    /*
+    * 주문 삭제 - DELETE
+    *
+    * */
+    @DeleteMapping("/deleteSelected")
+    public ResponseEntity<Map<String, String>> deleteSelectedOrders(@RequestBody List<Long> orderIds) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            orderEditService.deleteOrders(orderIds);
+            response.put("message", "선택된 주문이 성공적으로 삭제되었습니다.");
+            return ResponseEntity.ok(response);
+        } catch(Exception e) {
+            e.printStackTrace();
+            response.put("message", "주문 삭제 중 오류가 발생했습니다.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
 }

@@ -196,6 +196,39 @@ function saveChanges() {
             alert('서버 통신 오류: ' + error.message);
         });
 }
-
-
 /* 주문 리스트 수정 E */
+
+/* 주문 리스트 삭제 S */
+function deleteSelectedOrders() {
+    var selectedOrderIds = [];
+    var checkboxes = document.querySelectorAll('input[name="selectedOrders"]:checked');
+
+    checkboxes.forEach(function(checkbox) {
+        selectedOrderIds.push(Number(checkbox.value)); // 문자열을 숫자로 변환
+    });
+
+    if(selectedOrderIds.length === 0) {
+        alert("삭제할 주문을 선택해주세요.");
+        return;
+    }
+
+    fetch('/admin/order/deleteSelected', {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            // CSRF 토큰 추가
+            'X-CSRF-TOKEN': document.querySelector('input[name="_csrf"]').value
+        },
+        body: JSON.stringify(selectedOrderIds)
+    }).then(response => response.json()).then(data => {
+        alert(data.message); // 응답의 message를 alert로 표시
+        if(data.message === "선택된 주문이 성공적으로 삭제되었습니다.") {
+            location.reload(true); // 페이지 새로고침
+        }
+    }).catch(error => {
+        console.error('Error during fetch:', error);
+        alert('서버 통신 오류: ' + error.message);
+    });
+}
+
+/* 주문 리스트 삭제 E */
