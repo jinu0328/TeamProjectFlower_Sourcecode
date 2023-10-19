@@ -48,6 +48,15 @@ public class Flower {
     @Column(nullable = false, columnDefinition = "int default 0")
     private int likes = 0; // 초기값은 0으로 설정
 
+    public Flower(FlowerInfo flowerInfo) {
+        this.flowerNm = flowerInfo.getFlowerNm();
+        this.flowerMean = flowerInfo.getFlowerMean();
+        this.bloomseason = flowerInfo.getBloomseason();
+        this.season = flowerInfo.getSeason();
+        this.flowerIamges = flowerInfo.getFlowerIamges();
+        this.likes = flowerInfo.getLikes();
+    }
+
 
 }
 
