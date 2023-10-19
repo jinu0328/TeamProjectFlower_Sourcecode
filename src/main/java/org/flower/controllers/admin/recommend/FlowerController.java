@@ -50,15 +50,18 @@ public class FlowerController {
     }
 
     @PostMapping("/editFlower")
-    public ResponseEntity<?> editFlower(@RequestBody List<FlowerInfo> flowerInfo){
+    public ResponseEntity<?> editFlower(@RequestBody List<FlowerInfo> flowerInfoList) {
+        System.out.println(flowerInfoList);
         try {
-            List<FlowerInfo> updatedFlowerInfos = flowerEditService.editFlower(flowerInfo);
-            return ResponseEntity.ok(updatedFlowerInfos);
-        } catch (Exception e) {
+            List<FlowerInfo> updatedFlowerInfoList = flowerEditService.editFlowerList(flowerInfoList);
+            System.out.println("컨트롤러");
+            return ResponseEntity.ok(updatedFlowerInfoList);
+        } catch(Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
 
     @DeleteMapping("/deleteFlower")
     public ResponseEntity<Map<String, Object>> deleteFlower(@RequestBody Map<String, List<Long>> payload){

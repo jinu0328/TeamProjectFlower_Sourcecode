@@ -21,13 +21,7 @@ public class FlowerInfo {
 
     private String flowerIamges;   // 꽃 추천 시 뜨는 이미지
 
-    private int likes = 0; // 좋아용
+    private int likes; // 좋아용
 
-    public FlowerInfo(String flowerNm, String flowerMean, String bloomseason, String season, String flowerIamges) {
-        this.flowerNm = flowerNm;
-        this.flowerMean = flowerMean;
-        this.bloomseason = bloomseason;
-        this.season = season;
-        this.flowerIamges = flowerIamges;
-    }
+
 }

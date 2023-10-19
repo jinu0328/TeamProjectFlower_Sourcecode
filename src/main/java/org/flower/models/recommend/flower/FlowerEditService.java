@@ -22,20 +22,16 @@ public class FlowerEditService {
     // 꽃 추가
     public void addFlower(FlowerInfo flowerInfo){
 
-        Flower newFlower = new Flower();
-        newFlower.setFlowerNm(flowerInfo.getFlowerNm());
-        newFlower.setFlowerMean(flowerInfo.getFlowerMean());
-        newFlower.setBloomseason(flowerInfo.getBloomseason());
-        newFlower.setSeason(flowerInfo.getSeason());
-        newFlower.setFlowerIamges(flowerInfo.getFlowerIamges());
+        Flower newFlower = new Flower(flowerInfo);
 
         flowerRepository.save(newFlower);
     }
-    @Transactional
-    public List<FlowerInfo> editFlower(List<FlowerInfo> flowerInfos) throws Exception {
-        List<FlowerInfo> updatedFlowerInfos = new ArrayList<>();
 
-        for (FlowerInfo flowerInfo : flowerInfos) {
+    @Transactional
+    public List<FlowerInfo> editFlowerList(List<FlowerInfo> flowerInfoList) throws Exception {
+        List<FlowerInfo> updatedFlowerInfoList = new ArrayList<>();
+
+        for(FlowerInfo flowerInfo : flowerInfoList) {
             Flower flower = flowerRepository.findById(flowerInfo.getFlowerNo())
                     .orElseThrow(() -> new Exception("Flower with ID " + flowerInfo.getFlowerNo() + " not found"));
 
@@ -43,22 +39,23 @@ public class FlowerEditService {
             flower.setFlowerMean(flowerInfo.getFlowerMean());
             flower.setBloomseason(flowerInfo.getBloomseason());
             flower.setSeason(flowerInfo.getSeason());
-            flower.setFlowerIamges(flowerInfo.getFlowerIamges());
-            flowerRepository.save(flower);
+            flower.setFlowerIamges(flower.getFlowerIamges());
+            flower = flowerRepository.save(flower);
 
             FlowerInfo updatedFlowerInfo = new FlowerInfo(
+                    flower.getFlowerNo(),
                     flower.getFlowerNm(),
                     flower.getFlowerMean(),
                     flower.getBloomseason(),
                     flower.getSeason(),
-                    flower.getFlowerIamges()
-                    );
-            updatedFlowerInfos.add(updatedFlowerInfo);
+                    flower.getFlowerIamges(),
+                    flower.getLikes()
+            );
+            updatedFlowerInfoList.add(updatedFlowerInfo);
         }
 
-        return updatedFlowerInfos;
+        return updatedFlowerInfoList;
     }
-
     @Transactional
     public void deleteFlower(List<Long> flowerNos) throws Exception{
         try {

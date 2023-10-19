@@ -3,17 +3,17 @@ function showAddFlowerForm() {
     document.getElementById('flowerAddForm').style.display = 'block';
 }
 
+// 꽃 수정
 document.addEventListener('DOMContentLoaded', function() {
     const editFlowerButton = document.getElementById('editFlowerButton');
-
-    if (editFlowerButton) {
+    if(editFlowerButton) {
         editFlowerButton.addEventListener('click', function() {
             const isEditing = editFlowerButton.getAttribute('data-editing') === 'true';
 
-            if (isEditing) {
+            if(isEditing) {
                 saveFlowerChanges();
-                editFlowerButton.innerText = '수정';
-                editFlowerButton.setAttribute('data-editing', 'false');
+                editFlowerButton.innerText = "수정";
+                editFlowerButton.setAttribute('data-editing', 'false')
             } else {
                 enableFlowerEditingMode();
                 editFlowerButton.innerText = '저장';
@@ -21,35 +21,32 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     } else {
-        console.error("Element with ID 'editButton' not found!");
+        console.error("Element with ID 'editFlowerButton' not found!");
     }
 });
 
-// 꽃 수정
 function enableFlowerEditingMode() {
     const checkboxes = document.querySelectorAll('input[name="selectedFlower"]:checked');
     const tbody = document.querySelector('.flower-table tbody');
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
-
+        const cells = row.querySelectorAll('td:not(:first-child):not(:nth-child(2)):not(:last-child):not(.no-input)');
         cells.forEach(cell => {
             const originalText = cell.innerText;
             cell.innerHTML = `<input type="text" value="${originalText}">`;
         });
-
         tbody.appendChild(row);
     });
 }
 
 function saveFlowerChanges() {
     const checkboxes = document.querySelectorAll('input[name="selectedFlower"]:checked');
-    const updatedDataArray = []; // 여러 꽃의 데이터를 저장하는 배열
+    const updatedDataArray = []; // 여러 주문의 데이터를 저장하는 배열
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:nth-child(2)):not(:last-child):not(.no-input)');
 
         const updatedRowData = {};
         cells.forEach(cell => {
