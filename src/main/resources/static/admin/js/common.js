@@ -31,7 +31,7 @@ function enableFlowerEditingMode() {
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const cells = row.querySelectorAll('td:not(:first-child):not(:nth-child(2)):not(:last-child):not(.no-input)');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
         cells.forEach(cell => {
             const originalText = cell.innerText;
             cell.innerHTML = `<input type="text" value="${originalText}">`;
@@ -46,7 +46,7 @@ function saveFlowerChanges() {
 
     checkboxes.forEach(checkbox => {
         const row = checkbox.closest('tr');
-        const cells = row.querySelectorAll('td:not(:first-child):not(:nth-child(2)):not(:last-child):not(.no-input)');
+        const cells = row.querySelectorAll('td:not(:first-child):not(:last-child):not(.no-input)');
 
         const updatedRowData = {};
         cells.forEach(cell => {
@@ -232,7 +232,7 @@ function deleteKeywords() {
 // 리스트 체크박스 전체 선택 기능
 function toggleCheckboxes() {
     const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
-    const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkbox"]');
+    const checkboxes = document.querySelectorAll('td.-col > input[type="checkbox"]');
 
     checkboxes.forEach(checkbox => {
         checkbox.checked = masterCheckbox.checked;
