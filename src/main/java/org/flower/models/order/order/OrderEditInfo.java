@@ -14,6 +14,10 @@ import java.time.LocalTime;
 @AllArgsConstructor
 public class OrderEditInfo {
 
+    /*
+    * 주문 수정을 위한 DTO 클래스
+    * */
+
     private Long orderNo;
     private LocalDate pickupDate;
     private LocalTime pickupTime;
