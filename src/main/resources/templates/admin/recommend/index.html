@@ -27,10 +27,10 @@
                 <tr class="data-row" th:each="flower, iterStat : ${flowersList}" th:object="${flower}">
                     <!-- 체크 박스 -->
                     <td class="checkbox-col">
-                        <input type="checkbox" th:id="${'flowerCheckbox' + flowerNo}" th:value="*{flowerNo}" name="selectedFlower" data-field="flowerNo">
+                        <input type="checkbox" th:id="${'flowerCheckbox' + flowerNo}" th:value="*{flowerNo}" name="selectedFlower">
                     </td>
                     <!-- 꽃 번호 -->
-                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="*{flowerNo}" data-field="flowerNo"></td>
                     <!-- 꽃 이름 -->
                     <td th:text="*{flowerNm}" data-field="flowerNm"></td>
                     <!-- 꽃말 -->
