@@ -306,6 +306,7 @@ function saveChanges() {
         });
 
         updatedDataArray.push(updatedRowData); // 배열에 추가
+        console.log(updatedRowData)
     });
 
     var csrfToken = document.querySelector('input[name="_csrf"]').value;
