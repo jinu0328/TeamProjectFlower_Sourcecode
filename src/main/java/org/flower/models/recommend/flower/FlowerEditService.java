@@ -34,12 +34,13 @@ public class FlowerEditService {
         for(FlowerInfo flowerInfo : flowerInfoList) {
             Flower flower = flowerRepository.findById(flowerInfo.getFlowerNo())
                     .orElseThrow(() -> new Exception("Flower with ID " + flowerInfo.getFlowerNo() + " not found"));
-
+            flower.setFlowerNo(flowerInfo.getFlowerNo());
             flower.setFlowerNm(flowerInfo.getFlowerNm());
             flower.setFlowerMean(flowerInfo.getFlowerMean());
             flower.setBloomseason(flowerInfo.getBloomseason());
             flower.setSeason(flowerInfo.getSeason());
-            flower.setFlowerIamges(flower.getFlowerIamges());
+            flower.setFlowerIamges(flowerInfo.getFlowerIamges());
+            flower.setLikes(flowerInfo.getLikes());
             flower = flowerRepository.save(flower);
 
             FlowerInfo updatedFlowerInfo = new FlowerInfo(

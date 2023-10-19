@@ -54,7 +54,6 @@ public class FlowerController {
         System.out.println(flowerInfoList);
         try {
             List<FlowerInfo> updatedFlowerInfoList = flowerEditService.editFlowerList(flowerInfoList);
-            System.out.println("컨트롤러");
             return ResponseEntity.ok(updatedFlowerInfoList);
         } catch(Exception e) {
             e.printStackTrace();
