@@ -30,7 +30,7 @@
                         <input type="checkbox" th:id="${'flowerCheckbox' + flowerNo}" th:value="*{flowerNo}" name="selectedFlower">
                     </td>
                     <!-- 꽃 번호 -->
-                    <td th:text="*{flowerNo}" data-field="flowerNo"></td>
+                    <td th:text="${iterStat.index + 1}" class="no-input"></td>
                     <!-- 꽃 이름 -->
                     <td th:text="*{flowerNm}" data-field="flowerNm"></td>
                     <!-- 꽃말 -->

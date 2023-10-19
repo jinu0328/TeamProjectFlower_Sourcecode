@@ -3,7 +3,6 @@
         xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <!-- CSRF라는 해킹 공격을 막기 위한 보안 방법 -->
-    <!-- 지금 얘 때문에 오류나서 공부하고 나서 적용하도록 합시다.-->
     <meta name="_csrf" th:content="${_csrf.token}">
     <meta name="_csrf_header" th:content="${_csrf.headerName}">
 
@@ -21,7 +20,9 @@
 
 
     <!-- 자바 스크립트 적용하기 위한 코드 -->
-    <script th:src="@{/admin/js/common.js}"></script>
+    <script th:src="@{/admin/js/common.js}"></script>   <!-- 공통 부분 js -->
+    <script th:src="@{/admin/js/order.js}"></script>    <!-- 주문 부분 js -->
+    <script th:src="@{/admin/js/recommend.js}"></script>    <!-- 꽃 추천 부분 js -->
     <script th:each="jsFile : ${addScript}" th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>

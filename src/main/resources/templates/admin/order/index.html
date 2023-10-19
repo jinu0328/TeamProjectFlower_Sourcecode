@@ -33,10 +33,10 @@
           <!-- 체크 박스 -->
 
           <td class="checkbox-col">
-            <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
+            <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="*{orderNo}">
           </td>
           <!-- 주문 번호 -->
-          <td th:text="${order.orderNo}" data-field="orderNo"></td>
+          <td th:text="${iterStat.index + 1}" class="no-input"></td>
           <!-- 주문 일시 -->
 
           <td th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}" data-field="createdAt" class="no-input"></td>
