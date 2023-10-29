@@ -6,12 +6,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin/recommend")
-public class FlowerWeightController {
+public class WeightController {
 
-
-    @GetMapping("/flowerWeight")
+    // 꽃 가중치 리스트 관리
+    @GetMapping("/weight")
     public String flowerWeight(){
 
         return "admin/recommend/flowerWeight";
     }
+
 }

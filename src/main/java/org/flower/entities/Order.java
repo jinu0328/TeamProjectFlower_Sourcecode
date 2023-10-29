@@ -39,7 +39,8 @@ public class Order extends BaseEntity{
     @Column(nullable = true, length = 20)
     private String cellPhone;       // 전화번호
 
-     */
+    */
+
     public String getUserEmail() {
         return user.getUserEmail();
     }

@@ -2,12 +2,10 @@ package org.flower.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.flower.models.recommend.weight.WeightInfo;
 
 @Entity
-@Getter
-@Setter
-@ToString(exclude = {"flower", "keyword"})
-@EqualsAndHashCode(exclude = {"flower", "keyword"})
+@Data
 @Table(name="mapping") // 'mapping' 속성으로 해당 엔티티가 매핑될 테이블의 이름을 지정
 public class FlowerKeywordMapping {
 
@@ -34,21 +32,15 @@ public class FlowerKeywordMapping {
     @Transient
     private String keywordNm;
 
+
     // 새로운 필드에 대한 getter 및 setter 메서드를 생성합니다.
     public String getFlowerNm() {
         return flower != null ? flower.getFlowerNm() : null;
-    }
-
-    public void setFlowerNm(String flowerNm) {
-        this.flowerNm = flowerNm;
     }
 
     public String getKeywordNm() {
         return keyword != null ? keyword.getKeywordNm() : null;
     }
 
-    public void setKeywordNm(String keywordNm) {
-        this.keywordNm = keywordNm;
-    }
 }
 
