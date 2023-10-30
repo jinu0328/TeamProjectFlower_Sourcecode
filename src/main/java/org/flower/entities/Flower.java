@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.*;
 import org.flower.commons.constants.UserRole;
+import org.flower.models.recommend.flower.FlowerInfo;
 
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
 @NoArgsConstructor      // 파라미터가 없는 기본 생성자를 생성
@@ -25,7 +26,7 @@ public class Flower {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long flowerNo;            // 꽃 식별자
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String flowerNm;       // 꽃 이름
 
     @Column(nullable = false, length = 255)
@@ -42,6 +43,20 @@ public class Flower {
 
     @OneToMany(mappedBy = "flower") // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
     private List<FlowerKeywordMapping> flowerKeywordMappings = new ArrayList<>();
+
+    // 좋아요 수를 저장할 필드
+    @Column(nullable = false, columnDefinition = "int default 0")
+    private int likes = 0; // 초기값은 0으로 설정
+
+    public Flower(FlowerInfo flowerInfo) {
+        this.flowerNm = flowerInfo.getFlowerNm();
+        this.flowerMean = flowerInfo.getFlowerMean();
+        this.bloomseason = flowerInfo.getBloomseason();
+        this.season = flowerInfo.getSeason();
+        this.flowerIamges = flowerInfo.getFlowerIamges();
+        this.likes = flowerInfo.getLikes();
+    }
+
 
 }
 

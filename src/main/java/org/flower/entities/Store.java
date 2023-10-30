@@ -20,7 +20,7 @@ public class Store {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long storeNo;            // 매장 식별자
 
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private String storeNm;       // 매장 이름
 
     @ManyToOne

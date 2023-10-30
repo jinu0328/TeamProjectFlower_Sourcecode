@@ -1,4 +1,4 @@
-package org.flower.models.order;
+package org.flower.models.order.order;
 
 import org.flower.entities.Order;
 import org.flower.repositories.OrderRepository;
@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FlowerOrder {
+public class OrderInfoService {
 
     @Autowired
     private OrderRepository repository;
+    
+    // 주문 관련 모든 내용을 가져옴
     public List<Order> getAllOrders(){
         return repository.findAll();
     }
-
 }

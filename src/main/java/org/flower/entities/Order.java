@@ -3,6 +3,8 @@ package org.flower.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.flower.commons.constants.OrderState;
+import org.flower.models.order.order.OrderInfo;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,18 +26,20 @@ public class Order extends BaseEntity{
     @JoinColumn(name = "userNo" , nullable = false)
     private User user;
 
-
-    @Column(nullable = false, length = 45)
+    /*
+    @Column(nullable = true, length = 45)
     private String userEmail; // 아이디(이메일)
 
-    @Column(nullable = false, length = 35)
+    @Column(nullable = true, length = 35)
     private String userNm; // 회원명
 
-    @Column(nullable = false, length = 40)
+    @Column(nullable = true, length = 40)
     private String userNickNm; // 닉네임
 
-    @Column(nullable = false, length = 20)
+    @Column(nullable = true, length = 20)
     private String cellPhone;       // 전화번호
+
+    */
 
     public String getUserEmail() {
         return user.getUserEmail();
@@ -71,8 +75,9 @@ public class Order extends BaseEntity{
     @Column(length = 255)
     private String message;       // 고객이 전달하고 싶은 메세지 내용
 
-    @Column(nullable = false, length = 30)
-    private String orderStatus;  // '접수중', '매장 선택중','매칭 실패', '매칭 완료' 중 하나의 상태
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = true, length = 30)
+    private OrderState orderStatus = OrderState.ACCEPTING;  // '접수중', '매장 선택중','매칭 실패', '매칭 완료' 중 하나의 상태
+                                                            // 기본값은 '접수중'
 
 }

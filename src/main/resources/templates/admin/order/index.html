@@ -23,59 +23,70 @@
           <th>꽃다발 색상</th>
           <th>가격대</th>
           <th>메세지</th>
-          <th>매칭된매장</th>
+          <th>매칭상태</th>
           <th>회원 정보</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="data-row" th:each="order : ${orders}" th:object="${order}">
+
+        <tr class="data-row" th:each="order, iterStat : ${orders}" th:object="${order}">
           <!-- 체크 박스 -->
+
           <td class="checkbox-col">
-            <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="${order.orderNo}">
+            <input type="checkbox" th:id="${'orderCheckbox'+ orderNo}" name="selectedOrders" th:value="*{orderNo}">
           </td>
           <!-- 주문 번호 -->
-          <td th:text="${orderNo}"></td>
+          <td th:text="${iterStat.index + 1}" class="no-input"></td>
           <!-- 주문 일시 -->
-          <td th:text="${#temporals.format(createdAt, 'yyyy-MM-dd HH:mm:ss')}"></td>
+
+          <td th:text="${#temporals.format(order.createdAt, 'yyyy-MM-dd HH:mm:ss')}" data-field="createdAt" class="no-input"></td>
+
           <!-- 닉네임 -->
-          <td th:text="*{userNickNm}"></td>
+          <td th:text="*{userNickNm}" data-field="userNickNm" class="no-input"></td>
           <!-- 회원명 -->
-          <td th:text="*{userNm}"></td>
+          <td th:text="*{userNm}" data-field="userNm" class="no-input"></td>
           <!-- 전화번호 -->
-          <td th:text="*{cellPhone}"></td>
+          <td th:text="*{cellPhone}" data-field="cellPhone" class="no-input"></td>
           <!-- 픽업 날짜 -->
-          <td th:text="*{pickupDate}"></td>
+          <td th:text="*{pickupDate}" data-field="pickupDate" ></td>
           <!-- 픽업 시간 -->
-          <td th:text="*{pickupTime}"></td>
+          <td th:text="*{pickupTime}" data-field="pickupTime"></td>
           <!-- 원하는 꽃 종류 -->
-          <td th:text="*{flowertype}"></td>
+          <td th:text="*{flowertype}" data-field="flowertype"></td>
           <!-- 원하는 꽃다발 색상 -->
-          <td th:text="*{flowertype}"></td>
+          <td th:text="*{flowercolor}" data-field="flowercolor"></td>
           <!-- 가격대 -->
-          <td th:text="*{pricerange}"></td>
+          <td th:text="*{pricerange}" data-field="pricerange"></td>
           <!-- 메세지-->
-          <td th:text="*{message}"></td>
+          <td th:text="*{message}" data-field="message"></td>
           <!-- 매칭된 매장 -->
-          <td></td> <!-- 주문-매장 매핑 엔티티 구현 후 작성 예정 -->
+          <td th:text="*{orderStatus}" data-field="orderStatus"></td> <!-- 주문-매장 매핑 엔티티 구현 후 작성 예정 -->
           <td>
-            <a th:href="@{/admin/user}" class="btn2">
-              회원 상세 정보</a>
+            <a th:href="@{/admin/user/userInfo}" class="btn2">회원 상세 정보</a>
           </td>
-
-         <script>
-          function toggleCheckboxes() {
-            const masterCheckbox = document.querySelector('th.checkbox-col > input[type="checkbox"]');
-            const checkboxes = document.querySelectorAll('td.checkbox-col > input[type="checkbox"]');
-
-            checkboxes.forEach(checkbox => {
-              checkbox.checked = masterCheckbox.checked;
-            })
-          }
-          </script>
         </tr>
         </tbody>
       </table>
     </div>
   </form>
+  <div>
+    <a class="btn2" th:href="@{/admin/order/addOrderList}" id="addOrderButton">추가</a>
+    <button type="button" class="btn2" id="editButton">수정</button>
+    <button type="button" class="btn2" onclick="deleteSelectedOrders()">삭제</button>
+  </div>
+  <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+  <!-- 주문 추가 처리 후 alert 메세지 출력 -->
+  <input type="hidden" id="message" th:value="${message}" />
+  <input type="hidden" id="status" th:value="${status}" />
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var status = document.getElementById("status").value;
+      var message = document.getElementById("message").value;
+
+      if(status && message) {
+        alert(message);
+      }
+    });
+  </script>
 </section>
 </html>

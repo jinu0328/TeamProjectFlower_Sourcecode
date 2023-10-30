@@ -1,3 +1,4 @@
+<!-- 아직 수정해야됨 추가가 안됨 -->
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -5,6 +6,67 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
     <!-- 꽃 리스트 -->
-    꽃 리스트 부분
+    <form method="post" th:action="@{/admin/recommend/index}">
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table class="flower-table">
+                <thead>
+                <tr class="header-row">
+                    <th class = "checkbox-col">
+                        <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
+                    </th>
+                    <th>꽃번호</th>
+                    <th>꽃 이름</th>
+                    <th>꽃말</th>
+                    <th>개화시기</th>
+                    <th>계절</th>
+                    <th>이미지경로</th>
+                    <th>좋아요 수</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="data-row" th:each="flower, iterStat : ${flowersList}" th:object="${flower}">
+                    <!-- 체크 박스 -->
+                    <td class="checkbox-col">
+                        <input type="checkbox" th:id="${'flowerCheckbox' + flowerNo}" th:value="*{flowerNo}" name="selectedFlower">
+                    </td>
+                    <!-- 꽃 번호 -->
+                    <td th:text="${iterStat.index + 1}" class="no-input"></td>
+                    <!-- 꽃 이름 -->
+                    <td th:text="*{flowerNm}" data-field="flowerNm"></td>
+                    <!-- 꽃말 -->
+                    <td th:text="*{flowerMean}" data-field="flowerMean"></td>
+                    <!-- 개화시기 -->
+                    <td th:text="*{bloomseason}" data-field="bloomseason"></td>
+                    <!-- 계절 -->
+                    <td th:text="*{season}" data-field="season"></td>
+                    <!-- 이미지경로 -->
+                    <td th:text="*{flowerIamges}" data-field="flowerIamges"></td>
+                    <!-- 좋아요 수 -->
+                    <td th:text="*{likes}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+    </form>
+    <div id="flowerAddForm" style="display: none;">
+        <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
+        <form method="post" th:action="@{/admin/recommend/addFlower}">
+            <input type="text" name="flowerNm" placeholder="꽃 이름" required>
+            <input type="text" name="flowerMean" placeholder="꽃말" required>
+            <input type="text" name="bloomseason" placeholder="개화시기" required>
+            <input type="text" name="season" placeholder="계절" required>
+            <input type="text" name="flowerIamges" placeholder="사진경로">
+            <button type="submit" class="btn">저장</button>
+        </form>
+    </div>
+
+    <!-- 추가, 수정, 삭제 버튼 -->
+    <div style="text-align: right; margin-top: 15px;">
+        <button type="button" class="btn" onclick="showAddFlowerForm()">추가</button>
+        <button type="button" class="btn" id="editFlowerButton" >수정</button>
+        <button type="button" class="btn" onclick="deleteFlower()">삭제</button>
+    </div>
+
 </section>
 </html>

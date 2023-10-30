@@ -53,7 +53,8 @@ public class JoinController {
     public String joinPs(@Valid UserJoin userJoin, Errors errors, Model model){
         commonProcess(model);
 
-        joinValidator.validate(userJoin, errors);
+        // 임시 주석처리 (회원가입을 좀 더 편하게 하도록 함)
+        // joinValidator.validate(userJoin, errors);
 
         if(errors.hasErrors()){
             return "front/user/join";
