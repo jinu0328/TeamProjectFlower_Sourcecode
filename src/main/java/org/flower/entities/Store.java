@@ -39,6 +39,22 @@ public class Store {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StoreImage> storeImages;  // 이미지 경로를 저장하는 엔티티와 연관관계 설정
 
+    public String getUserEmail() {
+        return user.getUserEmail();
+    }
+
+    public String getUserNm() {
+        return user.getUserNm();
+    }
+
+    public String getUserNickNm() {
+        return user.getUserNickNm();
+    }
+
+    public String getCellPhone() {
+        return user.getCellPhone();
+    }
+
 
 
 
