@@ -31,15 +31,15 @@ public class WeightInfoService {
     /*
     * 특정 Flower에 여러 Keywords와 가중치를 추가하는 메서드
     * */
-    public void associateFlowerWithKeywords(Long flowerId, List<Long> keywordIds) {
+    public void associateFlowerWithKeywords(Long flowerNo, List<Long> keywordNos) {
         // 해당 Flower 객체를 조회
-        Flower flower = flowerRepository.findById(flowerId)
-                .orElseThrow(() -> new IllegalArgumentException("Flower not found with id: " + flowerId));
+        Flower flower = flowerRepository.findById(flowerNo)
+                .orElseThrow(() -> new IllegalArgumentException("Flower not found with id: " + flowerNo));
 
         // 각 키워드 ID에 대해 연관 관계를 저장
-        for (Long keywordId : keywordIds) {
-            Keywords keyword = keywordRepository.findById(keywordId)
-                    .orElseThrow(() -> new IllegalArgumentException("Keyword not found with id: " + keywordId));
+        for (Long keywordNo : keywordNos) {
+            Keywords keyword = keywordRepository.findById(keywordNo)
+                    .orElseThrow(() -> new IllegalArgumentException("Keyword not found with id: " + keywordNo));
 
             FlowerWeight flowerWeight = new FlowerWeight();
             flowerWeight.setFlower(flower);
