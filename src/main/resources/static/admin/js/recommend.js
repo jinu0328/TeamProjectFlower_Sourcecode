@@ -1,3 +1,80 @@
+// 가중치 수정 S
+function getSelectedId() {
+    // 선택된 체크박스의 id 값을 반환
+    let checkboxes = document.querySelectorAll('.checkbox-col input[type=checkbox]:checked');
+    if (checkboxes.length === 0) {
+        return null;
+    }
+    return checkboxes[0].value; // 첫 번째 선택된 체크박스의 값 반환
+}
+function editWeight() {
+    let selectedId = getSelectedId();
+    if (!selectedId) {
+        alert("수정할 가중치를 선택하세요.");
+        return;
+    }
+
+    let newWeight = prompt("새 가중치을 입력하세요.");
+    if (newWeight) {
+        // 데이터를 서버에 전송
+        fetch('/admin/recommend/editWeight', {
+            method: 'POST', // HTTP 메서드
+            headers: {
+                'Content-Type': 'application/json',
+                // CSRF 토큰 추가 (필요한 경우)
+                'X-CSRF-TOKEN': document.querySelector("input[name='_csrf']").value
+            },
+            body: JSON.stringify({
+                id: selectedId,
+                weight: newWeight,
+            }), // 서버로 전송할 데이터를 JSON 형태로 변환
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // 서버로부터의 응답을 JSON으로 파싱
+            })
+            .then(data => {
+                if (data.success) {
+                    alert("가중치가 성공적으로 수정되었습니다.");
+                    // UI 업데이트 or 페이지 리로드
+                    location.reload();
+                } else {
+                    alert("가중치 수정에 실패하였습니다: " + data.error);
+                }
+            })
+            .catch(error => {
+                alert("서버 통신 오류: " + error);
+            });
+    }
+}
+/* 가중치 수정 E */
+
+
+// function showWeightList(buttonElement) {
+//     const flowerNo = buttonElement.closest('tr').getAttribute('data-flowerNo');  // flowerNo 추출
+//
+//     // Ajax 요청을 사용하여 flowerNo의 가중치 및 키워드 이름을 가져옵니다.
+//     fetch(`/admin/recommend/${flowerNo}`)
+//         .then(response => response.json())
+//         .then(data => {
+//             let tableHtml = '<table>';
+//             tableHtml += '<tr><th>키워드 이름</th><th>가중치</th></tr>';
+//
+//             data.forEach(item => {
+//                 tableHtml += `<tr><td>${item.keywordNm}</td><td><input type="text" value="${item.weight}" name="weights[${item.keywordNo}]" /></td></tr>`;
+//             });
+//
+//             tableHtml += '</table>';
+//
+//             // 페이지에 동적으로 생성한 표를 삽입
+//             const formDiv = document.querySelector('#weightListForm');
+//             formDiv.innerHTML = tableHtml + formDiv.innerHTML;  // 기존의 저장 버튼 위에 표를 추가
+//             formDiv.style.display = 'block';  // 표시
+//         });
+// }
+
 // 꽃 추가
 function showAddFlowerForm() {
     document.getElementById('flowerAddForm').style.display = 'block';
