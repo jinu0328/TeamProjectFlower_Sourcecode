@@ -11,23 +11,45 @@
             <table class="keywords-table">
                 <thead>
                 <tr class="header-row">
+                    <th class = "checkbox-col">
+                        <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
+                    </th>
                     <th>번호</th>
-                    <th>꽃 이름</th>
-                    <th>가중치 관리</th>
+                    <th>꽃</th>
+                    <th>키워드</th>
+                    <th>가중치</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="weightList, iterStat : ${flowersList}" th:object="${weightList}" class="table-rows">
+                <tr th:each="weightList, iterStat : ${weightsList}" th:object="${weightList}" class="table-rows">
+                    <td class="checkbox-col">
+                        <input type="checkbox" th:id="${'weightCheckbox' + id}" th:value="*{id}" name="selectedWeight">
+                    </td>
+                    <!-- 가중치 번호 -->
+                    <td th:text="${iterStat.index + 1}" class="no-input"></td>
+                    <!-- 꽃 이름 -->
+                    <td th:text="*{flowerNm}" data-field="flowerNm"></td>
+                    <!-- 키워드 이름 -->
+                    <td th:text="*{keywordNm}" data-field="keywordNm"></td>
+                    <!-- 가중치 -->
+                    <td th:text="*{weight}" data-field="weight"></td>
+                </tr>
+                <!-- 나중에 보기 예쁘게 바꿀 예정 -->
+                <!--<tr th:each="weightList, iterStat : ${flowersList}" th:object="${weightList}" class="table-rows">
                     <td th:text="${iterStat.index + 1}"></td>
                     <td th:text="*{flowerNm}"></td>
                     <td>
-                        <a th:href="@{/admin/recommend/flowerList/weight}" class="btn2">상세보기</a>
+                        <button type="button" class="btn2" onclick="showWeightList(this)">상세보기</button>
                     </td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
         </div>
     </form>
+
+    <div style="text-align: right; margin-top: 15px;">
+        <button type="button" class="btn2" onclick="editWeight()">수정</button>
+    </div>
 
 </section>
 </html>

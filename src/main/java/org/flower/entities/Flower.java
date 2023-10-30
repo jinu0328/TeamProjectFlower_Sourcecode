@@ -41,7 +41,7 @@ public class Flower {
     @Column(length = 255)
     private String flowerIamges;   // 꽃 추천 시 뜨는 이미지
 
-    @OneToMany(mappedBy = "flower") // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
+    @OneToMany(mappedBy = "flower", cascade = CascadeType.ALL, orphanRemoval = true) // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
     private List<FlowerWeight> flowerWeights = new ArrayList<>();
 
     // 좋아요 수를 저장할 필드
