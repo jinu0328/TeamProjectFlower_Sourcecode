@@ -11,10 +11,10 @@ import java.util.List;
 public class OrderInfoService {
 
     @Autowired
-    private OrderRepository repository;
+    private OrderRepository orderRepository;
     
     // 주문 관련 모든 내용을 가져옴
     public List<Order> getAllOrders(){
-        return repository.findAll();
+        return orderRepository.findAll();
     }
 }

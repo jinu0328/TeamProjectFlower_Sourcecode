@@ -31,7 +31,7 @@ public class OrderController {
     *   주문 리스트 - GET
     * */
     @GetMapping("/orderList")
-    public String orderlist(Model model) {
+    public String orderList(Model model) {
         List<Order> orderList = orderInfoService.getAllOrders(); // 주문 목록을 가져오는 서비스 메서드 호출
 
         model.addAttribute("orders", orderList); // 모델에 주문 목록을 추가하여 뷰로 전
