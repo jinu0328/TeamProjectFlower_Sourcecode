@@ -6,22 +6,33 @@
 <section layout:fragment="content">
     <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
 
-    <h2>꽃 가중치 리스트</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>꽃 이름</th>
-            <th>키워드 이름</th>
-            <th>가중치</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="mapping : ${mappings}">
-            <td th:text="${mapping.flowerNm}"></td>
-            <td th:text="${mapping.keywordNm}"></td>
-            <td th:text="${mapping.weight}"></td>
-        </tr>
-        </tbody>
-    </table>
+    <form>
+        <div role="region" aria-label="data table" tabindex="0" class="primary">
+            <table class="keywords-table">
+                <thead>
+                <tr class="header-row">
+                    <th class="checkbox-col">
+                        <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
+                    </th>
+                    <th>번호</th>
+                    <th>꽃 이름</th>
+                    <th th:each="weight : ${weightsList}" th:text="${weight.keywordNm}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="weight, iterStat : ${weightsList}" th:object="${weight}" class="table-rows">
+                    <!-- 체크 박스 -->
+                    <td class="checkbox-col">
+                        <input type="checkbox" th:value="*{id}" name="selectedid">
+                    </td>
+                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="*{flowerNm}"></td>
+                    <td th:each="weight : ${weightsList}" th:text="*{weight}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
 </section>
 </html>

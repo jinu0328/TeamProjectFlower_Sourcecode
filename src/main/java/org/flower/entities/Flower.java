@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.*;
-import org.flower.commons.constants.UserRole;
+
 import org.flower.models.recommend.flower.FlowerInfo;
 
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
@@ -42,7 +42,7 @@ public class Flower {
     private String flowerIamges;   // 꽃 추천 시 뜨는 이미지
 
     @OneToMany(mappedBy = "flower") // FlowerKeywordMapping 엔티티에 있는 flower 필드에 매핑되어 있다는 것을 나타냄
-    private List<FlowerKeywordMapping> flowerKeywordMappings = new ArrayList<>();
+    private List<FlowerWeight> flowerWeights = new ArrayList<>();
 
     // 좋아요 수를 저장할 필드
     @Column(nullable = false, columnDefinition = "int default 0")

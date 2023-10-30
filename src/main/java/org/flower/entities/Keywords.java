@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.*;
-import org.flower.commons.constants.UserRole;
 
 @Data @Builder          // @Builder : 빌더 패턴을 사용하여 객체를 생성할 수 있게 한다.
 @NoArgsConstructor      // 파라미터가 없는 기본 생성자를 생성
@@ -23,7 +22,7 @@ public class Keywords {
     private String keywordNm;       // 키워드 이름
 
     @OneToMany(mappedBy = "keyword") //FlowerKeywordMapping 엔티티에 있는 keyword 필드에 매핑되어 있음을 나타냄
-    private List<FlowerKeywordMapping> flowerKeywordMappings = new ArrayList<>();
+    private List<FlowerWeight> flowerWeights = new ArrayList<>();
 
     @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL, orphanRemoval = true) // KeywordSelect 엔터티의 keyword 필드를 나타냄
     private List<KeywordSelect> keywordSelects = new ArrayList<>();
