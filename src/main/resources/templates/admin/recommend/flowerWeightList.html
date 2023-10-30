@@ -11,23 +11,18 @@
             <table class="keywords-table">
                 <thead>
                 <tr class="header-row">
-                    <th class="checkbox-col">
-                        <input type="checkbox" id="selectAll" onclick="toggleCheckboxes()">
-                    </th>
                     <th>번호</th>
                     <th>꽃 이름</th>
-                    <th th:each="weight : ${weightsList}" th:text="${weight.keywordNm}"></th>
+                    <th>가중치 관리</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="weight, iterStat : ${weightsList}" th:object="${weight}" class="table-rows">
-                    <!-- 체크 박스 -->
-                    <td class="checkbox-col">
-                        <input type="checkbox" th:value="*{id}" name="selectedid">
-                    </td>
+                <tr th:each="weightList, iterStat : ${flowersList}" th:object="${weightList}" class="table-rows">
                     <td th:text="${iterStat.index + 1}"></td>
                     <td th:text="*{flowerNm}"></td>
-                    <td th:each="weight : ${weightsList}" th:text="*{weight}"></td>
+                    <td>
+                        <a th:href="@{/admin/recommend/flowerList/weight}" class="btn2">상세보기</a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
