@@ -21,7 +21,7 @@ public class Keywords {
     @Column(nullable = false, length = 10)
     private String keywordNm;       // 키워드 이름
 
-    @OneToMany(mappedBy = "keyword") //FlowerKeywordMapping 엔티티에 있는 keyword 필드에 매핑되어 있음을 나타냄
+    @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL, orphanRemoval = true) //FlowerKeywordMapping 엔티티에 있는 keyword 필드에 매핑되어 있음을 나타냄
     private List<FlowerWeight> flowerWeights = new ArrayList<>();
 
     @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL, orphanRemoval = true) // KeywordSelect 엔터티의 keyword 필드를 나타냄
