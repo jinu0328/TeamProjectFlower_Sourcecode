@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.*;
-import org.flower.commons.constants.UserRole;
 
 @Data @Builder
 @NoArgsConstructor
@@ -36,7 +35,7 @@ public class Store {
     @Column(nullable = false, length = 20)
     private String storePh;       // 매장 연락처
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "store", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<StoreImage> storeImages;  // 이미지 경로를 저장하는 엔티티와 연관관계 설정
 
     public String getUserEmail() {

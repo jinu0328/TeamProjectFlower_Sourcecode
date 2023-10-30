@@ -14,13 +14,13 @@
                     </th>
                     <th>매장번호</th>
                     <th>매장이름</th>
-                    <th>회원명</th>
-                    <th>닉네임</th>
-                    <th>사장님 전화번호</th>
                     <th>매장TEL</th>
                     <th>매장 영업 시간</th>
                     <th>매장 위치</th>
                     <th>매장 이미지</th>
+                    <th>회원명</th>
+                    <th>닉네임</th>
+                    <th>사장님 전화번호</th>
                     <th>회원 정보</th>
                 </tr>
                 </thead>
@@ -33,15 +33,9 @@
                         <input type="checkbox" th:id="${'orderCheckbox'+ storeNo}" name="selectedStores" th:value="*{storeNo}">
                     </td>
                     <!-- 매장 번호 -->
-                    <td th:text="${iterStat.index + 1}" class="no-input"></td>
+                    <td th:text="${iterStat.index + 1}"></td>
                     <!-- 매장 이름 -->
                     <td th:text="*{storeNm}" data-field="storeNm"></td>
-                    <!-- 회원명 -->
-                    <td th:text="*{userNm}" data-field="userNm" class="no-input"></td>
-                    <!-- 닉네임 -->
-                    <td th:text="*{userNickNm}" data-field="userNickNm" class="no-input"></td>
-                    <!-- PHONE -->
-                    <td th:text="*{cellPhone}" data-field="cellPhone" class="no-input"></td>
                     <!-- 매장TEL -->
                     <td th:text="*{storePh}" data-field="storePh"></td>
                     <!-- 매장영업시간 -->
@@ -50,6 +44,12 @@
                     <td th:text="*{storeAd}" data-field="storeAd"></td>
                     <!-- 매장 이미지 -->
                     <td th:text="*{storeImages}" data-field="storeImages"></td>
+                    <!-- 회원명 -->
+                    <td th:text="*{userNm}" data-field="userNm" class="no-input"></td>
+                    <!-- 닉네임 -->
+                    <td th:text="*{userNickNm}" data-field="userNickNm" class="no-input"></td>
+                    <!-- PHONE -->
+                    <td th:text="*{cellPhone}" data-field="cellPhone" class="no-input"></td>
                     <!-- 회원 정보 -->
                     <td>
                         <a th:href="@{/admin/user/userInfo}" class="btn2">회원 상세 정보</a>
@@ -62,7 +62,7 @@
     <div>
         <a class="btn2" th:href="@{/admin/order/addStoreList}" id="addStoreButton">추가</a>
         <button type="button" class="btn2" id="editButton">수정</button>
-        <button type="button" class="btn2" onclick="deleteSelectedStores()">삭제</button>
+        <button type="button" class="btn2" onclick="deleteStores()">삭제</button>
     </div>
     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
     <!-- 주문 추가 처리 후 alert 메세지 출력 -->
