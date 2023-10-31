@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+
 <head>
     <meta charset="UTF-8">
     <!--css 파일 적용하기-->
@@ -22,7 +25,7 @@
 <p>선택한 키워드:</p>
 <ul>
     <!-- Thymeleaf를 사용하여 전달된 키워드를 렌더링 -->
-    <li th:each="keyword : ${selectedKeywords}" th:text="${keyword}"></li>
+    <li th:each="keyword : ${keywordNames}" th:text="${keyword}"></li>
 </ul>
 
 <!-- 나중에 여기에 추천 로직 진행 -->

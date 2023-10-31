@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -36,14 +37,23 @@ public class RecommendController {
     * 추천 중 로딩 페이지 보여주는 역할
     * */
     @PostMapping("/loading")
-    public String loadingPage(@RequestParam String selectedKeywords, Model model) {
+    public String loadingPage(@RequestParam String selectedKeywordNames, @RequestParam String selectedKeywordNos ,Model model) {
         // 컴마로 구분하여 키워드를 배열로 변환
-        String[] keywords = selectedKeywords.split(",");
+        String[] keywordNames = selectedKeywordNames.split(",");
+        String[] keywordNosString = selectedKeywordNos.split(",");
+        int[] keywordNos = new int[keywordNosString.length];
+        for(int i = 0; i < keywordNosString.length; i++) {
+            keywordNos[i] = Integer.parseInt(keywordNosString[i]);
+        }
+        System.out.println(Arrays.toString(keywordNames));
 
         // 키워드를 모델에 추가하여 뷰에서 사용
-        model.addAttribute("selectedKeywords", keywords);
+        model.addAttribute("keywordNames", keywordNames);
+        model.addAttribute("keywordNos", keywordNos);
         model.addAttribute("pageTitle", "Loading");
 
         return "front/recommend/loading";
     }
+
+
 }
