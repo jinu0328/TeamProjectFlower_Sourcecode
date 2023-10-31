@@ -21,8 +21,8 @@
          <div class="profile-container">
              <img src="https://cdn.pixabay.com/photo/2014/04/02/10/25/man-303792_1280.png" alt="프로필 사진" class="profile-image">
 
-             <div class="name">허동균</div>
-             <div class="rank">Gold 회원</div>
+             <div class="name" th:text="${userNickNm}">홍길동</div>
+             <div class="rank">일반 회원</div>
 
              <div class="correction">
                <a th:href="@{/user/mypage/profile/profilePage}">
