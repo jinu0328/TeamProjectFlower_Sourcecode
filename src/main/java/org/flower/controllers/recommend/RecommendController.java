@@ -25,7 +25,7 @@ public class RecommendController {
         List<Keywords> keywordsList = keywordInfoService.getAllKeywords();
 
         // 키워드를 모델에 추가하여 뷰에서 사용
-        model.addAttribute("pageTitle", "꽃 추천");
+        model.addAttribute("pageTitle", "키워드 선택");
         model.addAttribute("keywordsList", keywordsList);
 
         return "front/recommend/main";

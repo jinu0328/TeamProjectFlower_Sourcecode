@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 editStoreButton.innerText='수정';
                 editStoreButton.setAttribute('data-editing', 'false');
             } else {
-                enableEditingMode();
+                enableStoreEditingMode();
                 editStoreButton.innerText='저장';
                 editStoreButton.setAttribute('data-editing', 'true');
             }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-function enableEditingMode() {
+function enableStoreEditingMode() {
     const checkboxes =
         document.querySelectorAll('input[name="selectedStores"]:checked');
     const tbody = document.querySelector('.store-table tbody');
