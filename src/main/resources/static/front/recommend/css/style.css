@@ -19,3 +19,75 @@
 .noFlex {
     display: block;  /* flex 대신 원하는 display 값으로 변경 */
 }
+
+
+/* 꽃 추천 영역 S */
+/* 꽃 추천 영역 */
+.container {
+    width: 100%;
+
+}
+
+.recommendation-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.flower-card {
+    width: 350px; /* 카드 너비 조절 */
+    height: 600px;
+    background-color: #FEF7F6;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.flower-card img {
+    width: 80%; /* 이미지를 카드 크기에 맞춤 */
+    height: 40%;
+    display: block; /* 이미지 블록화 */
+    margin: 30px auto;
+}
+
+.flower-no{
+    display: inline-block;
+    padding: 1px 5px 1px 5px;
+    border-radius: 10px;
+    background-color: #f4cbd2;
+}
+
+.flower-card-info {
+    padding: 10px;
+}
+
+.flower-card-info span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* 버튼 위 간격 추가 */
+}
+
+.button{
+    padding: 15px 20px;
+    margin: 0 20px; /* 버튼 좌우 간격 조절 */
+    border: none;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #d4d4d4;
+}
+
+/* 꽃 추천 영역 E */

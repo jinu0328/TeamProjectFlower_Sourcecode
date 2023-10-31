@@ -4,8 +4,29 @@
       layout:decorate="~{front/layouts/main}">
     <main layout:fragment="content">
         <!-- 꽃 추천 리스트 들어가는 곳-->
-        <div th:each="flower : ${flowers}">
+        <!--<div th:each="flower : ${flowers}">
             <img th:src="@{${flower.flowerIamges}}" alt="꽃 이미지" />
+        </div>-->
+        <div class="container">
+            <div class="recommendation-section">
+                <div class="flower-card" th:each="flower : ${flowers}">
+                    <div class="flower-no">flower</div>
+                    <img th:src="@{${flower.flowerIamges}}">
+                    <div class="flower-card-info">
+                        <span th:text="${flower.flowerNm}"></span>
+                        <span th:text="${flower.flowerMean}"></span>
+                        <span th:text="${flower.bloomseason}"></span>
+                        <span th:text="${flower.season}"></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 하단 버튼 영역 -->
+            <div class="buttons">
+                <button class="button">메인화면</button>
+                <button class="button">다시하기</button>
+                <button class="button">주문하기</button>
+            </div>
         </div>
+
     </main>
 </html>
