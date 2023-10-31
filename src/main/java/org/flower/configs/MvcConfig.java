@@ -24,11 +24,15 @@ public class MvcConfig implements WebMvcConfigurer {
      * 정적 경로 설정!
      *
      */
+    @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry){
 
         // 파일 업로드 경로 설정
         registry.addResourceHandler("/uploads/**")
                 .addResourceLocations("file:///" + fileUploadPath);
+
+        registry.addResourceHandler("/admin/images/**")
+                .addResourceLocations("classpath:/static/admin/images/");
     }
 
     /**
@@ -59,6 +63,7 @@ public class MvcConfig implements WebMvcConfigurer {
                 .setViewName("front/main/index");
     }
 
+    @Override
     public void addInterceptors(InterceptorRegistry registry){
         // 공통 인터셉터
         registry.addInterceptor(commonInterceptor)

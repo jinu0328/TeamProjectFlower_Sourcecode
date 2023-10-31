@@ -4,6 +4,8 @@
       layout:decorate="~{front/layouts/main}">
     <main layout:fragment="content">
         <!-- 꽃 추천 리스트 들어가는 곳-->
-        꽃 추천 리스트~~
+        <div th:each="flower : ${flowers}">
+            <img th:src="@{${flower.flowerIamges}}" alt="꽃 이미지" />
+        </div>
     </main>
 </html>

@@ -5,13 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     if (editButton) {
         editButton.addEventListener('click', function() {
             const isEditing = editButton.getAttribute('data-editing') === 'true';
-
+            console.log(isEditing);
             if (isEditing) {
                 saveChanges();
                 editButton.innerText = '수정';
                 editButton.setAttribute('data-editing', 'false');
             } else {
-                enableEditingMode();
+                enableOrderEditingMode();
                 editButton.innerText = '저장';
                 editButton.setAttribute('data-editing', 'true');
             }
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-function enableEditingMode() {
+function enableOrderEditingMode() {
     const checkboxes = document.querySelectorAll('input[name="selectedOrders"]:checked');
     const tbody = document.querySelector('.order-table tbody');
 
