@@ -13,11 +13,9 @@ import org.flower.entities.Flower;
 public class WeightInfo {
 
     private Long id;
-
+    private int weight;
     private Long flowerNo;
-
     private Long keywordNo;
-
     private String flowerNm;
     private String keywordNm;
 }

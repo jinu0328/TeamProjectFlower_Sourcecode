@@ -1,10 +1,13 @@
 package org.flower.repositories;
 
 import com.querydsl.core.BooleanBuilder;
+import org.flower.commons.constants.UserRole;
 import org.flower.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.flower.entities.QUser;
+
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
     /*
@@ -52,5 +55,8 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
         long cnt = this.count(builder);
         return cnt > 0;
     }
+
+    // 매장 데이터를 role이 OWNER인 사용자에 한해서만 추가하기 위함
+    // Optional<User> findBy_UserRole(UserRole role);
 
 }
