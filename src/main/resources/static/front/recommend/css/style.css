@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+    box-sizing: border-box;
+    color: #000; outline: none;
+}
+
 .draggable {
     cursor: move;
 }
@@ -38,36 +45,52 @@
 
 .flower-card {
     width: 350px; /* 카드 너비 조절 */
-    height: 600px;
+    height: 580px;
     background-color: #FEF7F6;
     margin-bottom: 20px;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    text-align: center;
 }
+
 
 .flower-card img {
     width: 80%; /* 이미지를 카드 크기에 맞춤 */
     height: 40%;
     display: block; /* 이미지 블록화 */
-    margin: 30px auto;
+    margin: 5px auto;
+    margin-bottom: 30px;
 }
 
 .flower-no{
     display: inline-block;
     padding: 1px 5px 1px 5px;
+    margin: 20px auto;
     border-radius: 10px;
     background-color: #f4cbd2;
 }
 
+/* 꽃 정보 스타일링 */
 .flower-card-info {
-    padding: 10px;
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #e0e0e0;
 }
 
-.flower-card-info span {
-    display: block;
+.flower-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* 수평 중앙 정렬 */
+    justify-content: center;  /* 수직 중앙 정렬 */
+}
+
+.flower-card-info div {
     margin-bottom: 5px;
-    font-size: 14px;
+}
+
+.flower-card-info strong {
+    margin-right: 5px;
 }
 
 .buttons {
@@ -84,6 +107,7 @@
     background-color: #e6e6e6;
     cursor: pointer;
     transition: background-color 0.3s;
+    text-decoration: none;
 }
 
 .button:hover {
