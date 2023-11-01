@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
 * {
+    margin: 0;
+    padding: 0;
     font-family: 'Gowun Dodum', sans-serif;
     box-sizing: border-box;
     color: #000; outline: none;
@@ -115,3 +117,82 @@
 }
 
 /* 꽃 추천 영역 E */
+
+/* 로딩 꽃 깜빡임 S*/
+#iconContainer i {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+#iconContainer i.visible {
+    opacity: 1;
+}
+/* 로딩 꽃 깜빡임 E*/
+
+/* 전체 화면을 기준으로 중앙 정렬을 위한 스타일 */
+.loadling-body {
+    position: relative;
+    width: 100vw;  /* 전체 뷰포트 너비로 설정 */
+    height: 100vh; /* 전체 뷰포트 높이로 설정 */
+    margin: 0;
+    display: flex;
+    align-items: center;    /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    background-image: url('../../images/background-loading3.jpg');
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.loading-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    opacity: 0.5; /* 원하는 투명도로 조절하세요. 0.5는 50% 투명도를 나타냅니다. */
+    z-index: 1;  /* 가상 요소가 실제 요소들 아래에 위치하도록 합니다. */
+}
+
+/* centered-container 스타일 */
+.centered-container {
+    width: 80%; /* 적당한 크기로 설정, 필요하다면 값을 조절하세요. */
+    max-width: 600px; /* 최대 크기 설정 */
+    padding: 20px;
+    background-color: #ffffff; /* 백그라운드 색상 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+/* 아이콘 컨테이너 스타일 */
+#iconContainer {
+    text-align: center; /* 아이콘을 수평 중앙에 배치 */
+    margin-bottom: 20px; /* 아래 여백 추가 */
+}
+
+/* 아이콘 스타일 */
+#iconContainer i {
+    opacity: 0;
+    transition: opacity 0.5s;
+    font-size: 3em; /* 아이콘 크기 조절. 값을 더 크게/작게 조절 가능 */
+    color: #f4cbd2;
+}
+
+#iconContainer i.visible {
+    opacity: 1;
+}
+
+.centered-container h1{
+    text-align: center;
+}
+
+.ul-li{
+    display: flex;
+    justify-content: center;
+}
+
+
+
+
