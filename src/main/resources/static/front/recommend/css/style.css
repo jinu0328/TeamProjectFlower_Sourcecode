@@ -131,7 +131,6 @@
 
 /* 전체 화면을 기준으로 중앙 정렬을 위한 스타일 */
 .loadling-body {
-    position: relative;
     width: 100vw;  /* 전체 뷰포트 너비로 설정 */
     height: 100vh; /* 전체 뷰포트 높이로 설정 */
     margin: 0;
@@ -141,19 +140,6 @@
     background-image: url('../../images/background-loading3.jpg');
     background-position: center center;
     background-size: cover;
-    overflow: hidden;
-}
-
-.loading-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.7);
-    opacity: 0.5; /* 원하는 투명도로 조절하세요. 0.5는 50% 투명도를 나타냅니다. */
-    z-index: 1;  /* 가상 요소가 실제 요소들 아래에 위치하도록 합니다. */
 }
 
 /* centered-container 스타일 */
@@ -169,6 +155,7 @@
 /* 아이콘 컨테이너 스타일 */
 #iconContainer {
     text-align: center; /* 아이콘을 수평 중앙에 배치 */
+    margin-top: 20px;
     margin-bottom: 20px; /* 아래 여백 추가 */
 }
 
