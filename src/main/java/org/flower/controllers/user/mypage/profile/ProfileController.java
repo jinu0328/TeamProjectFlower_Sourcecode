@@ -1,4 +1,3 @@
-
 package org.flower.controllers.user.mypage.profile;
 
 
@@ -15,6 +14,7 @@ package org.flower.controllers.user.mypage.profile;
 @Controller
 @RequestMapping("/user/mypage/profile/profilePage")
 public class ProfileController {
+
 
     @Autowired
     UserRepository userRepository;
@@ -39,5 +39,6 @@ public class ProfileController {
 
         return "/front/mypage/profile/profilePage"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
     }
+
 
 }
