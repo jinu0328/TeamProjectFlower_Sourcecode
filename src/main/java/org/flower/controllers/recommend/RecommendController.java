@@ -48,7 +48,6 @@ public class RecommendController {
     @PostMapping("/loading")
     public String loadingPage(@RequestParam String selectedKeywordNames, @RequestParam String selectedKeywordNos ,Model model) {
         // 컴마로 구분하여 키워드를 배열로 변환
-        System.out.println("zz");
         String[] keywordNames = selectedKeywordNames.split(",");
         String[] keywordNos = selectedKeywordNos.split(",");
 
