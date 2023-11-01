@@ -16,12 +16,19 @@
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 </head>
 <body th:data-keyword-nos="${keywordNos}">
-<h1>당신에게 어울릴 꽃을 찾고있어요...</h1>
+<div class="">
 
-<p>선택한 키워드:</p>
-<ul>
-    <!-- Thymeleaf를 사용하여 전달된 키워드를 렌더링 -->
-    <li th:each="keyword : ${keywordNames}" th:text="${keyword}"></li>
-</ul>
+    <h1>당신에게 어울릴 꽃을 찾고있어요...</h1>
+    <div>
+        <p>선택한 키워드:</p>
+        <ul>
+            <!-- Thymeleaf를 사용하여 전달된 키워드를 렌더링 -->
+            <li th:each="keyword : ${keywordNames}" th:text="${keyword}"></li>
+        </ul>
+    </div>
+</div>
+
+
+
 </body>
 </html>
