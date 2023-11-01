@@ -38,6 +38,7 @@ public class UserEditService {
     @Autowired
     private UserRepository userRepository;
 
+
     /*
      *  Update user's nickname
      * */

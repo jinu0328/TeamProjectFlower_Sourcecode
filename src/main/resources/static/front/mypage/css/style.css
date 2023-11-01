@@ -166,27 +166,48 @@ ul.sidebar li a.active {
     margin : auto;
     padding: initial;
 }
-/* 닉네임 변경 버튼 스타일 */
-#nicknameEditButton {
+/* 닉네임 변경 관련 스타일 */
+.edit-nickname-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     margin-top: 10px;
-    padding: 5px 10px;
-    cursor: pointer;
 }
 
-/* 닉네임 변경 영역 스타일 */
-.nicknameEditArea {
-    margin-top: 10px;
+.edit-nickname-button,
+.check-duplicate-button,
+.confirm-button {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.nickname-edit-box {
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
 }
 
 #nicknameInput {
-    flex: 1;
-    padding: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
     margin-right: 10px;
 }
 
-#checkDuplicationButton, #confirmButton {
-    padding: 5px 10px;
-    cursor: pointer;
+.confirm-button {
+    background-color: #28a745;
+}
+
+.confirm-button:hover {
+    background-color: #218838;
+}
+
+.edit-nickname-button:hover,
+.check-duplicate-button:hover {
+    background-color: #0056b3;
 }
