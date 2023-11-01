@@ -130,14 +130,14 @@
 /* 로딩 꽃 깜빡임 E*/
 
 /* 전체 화면을 기준으로 중앙 정렬을 위한 스타일 */
-.loadling-body {
+.loading-body {
     width: 100vw;  /* 전체 뷰포트 너비로 설정 */
     height: 100vh; /* 전체 뷰포트 높이로 설정 */
     margin: 0;
     display: flex;
     align-items: center;    /* 수직 중앙 정렬 */
     justify-content: center; /* 수평 중앙 정렬 */
-    background-image: url('../../images/background-loading3.jpg');
+    background-image: url('../../images/background-loading.jpg');
     background-position: center center;
     background-size: cover;
 }
