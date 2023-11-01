@@ -1,3 +1,4 @@
+/*
 package org.flower.controllers.user.mypage.profile;
 
 
@@ -63,4 +64,4 @@ public class MypageHomeController {
         return "/front/mypage/main/home"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
     }
 
-}
+}*/
