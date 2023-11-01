@@ -12,5 +12,10 @@ public class FlowerInfoService {
     private FlowerRepository flowerRepository;
 
     public List<Flower> getAllFlowers() { return flowerRepository.findAll();}
+
+    public Flower getFlowerByFlowerNo(Long flowerNo) {
+        return flowerRepository.findByFlowerNo(flowerNo)
+                .orElseThrow(() -> new IllegalArgumentException("Flower not found with flowerNo: " + flowerNo));
+    }
 }
 

@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/recommend")
@@ -67,18 +67,53 @@ public class RecommendController {
         for(int i = 0; i < keywordNosString.length; i++) {
             selectedKeywordNos[i] = Integer.parseInt(keywordNosString[i]);
         }
-        List<FlowerWeight> weights = weightInfoService.getAllWeights();
-        List<Flower> flowers = flowerInfoService.getAllFlowers();
-        Map<Integer, Integer> flowersScore = getFlowerScore(selectedKeywordNos, weights);
 
-        // 맵에서 가장 높은 value를 가지는 key값 3개를 정수형 리스트로 만들어서 model에 추가하기
+        List<Flower> flowers = new ArrayList<>();
+        Map<Integer, Integer> flowersScore = getFlowerScore(selectedKeywordNos);
+        // 맵에서 가장 높은 value를 가지는 key값 3개를 정수형 큰 리스트로 만들기
+        // 즉 가장 높은 점수를 가지는 Flower의 flowerNo 3개
+        List<Integer> topValues = getTopValues(flowersScore, 3);
+        flowers.add(flowerInfoService.getFlowerByFlowerNo(Long.valueOf(topValues.get(0))));
+        flowers.add(flowerInfoService.getFlowerByFlowerNo(Long.valueOf(topValues.get(1))));
+        flowers.add(flowerInfoService.getFlowerByFlowerNo(Long.valueOf(topValues.get(2))));
 
         model.addAttribute("flowers", flowers);
         return "front/recommend/flower";
     }
 
-    private Map<Integer, Integer> getFlowerScore(int[] selectedKeywordNos, List<FlowerWeight> weightsList) {
-        return null;
+    private List<Integer> getTopValues(Map<Integer, Integer> flowersScore, int n) {
+        return flowersScore.entrySet()
+                .stream()
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                .limit(n)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+    }
+    private Map<Integer, Integer> getFlowerScore(int[] selectedKeywordNos) {
+        Map<Integer, Integer> flowersScore = new HashMap<>();
+        List<FlowerWeight> flowerWeights;
+        for(int i = 0; i < 50; i++) {
+            flowerWeights = weightInfoService.getWeightsByFlowerNo((long) i);
+
+            if(flowerWeights.isEmpty()) {
+                continue;
+            }
+            int priority = 3;
+            for(int j = 0; j < selectedKeywordNos.length; j++) {
+                int weightValue = weightInfoService.findFlowerWeightByKeywordNo(flowerWeights, Long.valueOf(selectedKeywordNos[j])).getWeight();
+                if(flowersScore.containsKey(i)) {
+                    int currentValue = flowersScore.get(i);
+                    flowersScore.put(i, currentValue + priority * weightValue);
+                }
+                else {
+                    flowersScore.put(i, priority * weightValue);
+                }
+                if(priority > 1) {
+                    priority--;
+                }
+            }
+        }
+        return flowersScore;
     }
 
 

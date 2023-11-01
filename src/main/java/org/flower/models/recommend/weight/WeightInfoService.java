@@ -9,6 +9,7 @@ import org.flower.repositories.WeightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,17 @@ public class WeightInfoService {
     * FlowerWeight(엔티티) 에서 모든 정보를 가져옴
     * */
     public List<FlowerWeight> getAllWeights(){return weightRepository.findAll();}
+
+    public List<FlowerWeight> getWeightsByFlowerNo(Long flowerNo) {
+        return weightRepository.findByFlowerFlowerNo(flowerNo);
+    }
+
+    public FlowerWeight findFlowerWeightByKeywordNo(List<FlowerWeight> flowerWeights, Long keywordNo) {
+        return flowerWeights.stream()
+                .filter(flowerWeight -> flowerWeight.getKeyword().getKeywordNo().equals(keywordNo))
+                .findFirst()
+                .orElse(null); // 만약 찾는 엔티티가 없으면 null 반환
+    }
 
     /*
     * 특정 Flower에 여러 Keywords와 가중치를 추가하는 메서드
