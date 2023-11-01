@@ -33,13 +33,13 @@
 /* 꽃 추천 영역 */
 .container {
     width: 100%;
-
+    max-height: calc(100vh - 50px); /* 50px는 예시로, 필요한만큼 조절해서 푸터와 겹치지 않도록 설정할 수 있습니다. */
 }
 
 .recommendation-section {
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 150px;
     margin-right: 150px;
 }

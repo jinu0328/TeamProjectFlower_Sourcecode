@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Playfair+Display&display=swap');
+main {
+    min-height: 90vh; /* 최소 높이를 전체 화면 높이로 설정 */
+}
 
 body, header, footer, section, nav, img {
     margin: 0;
@@ -15,6 +18,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+footer{
+    margin-top: 30px;
 }
 
 /* dohwada는 왼쪽 상단 login, join은 오른쪽 상단 */

@@ -7,7 +7,9 @@
         <!--<div th:each="flower : ${flowers}">
             <img th:src="@{${flower.flowerIamges}}" alt="꽃 이미지" />
         </div>-->
+
         <div class="container">
+            <h1 style="text-align: center">RESULT</h1>
             <div class="recommendation-section">
                 <div class="flower-card" th:each="flower, stat : ${flowers}">
                     <div class="flower-no" th:text="'flower' + ${stat.index + 1}">flower</div>
