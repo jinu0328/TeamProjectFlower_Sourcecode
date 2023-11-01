@@ -33,7 +33,7 @@
                         <input type="checkbox" th:id="${'orderCheckbox'+ storeNo}" name="selectedStores" th:value="*{storeNo}">
                     </td>
                     <!-- 매장 번호 -->
-                    <td th:text="${iterStat.index + 1}"></td>
+                    <td th:text="${iterStat.index + 1}" data-field="storeNo"></td>
                     <!-- 매장 이름 -->
                     <td th:text="*{storeNm}" data-field="storeNm"></td>
                     <!-- 매장TEL -->
@@ -61,8 +61,8 @@
     </form>
     <div>
         <a class="btn2" th:href="@{/admin/order/addStoreList}" id="addStoreButton">추가</a>
-        <button type="button" class="btn2" id="editButton">수정</button>
-        <button type="button" class="btn2" onclick="deleteStores()">삭제</button>
+        <button type="button" class="btn2" id="editStoreButton">수정</button>
+        <button type="button" class="btn2" onclick="deleteSelectedStores()">삭제</button>
     </div>
     <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
     <!-- 주문 추가 처리 후 alert 메세지 출력 -->
