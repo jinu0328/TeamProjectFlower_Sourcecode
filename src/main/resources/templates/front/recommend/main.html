@@ -13,6 +13,7 @@
     <!-- Thymeleaf로 키워드 렌더링 -->
     <li th:each="keyword : ${keywordsList}"
         th:text="${keyword.keywordNm}"
+        th:data-keywordNo="${keyword.keywordNo}"
         class="draggable"
         draggable="true"
         ondragstart="drag(event)">
@@ -26,7 +27,8 @@
 
 <form id="keywordsForm" method="post" action="/recommend/loading">
     <!-- 키워드를 담을 숨겨진 input 필드 -->
-    <input type="hidden" name="selectedKeywords" id="selectedKeywords">
+    <input type="hidden" name="selectedKeywordNames" id="selectedKeywordNames">
+    <input type="hidden" name="selectedKeywordNos" id="selectedKeywordNos">
     <!-- CSRF 토큰을 포함 -->
     <input type="hidden" name="_csrf" th:value="${_csrf.token}">
 </form>
