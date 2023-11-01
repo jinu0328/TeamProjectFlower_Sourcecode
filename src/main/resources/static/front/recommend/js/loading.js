@@ -2,7 +2,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(function() {
         const keywordNos = document.querySelector('body').getAttribute('data-keyword-nos');
-        const keywordNosStr = encodeURIComponent(keywordNos);
-        window.location.href = `http://localhost:3001/recommend/result?keywordNos=${keywordNosStr}`;
+        window.location.href = `http://localhost:3001/recommend/result?keywordNos=${keywordNos}`;
     }, 7000);  // 7초 후 실행
 });

@@ -49,23 +49,20 @@ public class RecommendController {
     public String loadingPage(@RequestParam String selectedKeywordNames, @RequestParam String selectedKeywordNos ,Model model) {
         // 컴마로 구분하여 키워드를 배열로 변환
         String[] keywordNames = selectedKeywordNames.split(",");
-        String[] keywordNosString = selectedKeywordNos.split(",");
-        int[] keywordNos = new int[keywordNosString.length];
-        for(int i = 0; i < keywordNosString.length; i++) {
-            keywordNos[i] = Integer.parseInt(keywordNosString[i]);
-        }
+        String[] keywordNos = selectedKeywordNos.split(",");
 
         // 키워드를 모델에 추가하여 뷰에서 사용
         model.addAttribute("keywordNames", keywordNames);
-        model.addAttribute("keywordNos", keywordNos);
+        model.addAttribute("keywordNos", String.join(",", keywordNos)); // 얘는 result로 한번 더 넘겨야돼서 다시 ,로 나눔
         model.addAttribute("pageTitle", "Loading");
 
         return "front/recommend/loading";
     }
 
     @GetMapping("/result")
-    public String flowerResult(@RequestParam String keywordNos , Model model){
+    public String flowerResult(@RequestParam String keywordNos, Model model){
         String[] keywordNosString = keywordNos.split(",");
+        System.out.println(Arrays.toString(keywordNosString));
         int[] selectedKeywordNos = new int[keywordNosString.length];
         for(int i = 0; i < keywordNosString.length; i++) {
             selectedKeywordNos[i] = Integer.parseInt(keywordNosString[i]);
