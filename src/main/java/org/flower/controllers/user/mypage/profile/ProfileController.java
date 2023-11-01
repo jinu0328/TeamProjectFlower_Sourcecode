@@ -1,30 +1,6 @@
 package org.flower.controllers.user.mypage.profile;
 
 
-import org.flower.models.user.UserInfo;
-import org.flower.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-@RequestMapping("/user/mypage/profile/profilePage")
-public class ProfileController {
-    @GetMapping
-    public String main(){
-        return "/front/mypage/profile/profilePage";
-    }
-
-
-}
-
-package org.flower.controllers.user.profile;
-
-
         import org.flower.models.user.UserInfo;
         import org.flower.repositories.UserRepository;
         import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +13,7 @@ package org.flower.controllers.user.profile;
 
 @Controller
 @RequestMapping("/user/mypage/profile/profilePage")
-public class MypageHomeController {
+public class ProfileController {
 
     @Autowired
     UserRepository userRepository;
@@ -60,7 +36,7 @@ public class MypageHomeController {
             return "redirect:/user/login"; //
         }
 
-        return "/front/mypage/main/home"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
+        return "/front/mypage/profile/profilePage"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
     }
 
 }
