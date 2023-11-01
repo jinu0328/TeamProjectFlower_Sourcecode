@@ -7,32 +7,36 @@
 <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
 <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
-<p>마음에 드는 순서대로 키워드를 바구니에 드래그 해주세요!</p>
 
-<ul>
-    <!-- Thymeleaf로 키워드 렌더링 -->
-    <li th:each="keyword : ${keywordsList}"
-        th:text="${keyword.keywordNm}"
-        th:data-keywordNo="${keyword.keywordNo}"
-        class="draggable"
-        draggable="true"
-        ondragstart="drag(event)">
-    </li>
-</ul>
+        <div class="header-image">
+            <div class="overlay-text playfair-display">RECOMMENDATION</div>
+        </div>
 
-<div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)">
-    <p>바구니에 담긴 키워드가 없습니다.</p>
-    <ul></ul>
-</div>
+        <div class="pink-background">
+            <ul>
+                <!-- Thymeleaf로 키워드 렌더링 -->
+                <li th:each="keyword : ${keywordsList}"
+                    th:text="${keyword.keywordNm}"
+                    th:data-keywordNo="${keyword.keywordNo}"
+                    class="draggable"
+                    draggable="true"
+                    ondragstart="drag(event)">
+                </li>
+            </ul>
+        </div>
 
-<form id="keywordsForm" method="post" action="/recommend/loading">
-    <!-- 키워드를 담을 숨겨진 input 필드 -->
-    <input type="hidden" name="selectedKeywordNames" id="selectedKeywordNames">
-    <input type="hidden" name="selectedKeywordNos" id="selectedKeywordNos">
-    <!-- CSRF 토큰을 포함 -->
-    <input type="hidden" name="_csrf" th:value="${_csrf.token}">
-</form>
+        <div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <ul style="display:inline-block;"></ul>
+        </div>
 
-<button id="recommendBtn">꽃 추천받기</button>
-</main>
+        <form id="keywordsForm" method="post" action="/recommend/loading">
+            <!-- 키워드를 담을 숨겨진 input 필드 -->
+            <input type="hidden" name="selectedKeywordNames" id="selectedKeywordNames">
+            <input type="hidden" name="selectedKeywordNos" id="selectedKeywordNos">
+            <!-- CSRF 토큰을 포함 -->
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        </form>
+
+        <button id="recommendBtn">꽃 추천받기</button>
+    </main>
 </html>
