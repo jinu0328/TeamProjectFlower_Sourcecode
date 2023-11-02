@@ -7,8 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.flower.entities.QUser;
 
-import java.util.Optional;
-
 public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredicateExecutor<User> {
     /*
     * JpaRepository를 상속받아 기본적인 CRUD 연산이 가능하도록 설정
@@ -22,12 +20,15 @@ public interface UserRepository extends JpaRepository<User, Long>, QuerydslPredi
     User findByUserEmail(String userEmail);
 
     User findByUserNo(Long userNo);
-    /**
+    /* *
      * 이메일을 기준으로 회원이 등록되어 있는지 체크
      *
      * @param userEmail
      * @return {boolean}
      */
+
+    User findByUserNickNm(String userNickNm);
+
     default boolean isUserExists(String userEmail) {
         // QUser는 QueryDSL을 위해 생성된 Q클래스로, user 엔티티에 대한 QueryDSL 쿼리를 구성할 때 사용
         // BooleanBuilder는 QueryDSL의 동적 쿼리를 구성하는 데 사용하는 빌더 클래스
