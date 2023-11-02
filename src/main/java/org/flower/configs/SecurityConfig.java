@@ -37,6 +37,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests()
                 .anyRequest().permitAll();
+
         /*
         * authorizeRequests() -> HttpServletRequest에 대한 액세스 제한을 설정
         * anyRequest() -> 모든 요청을 선택하는 메서드 , permitAll() -> 선택된 요청에 대한 접근을 허용
