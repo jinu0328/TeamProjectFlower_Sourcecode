@@ -2,7 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">
     <!-- 헤더 통일하기 위해 css 파일 하나 더 추가함 -->
     <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
@@ -40,5 +45,9 @@
 </div>
 </div>
 <script src="/front/mypage/js/common.js"></script>
+
+
+<div id="userData" th:data-user-no="${userNo}" style="display: none;"></div>
+
 </body>
 </html>
