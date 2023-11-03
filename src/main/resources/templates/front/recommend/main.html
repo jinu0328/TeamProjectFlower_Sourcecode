@@ -3,30 +3,44 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 
-    <main layout:fragment="content" class="noFlex">
+    <main layout:fragment="content" class="main-container">
 <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
-<title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
 
         <div class="header-image">
             <div class="overlay-text playfair-display">RECOMMENDATION</div>
         </div>
 
-        <div class="pink-background">
-            <ul>
-                <!-- Thymeleaf로 키워드 렌더링 -->
-                <li th:each="keyword : ${keywordsList}"
-                    th:text="${keyword.keywordNm}"
-                    th:data-keywordNo="${keyword.keywordNo}"
-                    class="draggable"
-                    draggable="true"
-                    ondragstart="drag(event)">
-                </li>
-            </ul>
+        <div class="interaction-area">
+            <!-- 핑크 배경 영역 -->
+            <div class="pink-background">
+                <ul>
+                    <!-- Thymeleaf로 키워드 렌더링 -->
+                    <li th:each="keyword : ${keywordsList}"
+                        th:text="${keyword.keywordNm}"
+                        th:data-keywordNo="${keyword.keywordNo}"
+                        class="draggable"
+                        draggable="true"
+                        ondragstart="drag(event)">
+                    </li>
+                </ul>
+            </div>
+            <!-- 중앙 정렬을 위한 컨테이너 -->
+            <div class="center-aligned-container">
+                <!-- 바구니 -->
+                <div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                <!-- 선택된 키워드를 표시할 영역 -->
+                <div id="selectedKeywordsArea" class="selected-keywords">
+                    <h2>선택한 키워드</h2>
+                    <ul id="selectedKeywordsList"></ul>
+                </div>
+            </div>
         </div>
 
-        <div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <ul style="display:inline-block;"></ul>
+        <div class="button-container">
+            <button id="recommendBtn">꽃 추천받기</button>
         </div>
 
         <form id="keywordsForm" method="post" action="/recommend/loading">
@@ -37,6 +51,5 @@
             <input type="hidden" name="_csrf" th:value="${_csrf.token}">
         </form>
 
-        <button id="recommendBtn">꽃 추천받기</button>
     </main>
 </html>

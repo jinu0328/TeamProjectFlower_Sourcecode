@@ -23,14 +23,6 @@
 }
 
 
-
-.pink-background {
-    background-color: #ffe9e9; /* 분홍색 배경 설정 */
-    width: 100%; /* 전체 너비로 설정 */
-    height: 200px; /* 원하는 높이로 설정. 예를 들어, 200px */
-}
-
-
 .header-image {
     width: 100%;
     height: 80px;
@@ -55,27 +47,100 @@
     cursor: move;
 }
 
+.noFlex {
+    display: block;  /* flex 대신 원하는 display 값으로 변경 */
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.interaction-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.center-aligned-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align the items at the top */
+
+}
+
 #basket {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 200px;
     height: 200px;
+    border-radius: 5px;
+    background-color: #fff;
+    margin-right: 20px; /* Add some space between the basket and the selected keywords area */
     background-image: url("../../images/basket.jpg");
     background-size: contain;
     background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
     background-position: center;  /* 이미지를 중앙에 위치시킵니다 */
-    display: inline-block;
-    margin-top: 150px;
 }
 
-#basket li {
-    cursor: move;
+.selected-keywords {
+    display: flex;
+    flex-direction: column;
 }
 
-.noFlex {
-    display: block;  /* flex 대신 원하는 display 값으로 변경 */
+#selectedKeywordsArea h2 {
+    margin-bottom: 10px;
+}
+
+#selectedKeywordsList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.pink-background {
+    /*background-color: #f2d1d1;*/
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.pink-background ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pink-background li {
+    padding: 5px 10px;
+    background-color: #ffe6e6;
+    margin-bottom: 5px;
+    cursor: grab;
+    border-radius: 3px;
+}
+
+.draggable {
+    user-select: none;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+.selected-keywords ul li {
+    padding: 5px 10px;
+    background-color: #c2f0c2;
+    border-radius: 3px;
+    margin-bottom: 5px; /* For spacing between keywords */
+}
+
+.button-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 
