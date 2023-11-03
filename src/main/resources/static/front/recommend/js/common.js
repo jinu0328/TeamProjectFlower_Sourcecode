@@ -13,8 +13,7 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     var dragData = JSON.parse(ev.dataTransfer.getData("text"));
-    var basketList = document.querySelector("#basket ul");
-    var placeholderText = document.querySelector("#basket p");
+    var selectedKeywordsList = document.querySelector("#selectedKeywordsList");
 
     var newListItem = document.createElement("li");
     newListItem.innerText = dragData.text;
@@ -23,8 +22,8 @@ function drop(ev) {
     newListItem.ondragstart = drag;
     newListItem.ondragend = function(e) { removeItem(e, newListItem); };
 
-    basketList.appendChild(newListItem);
-    placeholderText.style.display = "none";
+    selectedKeywordsList.appendChild(newListItem);
+    //placeholderText.style.display = "none";
 }
 
 function removeItem(ev, item) {
@@ -45,10 +44,10 @@ document.addEventListener('DOMContentLoaded', function() {
     var recommendBtn = document.getElementById('recommendBtn');
     if (recommendBtn) {
         recommendBtn.addEventListener('click', function () {
-            var keywordNames = Array.from(document.querySelector("#basket ul").children).map(function(li) {
+            var keywordNames = Array.from(document.querySelector("#selectedKeywordsArea ul").children).map(function(li) {
                 return li.innerText;
             });
-            var keywordNos = Array.from(document.querySelector("#basket ul").children).map(function(li) {
+            var keywordNos = Array.from(document.querySelector("#selectedKeywordsArea ul").children).map(function(li) {
                 return li.getAttribute('data-keywordNo');
             });
 
