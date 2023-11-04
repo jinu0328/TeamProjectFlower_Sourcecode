@@ -9,7 +9,11 @@
         </div>-->
 
         <div class="container">
-            <h1 style="text-align: center">RESULT</h1>
+            <div class="header-image">
+                <div class="overlay-text playfair-display">RESULT</div>
+            </div>
+
+            <h1 style="text-align: center"></h1>
             <div class="recommendation-section">
                 <div class="flower-card" th:each="flower, stat : ${flowers}">
                     <div class="flower-no" th:text="'flower' + ${stat.index + 1}">flower</div>
