@@ -73,7 +73,7 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 100px;  /* 이미지와 텍스트 사이의 간격 */
+    margin-right: 65px;  /* 이미지와 텍스트 사이의 간격 */
 }
 
 .profile-info {
@@ -250,7 +250,7 @@ ul.sidebar li a.active {
 
 .button_order
 {
-    font-size: 17px;
+    font-size: 15px;
     margin-left: 30px;
 }
 /* 헤더 이미지의 스타일을 설정합니다. */
