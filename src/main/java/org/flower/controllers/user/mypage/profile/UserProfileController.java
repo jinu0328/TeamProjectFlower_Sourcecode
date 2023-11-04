@@ -39,11 +39,13 @@ public class UserProfileController {
     public ResponseEntity<?> updateNickname(@RequestBody UserEditInfo userEditInfo) {System.out.println("dddddddddddsssssssssssssfffffffffffff");
         try {
 
-            UserEditInfo updatedUserEditInfo = userEditService.editUserNickname(userEditInfo);
-            return ResponseEntity.ok().body(updatedUserEditInfo);
+            UserEditInfo updatedUserEditInfo = userEditService.updateUserNickname(userEditInfo);
+
+            return ResponseEntity.ok(updatedUserEditInfo);
         } catch (Exception e) {
             // 예외 발생 시 클라이언트에게 오류 메시지와 함께 500 Internal Server Error 상태 코드를 전송
             return ResponseEntity.internalServerError().body("An error occurred while updating the nickname: " + e.getMessage());
         }
     }
+
 }

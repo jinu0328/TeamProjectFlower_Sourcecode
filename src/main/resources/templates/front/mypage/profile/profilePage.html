@@ -4,7 +4,8 @@
 <head>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -45,7 +46,21 @@
 </div>
 </div>
 <script src="/front/mypage/js/common.js"></script>
+<script>
+    $(document).ready(function() {
+        // AJAX 호출을 위한 CSRF 설정
+        var csrfToken = $("meta[name='_csrf']").attr("content");
+        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 
+        $.ajaxSetup({
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            }
+        });
+
+        // ... 나머지 스크립트 ...
+    });
+</script>
 
 <div id="userData" th:data-user-no="${userNo}" style="display: none;"></div>
 

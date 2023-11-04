@@ -9,30 +9,28 @@ import jakarta.transaction.Transactional;
 @Service
 public class UserEditService {
 
-    @Autowired
-    private UserRepository userRepository;
+        @Autowired
+        private UserRepository userRepository;
 
+        /*
+         * Update user's nickname
+         */
+        @Transactional
+        public UserEditInfo updateUserNickname(UserEditInfo userEditInfo) throws Exception {
+                User user = userRepository.findById(userEditInfo.getUserNo())
+                        .orElseThrow(() -> new Exception("User with ID " + userEditInfo.getUserNo() + " not found"));
 
-    /*
-     *  Update user's nickname
-     * */
-    @Transactional
-    public UserEditInfo editUserNickname(UserEditInfo userEditInfo) throws Exception {
-        User user = userRepository.findById(userEditInfo.getUserNo())
-                .orElseThrow(() -> new Exception("User with ID " + userEditInfo.getUserNo() + " not found"));
+                // Update user's nickname
+                user.setUserNickNm(userEditInfo.getUserNickNm());
 
-        // Update user's nickname based on UserEditInfo
-        user.setUserNickNm(userEditInfo.getUserNickNm());
-        user = userRepository.save(user);
+                // Save the updated user information
+                user = userRepository.save(user);
 
-        // Convert updated user to UserEditInfo and return
-        UserEditInfo updatedUserEditInfo = new UserEditInfo(
-                user.getUserNo(),
-                user.getUserNickNm()
-        );
-
-        return updatedUserEditInfo;
-    }
-
+                // Convert updated user to UserEditInfo and return
+                return new UserEditInfo(
+                        user.getUserNo(),
+                        user.getUserNickNm()
+                );
+        }
 
 }
