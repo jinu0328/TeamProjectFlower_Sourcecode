@@ -12,14 +12,18 @@
   <!-- ... -->
 </head>
 <body>
+
 <!-- 헤더 부분 중 마이페이지로 들어갔을 때 마이페이지 대신 알람창이 뜰 수 있도록 하면 좋을 것 같음 -대윤- -->
 <header th:replace="~{front/outlines/header::common}"></header>
 <!-- <div class = "profile-and-status-container"> -->
+<div class="header-image">
+    <div class="overlay-text playfair-display">MYPAGE</div>
+</div>
 
 <div class = "all">
   <div>
     <div class="profile-container">
-      <img src="https://cdn.pixabay.com/photo/2014/04/02/10/25/man-303792_1280.png" alt="프로필 사진" class="profile-image">
+      <img src="/front/images/%20userprofile.png" alt="프로필 사진" class="profile-image">
 
       <div class="name" th:text="${userNickNm}">홍길동</div>
       <div class="rank">일반 회원</div>
