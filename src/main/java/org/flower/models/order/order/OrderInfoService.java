@@ -17,6 +17,9 @@ public class OrderInfoService {
     public List<Order> getAllOrders(){
         return orderRepository.findAll();
     }
+    public List<Order> getOrdersByUserNo(Long userNo) {
+        return orderRepository.findByUser_UserNo(userNo);
+    }
 
     public Order saveOrder(Order order) {
         return orderRepository.save(order);

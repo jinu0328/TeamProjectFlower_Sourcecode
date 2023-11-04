@@ -39,32 +39,32 @@
     <div class="shippingStatusContainer">
 
       <div class="title">
-        주문/배송조회
+        주문/픽업조회
       </div>
       <div class="status">
 
         <div class="item">
-          <a th:href="@{/user/mypage/profile/profilePage}" class="block-link">
+          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
             <div>
               <div class="green number">0</div>
-              <div class="text">매장선택</div>
+              <div class="text">확인 대기</div>
             </div>
           </a>
           <div class="icon"> > </div>
         </div>
         <div class="item">
           <div>
-            <a th:href="@{/user/mypage/profile/profilePage}" class="block-link">
+            <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
               <div>
                 <div class="green number">0</div>
-                <div class="text">선택완료</div>
+                <div class="text">확인 완료</div>
               </div>
             </a>
           </div>
           <div class="icon"> > </div>
         </div>
         <div class="item">
-          <a th:href="@{/user/mypage/profile/profilePage}" class="block-link">
+          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
             <div>
               <div class="green number">0</div>
               <div class="text">상품 준비중</div>
@@ -73,7 +73,7 @@
           <div class="icon"> > </div>
         </div>
         <div class="item">
-          <a th:href="@{/user/mypage/profile/profilePage}" class="block-link">
+          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
             <div>
               <div class="green number">0</div>
               <div class="text">픽업 완료</div>
@@ -87,52 +87,48 @@
 
   <div>
     <ul class = "sidebar">
-      <li><a class="active" th:href="@{/user/mypage/main/home}">주문 내역</a></li>
+      <li><a class="active" th:href="@{/user/mypage/main/home/orderlist}">주문 내역</a></li>
       <!--<li><a th:href="@{/user/mypage/main/main_review}">상품 후기</a></li>
       <li><a th:href="@{/user/mypage/main/main_inquire}">상품 문의</a></li> -->
     </ul>
-
-        <div class="content">
-            <div class="order-history">
-                <table class="order-table">
-                    <thead>
-                    <tr>
-                        <th>주문번호</th>
-                        <th>주문일시</th>
-                        <th>닉네임</th>
-                        <th>전화번호</th>
-                        <th>픽업날짜</th>
-                        <th>픽업시간</th>
-                        <th>꽃 종류</th>
-                        <th>꽃다발 색상</th>
-                        <th>가격대</th>
-                        <th>메시지</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!-- 주문 데이터 반복 -->
-                    <tr th:each="order : ${order}">
-                        <td th:text="*{orderNo}">주문번호</td>
-                        <td th:text="${order.orderDateTime}">주문일시</td>
-                        <td th:text="${order.nickname}">닉네임</td>
-                        <td th:text="${order.phoneNumber}">전화번호</td>
-                        <td th:text="${order.pickupDate}">픽업날짜</td>
-                        <td th:text="${order.pickupTime}">픽업시간</td>
-                        <td th:text="${order.flowertype}">꽃 종류</td>
-                        <td th:text="${order.bouquetColor}">꽃다발 색상</td>
-                        <td th:text="${order.priceRange}">가격대</td>
-                        <td th:text="${order.message}">메시지</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-    </div>
-
-
-
   </div>
 
+      <div class="content">
+          <div class="order-history">
+              <table class="order-table">
+                  <thead>
+                  <tr>
+                      <th>주문번호</th>
+                      <th>주문일시</th>
+                      <!--<th>닉네임</th>-->
+                      <th>픽업날짜</th>
+                      <th>픽업시간</th>
+                      <th>꽃 종류</th>
+                      <th>꽃다발 색상</th>
+                      <th>가격대</th>
+                      <th>메시지</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <!-- 주문 데이터 반복 -->
+                  <tr th:each="order : ${userOrders}"> <!-- 여기서 변수명을 단수에서 복수로 변경했습니다. -->
+                      <td th:text="${order.orderNo}">주문번호</td>
+                      <td th:text="${#strings.substring(order.createdAt, 0, 10)}">주문일시</td>
+                     <!--<td th:text="*{userNickNm}">닉네임</td>-->
+                      <td th:text="${order.pickupDate}">픽업날짜</td>
+                      <td th:text="${order.pickupTime}">픽업시간</td>
+                      <td th:text="${order.flowertype}">꽃 종류</td>
+                      <td th:text="${order.flowercolor}">꽃다발 색상</td>
+                      <td th:text="${order.pricerange}">가격대</td>
+                      <td th:text="${order.message}">메시지</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+     </div>
+
 </body>
+
 </html>

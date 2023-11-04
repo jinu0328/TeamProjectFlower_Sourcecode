@@ -1,6 +1,8 @@
 package org.flower.controllers.user.mypage;
 
 
+import org.flower.entities.Order;
+import org.flower.models.order.order.OrderInfoService;
 import org.flower.models.user.UserInfo;
 import org.flower.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +13,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user/mypage")
 public class MypageHomeController {
+    @Autowired
+    private OrderInfoService orderInfoService;
 
     @Autowired
     UserRepository userRepository;
@@ -24,6 +30,11 @@ public class MypageHomeController {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
 
+            // 로그인한 사용자의 주문 목록을 가져와서 모델에 추가
+            List<Order> userOrders = orderInfoService.getOrdersByUserNo(userNo);
+            model.addAttribute("userOrders", userOrders);
+
+            // 로그인한 사용자의 닉네임을 모델에 추가
             String userNickNm = currentUser.getUserNickNm();
             model.addAttribute("userNickNm", userNickNm);
 
