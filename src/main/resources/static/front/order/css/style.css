@@ -1,0 +1,111 @@
+/* 주문 양식 컨테이너의 최대 너비를 설정하고 화면 중앙에 배치합니다. */
+.order-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* 헤더 이미지의 스타일을 설정합니다. */
+.header-image {
+    width: 100%;
+    height: 80px;
+    background-image: url('https://i.ibb.co/C87SPzN/image.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+/* 헤더 이미지에 반투명 오버레이 효과를 추가합니다. */
+.header-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 메인 컨테이너를 수직으로 정렬합니다. */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 입력 그룹의 레이아웃을 설정합니다. */
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+/* 라벨 요소의 너비를 설정하고 입력 요소와의 간격을 설정합니다. */
+.input-group label {
+    flex-basis: 20%;
+    margin-right: 5%;
+}
+
+/* 텍스트, 전화번호, 날짜, 시간 입력 요소 및 선택 요소, 텍스트 영역의 스타일을 설정합니다. */
+.input-group input[type="text"],
+.input-group input[type="tel"],
+.input-group input[type="date"],
+.input-group input[type="time"],
+.input-group select,
+.input-group textarea {
+    flex-grow: 1;
+}
+
+/* 버튼 컨테이너를 가운데 정렬하기 위한 스타일을 설정합니다. */
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* 버튼의 기본 스타일을 설정하고 호버 효과를 추가합니다. */
+.btn2 {
+    background-color: #d4d4d4;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.btn2:hover {
+    background-color: #c4c4c4; /* 약간 어두운 그레이로 변경하여 호버 효과를 줍니다. */
+}
+
+/* 꽃다발 예시 사진의 레이아웃을 설정합니다. */
+.bouquet-samples {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* 각 꽃다발 예시 사진에 스타일을 적용합니다. */
+.bouquet-sample {
+    text-align: center;
+    flex: 1;
+    margin: 0 10px;
+}
+
+/* 각 꽃다발 예시 사진의 이미지 스타일을 설정합니다. */
+.bouquet-sample img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* 텍스트 영역을 다른 입력 요소와 동일한 너비로 설정하고 수직 리사이징만 허용합니다. */
+.input-group textarea {
+    width: 100%;
+    height: 150px;
+    resize: vertical;
+}

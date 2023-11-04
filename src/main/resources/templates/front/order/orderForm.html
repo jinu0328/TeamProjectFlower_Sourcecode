@@ -2,82 +2,105 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
-
-<main layout:fragment="content" class="noFlex">
+<head>
     <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
-    <section class="order-form">
-        <form action="#" th:action="@{/submitOrder}" th:object="${orderForm}" method="post">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/order/css/style.css}">
 
+</head>
+<main layout:fragment="content" class="noFlex">
+    <div class="header-image">
+        <div class="overlay-text playfair-display">ORDER</div>
+    </div>
+    <section class="order-form">
+        <form th:action="@{/order/submitOrder}" th:object="${orderForm}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="input-group">
-                <label th:for="userNm">이름 : </label>
+                <label th:for="userNm">이름</label>
                 <input type="text" th:field="*{userNm}" placeholder="이름을 입력하세요"/>
             </div>
 
             <div class="input-group">
-                <label th:for="cellPhone">전화번호 : </label>
+                <label th:for="cellPhone">전화번호</label>
                 <input type="tel" th:field="*{cellPhone}" placeholder="010-1111-2222"/>
             </div>
 
             <div class="input-group">
-                <label th:for="pickupDate">픽업날짜 : </label>
+                <label th:for="pickupDate">픽업날짜</label>
                 <input type="date" th:field="*{pickupDate}"/>
             </div>
 
             <div class="input-group">
-                <label th:for="pickupTime">픽업시간 : </label>
+                <label th:for="pickupTime">픽업시간</label>
                 <input type="time" th:field="*{pickupTime}"/>
             </div>
 
             <div class="input-group">
-                <label th:for="flowertype">꽃 종류 : </label>
+                <label th:for="flowertype">꽃 종류</label>
                 <select th:field="*{flowertype}">
                     <!-- 실제 꽃 종류에 따라 옵션 추가 -->
                     <option value="sample">주문하실 꽃다발의 메인 꽃을 선택하세요</option>
 
-                    <option value="sample">맨스필드 장미</option>
-                    <option value="sample">하젤</option>
-                    <option value="sample">거베라</option>
-                    <option value="sample">칼라 릴리</option>
-                    <option value="sample">리시안셔스</option>
-                    <option value="sample">코스모스</option>
-                    <option value="sample">메리 골드</option>
-                    <option value="sample">벨 플라워</option>
-                    <option value="sample">릴리</option>
-                    <option value="sample">하이드렌자</option>
-                    <option value="sample">안개꽃</option>
+                    <option value="맨스필드 장미">맨스필드 장미</option>
+                    <option value="하젤">하젤</option>
+                    <option value="거베라">거베라</option>
+                    <option value="칼라 릴리">칼라 릴리</option>
+                    <option value="리시안셔스">리시안셔스</option>
+                    <option value="코스모스">코스모스</option>
+                    <option value="메리 골드">메리 골드</option>
+                    <option value="벨 플라워">벨 플라워</option>
+                    <option value="릴리">릴리</option>
+                    <option value="하이드렌자">하이드렌자</option>
+                    <option value="안개꽃">안개꽃</option>
                 </select>
             </div>
 
             <div class="input-group">
-                <label th:for="flowercolor">꽃다발 색상 : </label>
+                <label th:for="flowercolor">꽃다발 색상</label>
                 <select th:field="*{flowercolor}">
-                    <option value="sample">빨강</option>
-                    <option value="sample">주황</option>
-                    <option value="sample">노랑</option>
-                    <option value="sample">초록</option>
-                    <option value="sample">파랑</option>
-                    <option value="sample">네이비</option>
-                    <option value="sample">보라</option>
-                    <option value="sample">핑크</option>
-                    <option value="sample">꽃 색생과 맞춤</option>
+                    <option value="red">빨강</option>
+                    <option value="orange">주황</option>
+                    <option value="yellow">노랑</option>
+                    <option value="green">초록</option>
+                    <option value="blue">파랑</option>
+                    <option value="navy">네이비</option>
+                    <option value="purple">보라</option>
+                    <option value="pink">핑크</option>
+                    <option value="custom">꽃 색상과 맞춤</option>
                 </select>
             </div>
             <div class="input-group">
-                <label th:for="pricerange">크기 및 가격대 : </label>
+                <label th:for="pricerange">크기 및 가격대</label>
                 <select th:field="*{pricerange}">
-                    <option value="sample">소형, 1~2만원</option>
-                    <option value="sample">중형, 2~3만원</option>
-                    <option value="sample">대형, 4~5만원</option>
-                    <option value="sample">6만원 이상</option>
+                    <option value="소형, 1~2만원">소형, 1~2만원</option>
+                    <option value="중형, 2~3만원">중형, 2~3만원</option>
+                    <option value="대형, 4~5만원">대형, 4~5만원</option>
+                    <option value="6만원 이상">6만원 이상</option>
                 </select>
             </div>
+            <div class="bouquet-samples">
+                <figure class="bouquet-sample">
+                    <img src="/front/images/bouquetsize/smallsize.jpg" alt="소형 꽃다발" />
+                    <p>소형 꽃다발</p>
+                </figure>
+                <figure class="bouquet-sample">
+                    <img src="/front/images/bouquetsize/mediumsize.jpg" alt="중형 꽃다발" />
+                    <p>중형 꽃다발</p>
+                </figure>
+                <figure class="bouquet-sample">
+                    <img src="/front/images/bouquetsize/largesize.jpg" alt="대형 꽃다발" />
+                    <p>대형 꽃다발</p>
+                </figure>
+            </div>
             <div class="input-group">
-                <label th:for="message">메세지 카드 : </label>
-                <input type="text" th:field="*{message}" style="width: 300px; height: 150px;" placeholder="꽃다발과 함께 보낼 메세지 카드를 작성해주세요!"/>
+                <label th:for="message">메세지 카드</label>
+                <textarea id="message" th:field="*{message}" style="width: 300px; height: 150px;" placeholder="꽃다발과 함께 보낼 메세지 카드를 작성해주세요!"></textarea>
+            </div>
+            <div class="input-group button-container">
+                <button class="btn2" type="submit" id="submitOrderForm">주문하기</button>
             </div>
 
-            <button class="btn2" th:href="@{/submitOrder}" id="submitOrderForm">주문하기</button>
+
         </form>
     </section>
     <!-- 주문서 작성 끝 -->
