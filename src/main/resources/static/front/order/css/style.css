@@ -3,6 +3,16 @@
     max-width: 600px;
     margin: auto;
 }
+h1, p {
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+/* 강조 텍스트를 포함하여 모든 div 태그 내부의 텍스트도 가운데 정렬합니다. */
+div {
+    text-align: center;
+}
 
 /* 헤더 이미지의 스타일을 설정합니다. */
 .header-image {
@@ -108,4 +118,47 @@
     width: 100%;
     height: 150px;
     resize: vertical;
+}
+
+/* 전체 페이지에 대한 기본 스타일링 */
+.body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* 카드 스타일 컨테이너 */
+.order-confirmation-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* 강조 텍스트 스타일링 */
+.highlight-text {
+    background-color: #e9f6ff;
+    color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+/* 고유번호를 표시하는 부분 */
+.confirmation-number {
+    font-size: 24px;
+    color: #d35400;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+/* 추가 스타일링이 필요한 텍스트 */
+.small-text {
+    font-size: 0.8em;
+    color: #777;
 }

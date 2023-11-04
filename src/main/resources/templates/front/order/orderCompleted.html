@@ -2,11 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
+<head>
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}">Order Complete</title>
+    <link rel="stylesheet" href="/front/order/css/style.css">
+</head>
 
 <main layout:fragment="content" class="noFlex">
-    <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
-    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
-
-    주문 완료 페이지
+    <div class="header-image">
+        <div class="overlay-text playfair-display">ORDER COMPLETED</div>
+    </div>
+    <div class="order-confirmation-card">
+        <h1>주문 완료</h1>
+        <p>도화다를 이용해 주셔서 감사합니다.</p>
+        <div class="highlight-text">
+            고객님, <span th:text="${#temporals.format(completedOrder.pickupDate, 'MM')}"></span>월
+            <span th:text="${#temporals.format(completedOrder.pickupDate, 'dd')}"></span>일
+            <span th:text="${#temporals.format(completedOrder.pickupTime, 'HH')}"></span>시
+            <span th:text="${#temporals.format(completedOrder.pickupTime, 'mm')}"></span>분에 매장에 방문해주시면 됩니다.
+        </div>
+        <p>주문해 주셔서 감사합니다.</p>
+        <p>자세한 주문내역은 마이페이지의 '주문내역'에서 조회하실 수 있습니다.</p>
+        <div>
+            <a class="btn2" th:href="@{/}">메인화면</a>
+            <a class="btn2" th:href="@{/user/mypage}">주문내역 확인하기</a>
+        </div>
+    </div>
 </main>
 </html>
