@@ -32,15 +32,16 @@
                 <div id="basket" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 
                 <!-- 선택된 키워드를 표시할 영역 -->
-                <div id="selectedKeywordsArea" class="selected-keywords">
+                <div id="selectedKeywordsArea" class="selected-keywords ">
                     <h2>선택한 키워드</h2>
+                    <h6>(중요한 키워드 순으로 넣어주세요!)</h6>
                     <ul id="selectedKeywordsList"></ul>
                 </div>
             </div>
         </div>
 
         <div class="button-container">
-            <button id="recommendBtn">꽃 추천받기</button>
+            <button id="recommendBtn" class="button">꽃 추천받기</button>
         </div>
 
         <form id="keywordsForm" method="post" action="/recommend/loading">
