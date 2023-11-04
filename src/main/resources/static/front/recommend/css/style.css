@@ -31,7 +31,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    margin-bottom: 40px;
 }
 
 .header-image::before {
@@ -70,7 +69,8 @@
     display: flex;
     justify-content: center;
     align-items: flex-start; /* Align the items at the top */
-
+    position: relative;
+    margin-top: 100px;
 }
 
 #basket {
@@ -78,7 +78,7 @@
     height: 200px;
     border-radius: 5px;
     background-color: #fff;
-    margin-right: 20px; /* Add some space between the basket and the selected keywords area */
+    /*margin-right: 20px; */
     background-image: url("../../images/basket.jpg");
     background-size: contain;
     background-repeat: no-repeat; /* 이미지가 반복되지 않도록 설정 */
@@ -86,12 +86,21 @@
 }
 
 .selected-keywords {
-    display: flex;
-    flex-direction: column;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    width: 100%;
+    position: absolute;
+    left: 50%;
+    margin-left: 300px;
+    top: 0;
 }
 
-#selectedKeywordsArea h2 {
-    margin-bottom: 10px;
+#selectedKeywordsArea h6 {
+    margin-bottom: 15px;
+}
+
+#selectedKeywordsArea h2, h6 {
+    user-select: none;  /* 마우스로 드래그하지 못하게 함 */
 }
 
 #selectedKeywordsList {
@@ -138,7 +147,7 @@
 }
 
 .button-container {
-    margin-top: 20px;
+    margin-top: 50px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -182,10 +191,11 @@
 
 .flower-no{
     display: inline-block;
-    padding: 1px 5px 1px 5px;
+    padding: 3px 10px;
     margin: 20px auto;
     border-radius: 10px;
     background-color: #f4cbd2;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 /* 꽃 정보 스타일링 */
@@ -214,6 +224,7 @@
     display: flex;
     justify-content: center;
     margin-top: 20px; /* 버튼 위 간격 추가 */
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 .button{
