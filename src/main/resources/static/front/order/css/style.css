@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
-* {
-    font-family: 'Gowun Dodum', sans-serif;
-    box-sizing: border-box;
-    color: #000; outline: none;
-}
+
 
 /* 주문 양식 컨테이너의 최대 너비를 설정하고 화면 중앙에 배치합니다. */
 .order-form {
+    font-family: 'Gowun Dodum', sans-serif;
+    box-sizing: border-box;
+    color: #000; outline: none;
+    background-color: #FEF7F6;
+    line-height: 1.6;
+    padding: 20px;
     max-width: 600px;
     margin: auto;
-    background-color: #FEF7F6;
-    padding: 20px; /* 여백 추가 */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
     border-radius: 8px; /* 테두리 둥글게 */
 }
@@ -87,6 +87,7 @@ div {
 
 /* 버튼의 기본 스타일을 설정하고 호버 효과를 추가합니다. */
 .btn2 {
+    font-family: 'Gowun Dodum', sans-serif;
     background-color: #d4d4d4;
     padding: 10px 20px;
     border: 1px solid #b4b4b4;;
@@ -136,9 +137,12 @@ div {
 
 /* 전체 페이지에 대한 기본 스타일링 */
 .body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Gowun Dodum', sans-serif;
+    box-sizing: border-box;
+    color: #000; outline: none;
+
     background-color: #faf3e0;
-    color: #333;
+
     line-height: 1.6;
     padding: 20px;
 }
