@@ -1,10 +1,10 @@
 
-
 .shippingStatusContainer{
     padding: 21px 16px;
     background-color: white;
     max-width: 600px;  /* 원하는 최대 너비 설정 */
     margin: 0 auto;
+    border-radius: 8px;
 }
 
 /* 주문/배송조회 타이틀 */
@@ -61,14 +61,16 @@
     align-items: center;  /* 아이템들을 세로 중앙에 배치합니다 */
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
-
+    background-color: #FEF7F6;
     max-width: 500px;  /* 원하는 최대 너비 설정 */
     position: relative;
     border: none;
+    border-radius: 8px;
 }
 
 .profile-image {
+    background-color: #ffffff;
+
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -157,7 +159,7 @@ ul.sidebar li a {
 }
 
 ul.sidebar li a.active {
-    background-color: #f0f0f0;
+    background-color: #FEF7F6;
     color: black;
 }
 
@@ -249,9 +251,18 @@ ul.sidebar li a.active {
 
 .button_order
 {
-    font-size: 15px;
-    margin-left: 30px;
+    font-family: 'Gowun Dodum', sans-serif;
+    background-color: #d4d4d4;
+    padding: 10px 20px;
+    border: 1px solid #b4b4b4;;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    margin-top: 20px;
 }
+
 /* 헤더 이미지의 스타일을 설정합니다. */
 .header-image {
     width: 100%;
