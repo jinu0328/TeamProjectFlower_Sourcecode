@@ -3,7 +3,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
-    <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
+    <script>
+        // 리스트 체크박스 전체 선택 기능
+        function toggleCheckboxes() {
+            // 전체 선택 체크박스를 선택
+            const masterCheckbox = document.getElementById('selectAll');
+            // 이름이 'keywordCheckbox'인 모든 체크박스 선택
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            // 각 체크박스를 순회하며 전체 선택 체크박스의 상태와 동일하게 만듬
+            checkboxes.forEach(checkbox => {
+                if (checkbox !== masterCheckbox) { // 전체 선택 체크박스는 제외
+                    checkbox.checked = masterCheckbox.checked;
+                }
+            });
+        }
+    </script>
+        <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
     <!-- 키워드 부분 -->
     <form method="post" th:action="@{/admin/recommend/keyword}">
         <div role="region" aria-label="data table" tabindex="0" class="primary">
