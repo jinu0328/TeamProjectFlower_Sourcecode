@@ -4,6 +4,20 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
+    <script>
+        // 리스트 체크박스 전체 선택 기능
+        function toggleCheckboxes() {
+            // 전체 선택 체크박스 선택
+            const masterCheckbox = document.getElementById('selectAll');
+            // 이름이 'selectedFlower'인 모든 체크박스 선택
+            const checkboxes = document.querySelectorAll('input[name="selectedFlower"]');
+
+            // 각 체크박스를 순회하며 전체 선택 체크박스의 상태와 동일하게 만듬
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = masterCheckbox.checked;
+            });
+        }
+    </script>
         <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
     <!-- 꽃 리스트 -->
     <form method="post" th:action="@{/admin/recommend/index}">
