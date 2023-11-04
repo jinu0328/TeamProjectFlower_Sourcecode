@@ -1,12 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap');
+* {
+    font-family: 'Gowun Dodum', sans-serif;
+    box-sizing: border-box;
+    color: #000; outline: none;
+}
+
 /* 주문 양식 컨테이너의 최대 너비를 설정하고 화면 중앙에 배치합니다. */
 .order-form {
     max-width: 600px;
     margin: auto;
+    background-color: #FEF7F6;
+    padding: 20px; /* 여백 추가 */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
+    border-radius: 8px; /* 테두리 둥글게 */
 }
 h1, p {
     text-align: center;
     margin-bottom: 10px;
-
+    color: #333;
 }
 
 /* 강조 텍스트를 포함하여 모든 div 태그 내부의 텍스트도 가운데 정렬합니다. */
@@ -77,16 +88,19 @@ div {
 /* 버튼의 기본 스타일을 설정하고 호버 효과를 추가합니다. */
 .btn2 {
     background-color: #d4d4d4;
-    padding: 10px 15px;
-    border: none;
+    padding: 10px 20px;
+    border: 1px solid #b4b4b4;;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s ease;
     display: inline-block;
+    margin-top: 20px;
 }
 
 .btn2:hover {
-    background-color: #c4c4c4; /* 약간 어두운 그레이로 변경하여 호버 효과를 줍니다. */
+    background-color: #a4a4a4; /* 호버 시 색상 변경 */
+    transform: scale(1.05);
 }
 
 /* 꽃다발 예시 사진의 레이아웃을 설정합니다. */
@@ -123,7 +137,7 @@ div {
 /* 전체 페이지에 대한 기본 스타일링 */
 .body {
     font-family: 'Open Sans', sans-serif;
-    background-color: #f8f8f8;
+    background-color: #faf3e0;
     color: #333;
     line-height: 1.6;
     padding: 20px;
