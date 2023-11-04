@@ -4,18 +4,6 @@
       layout:decorate="~{admin/layouts/main}">
 
 <section layout:fragment="content">
-    <script>
-        // Function to toggle the state of all checkboxes based on the "Select All" checkbox
-        function toggleCheckboxes() {
-            const masterCheckbox = document.getElementById('selectAll');
-            const checkboxes = document.querySelectorAll('.checkbox-col input[type="checkbox"]');
-            checkboxes.forEach(checkbox => {
-                if (checkbox !== masterCheckbox) {
-                    checkbox.checked = masterCheckbox.checked;
-                }
-            });
-        }
-    </script>
         <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
 
     <form>
