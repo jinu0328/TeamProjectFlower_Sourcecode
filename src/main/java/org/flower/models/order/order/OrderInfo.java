@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.flower.entities.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -27,4 +28,5 @@ public class OrderInfo {
     private String pricerange;
     private String message;
     private String orderStatus;
+    private LocalDateTime createdAt;
 }

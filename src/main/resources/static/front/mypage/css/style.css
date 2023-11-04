@@ -127,7 +127,6 @@ li a:hover:not(.active) {
 .content
 {
     font-size: 16px;
-    font-weight: bold;
     margin-left: 230px;
 }
 
@@ -276,3 +275,11 @@ ul.sidebar li a.active {
     background-color: rgba(0, 0, 0, 0.3);
 }
 
+.footer a {
+   color: black;
+
+}
+
+.footer1 {
+    margin-left: 230px;
+}
