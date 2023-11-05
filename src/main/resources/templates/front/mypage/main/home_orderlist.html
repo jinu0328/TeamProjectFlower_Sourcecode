@@ -99,7 +99,7 @@
                   <thead>
                   <tr>
                       <th>주문번호</th>
-                      <th>주문일시</th>
+                      <th>주문일자</th>
                       <!--<th>닉네임</th>-->
                       <th>픽업날짜</th>
                       <th>픽업시간</th>
@@ -113,7 +113,7 @@
                   <!-- 주문 데이터 반복 -->
                   <tr th:each="order : ${userOrders}"> <!-- 여기서 변수명을 단수에서 복수로 변경했습니다. -->
                       <td th:text="${order.orderNo}">주문번호</td>
-                      <td th:text="${#strings.substring(order.createdAt, 0, 10)}">주문일시</td>
+                      <td th:text="${#strings.substring(order.createdAt, 0, 10)}">주문일자</td>
                      <!--<td th:text="*{userNickNm}">닉네임</td>-->
                       <td th:text="${order.pickupDate}">픽업날짜</td>
                       <td th:text="${order.pickupTime}">픽업시간</td>
