@@ -23,8 +23,35 @@ public class MypageHomeController {
 
     @Autowired
     UserRepository userRepository;
+
+    // 화면 닉네임 동적으로 받아오는 메소드
     @GetMapping
-    public String showMyPage(Model model) {
+    public String showMyNickname(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof UserInfo) {
+            UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+            Long userNo = currentUser.getUserNo();
+
+            //로그인한 사용자의 닉네임을 모델에 추가
+            String userNickNm = currentUser.getUserNickNm();
+            model.addAttribute("userNickNm", userNickNm);
+
+            // userNo를 사용하여 추가적인 회원 정보를 조회할 수 있습니다.
+            // 예: userProfile, userPosts 등
+            // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
+            model.addAttribute("userNo", userNo);
+
+        } else {
+            // 로그인하지 않은 사용자 또는 기타 상황에 대한 처리
+            return "redirect:/user/login"; //
+        }
+
+        return "/front/mypage/main/home"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
+    }
+
+    // 현재 로그인한 사용자의 userNo를 가져오고 모델에 주문 내역 엔티티 추가, 주문 내역 html 페이지 리턴
+    @GetMapping("/main/home/orderlist")
+    public String showMyOrder(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
@@ -34,7 +61,7 @@ public class MypageHomeController {
             List<Order> userOrders = orderInfoService.getOrdersByUserNo(userNo);
             model.addAttribute("userOrders", userOrders);
 
-            // 로그인한 사용자의 닉네임을 모델에 추가
+
             String userNickNm = currentUser.getUserNickNm();
             model.addAttribute("userNickNm", userNickNm);
 
@@ -47,7 +74,7 @@ public class MypageHomeController {
             return "redirect:/user/login"; //
         }
 
-        return "/front/mypage/main/home"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
+        return "/front/mypage/main/home_orderlist"; // 주문내역 페이지 리턴
     }
 
 }
