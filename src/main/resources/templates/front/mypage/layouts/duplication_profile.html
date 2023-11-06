@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">
+    <!-- 헤더 통일하기 위해 css 파일 하나 더 추가함 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
+          th:href="@{/front/css/{file}.css(file=${cssFile})}">
+    <!--<th:block layout:fragment="addCss"></th:block>-->
+    <!-- ... -->
+</head>
+<body>
+
+<!--  중복된 부분 (profile box 까지) 타임리프로 구성-->
+<div th:fragment="duplicated-profile">
+    <div class = "all">
+        <div>
+            <div class="profile-container">
+                <img src="/front/images/%20userprofile.png" alt="프로필 사진" class="profile-image">
+
+                <div class="name" th:text="${userNickNm}">홍길동</div>
+                <div class="rank">일반 회원</div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
