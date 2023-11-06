@@ -12,7 +12,7 @@ public class OpenAIService {
 
     private final RestTemplate restTemplate;
     private final String openAIUrl = "https://api.openai.com/v1/images/generations"; // DALL·E API URL
-    private final String apiKey = "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"; // 실제 API 키로 대체해야 합니다.
+    private final String apiKey = "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"; // 실제 API 키로 대체해야 합니다.
 
     @Autowired
     public OpenAIService(RestTemplate restTemplate) {
