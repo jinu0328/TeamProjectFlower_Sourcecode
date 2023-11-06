@@ -1,33 +1,45 @@
 package org.flower.models.postCard;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Map;
 
 @Service
 public class OpenAIService {
 
     private final RestTemplate restTemplate;
-    private final String openAIUrl = "https://api.openai.com/v1/images/generations"; // DALL·E API URL
-    private final String apiKey = "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"; // 실제 API 키로 대체해야 합니다.
+    private final String apiEndpoint = "https://api.openai.com/v1/images/generations";
+    private final String apiKey;
 
     @Autowired
-    public OpenAIService(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
+    public OpenAIService(RestTemplateBuilder restTemplateBuilder, @Value("${openai.api.key}") String apiKey) {
+        this.restTemplate = restTemplateBuilder.build();
+        this.apiKey = apiKey;
     }
 
-    public String generateImage(String prompt) {
+    public ResponseEntity<Map<String, Object>> createImage(String prompt) {
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        String requestBody = "{\"prompt\": \"" + prompt + "\", \"n\": 1}"; // n은 생성할 이미지 수입니다.
+        Map<String, Object> requestPayload = Map.of(
+                "prompt", prompt,
+                "n", 1
+        );
 
-        HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(requestPayload, headers);
 
-        return restTemplate.postForObject(openAIUrl, entity, String.class);
+        try {
+            // ResponseEntity를 Map<String, Object>로 명확히 반환하도록 수정
+            return restTemplate.postForEntity(apiEndpoint, entity, (Class<Map<String, Object>>) (Class<?>) Map.class);
+        } catch (RestClientException e) {
+            throw new RestClientException("Error while calling DALL·E API: " + e.getMessage(), e);
+        }
     }
 }
