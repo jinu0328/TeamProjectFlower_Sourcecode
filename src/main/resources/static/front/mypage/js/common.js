@@ -117,3 +117,17 @@ $(document).ready(function() {
 
 
 });
+
+// CSRF 토큰 설정, Post 방식 오류 제거 방법임
+$(document).ready(function() {
+    // AJAX 호출을 위한 CSRF 설정
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        }
+    });
+
+});
