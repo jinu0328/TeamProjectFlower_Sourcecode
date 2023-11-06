@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">
+    <!-- 헤더 통일하기 위해 css 파일 하나 더 추가함 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
+          th:href="@{/front/css/{file}.css(file=${cssFile})}">
+    <!--<th:block layout:fragment="addCss"></th:block>-->
+    <!-- ... -->
+</head>
+<body>
+<!-- home, home_orderlist 중복된 부분 (shippingstatus 까지) 타임리프로 구성-->
+<div th:fragment="duplicated-shipping">
+    <div class = "all">
+        <div>
+            <div class="profile-container">
+                <img src="/front/images/%20userprofile.png" alt="프로필 사진" class="profile-image">
+
+                <div class="name" th:text="${userNickNm}">홍길동</div>
+                <div class="rank">일반 회원</div>
+
+                <div class="correction">
+                    <a th:href="@{/user/mypage/profile/profilePage}">
+                        <button>회원 정보 수정</button>
+                    </a>
+                </div>
+
+            </div>
+            <!-- </a>-->
+            <div class="shippingStatusContainer">
+
+                <div class="title">
+                    주문/픽업조회
+                </div>
+                <div class="status">
+
+                    <div class="item">
+                        <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
+                            <div>
+                                <div class="green number">0</div>
+                                <div class="text">확인 대기</div>
+                            </div>
+                        </a>
+                        <div class="icon"> > </div>
+                    </div>
+                    <div class="item">
+                        <div>
+                            <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
+                                <div>
+                                    <div class="green number">0</div>
+                                    <div class="text">확인 완료</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="icon"> > </div>
+                    </div>
+                    <div class="item">
+                        <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
+                            <div>
+                                <div class="green number">0</div>
+                                <div class="text">상품 준비중</div>
+                            </div>
+                        </a>
+                        <div class="icon"> > </div>
+                    </div>
+                    <div class="item">
+                        <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
+                            <div>
+                                <div class="green number">0</div>
+                                <div class="text">픽업 완료</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
+</div>
+
+</body>
+</html>

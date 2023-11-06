@@ -9,32 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">
-    <!-- 헤더 통일하기 위해 css 파일 하나 더 추가함 -->
-    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}"><!-- 마이페이지 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}"><!-- 헤더 통일 css -->
     <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
-    <!-- ... -->
 </head>
 <body>
-<!-- 헤더 부분 중 마이페이지로 들어갔을 때 마이페이지 대신 알람창이 뜰 수 있도록 하면 좋을 것 같음 -대윤- -->
 <header th:replace="~{front/outlines/header::common}"></header>
 <!-- <div class = "profile-and-status-container"> -->
 
+<div th:replace="~{/front/mypage/layouts/duplication_profile :: duplicated-profile}"></div>
 
-<div class="profile-container">
-    <img src="/front/images/%20userprofile.png" alt="프로필 사진" class="profile-image">
-
-    <div class="name" th:text="${userNickNm}">홍길동</div>
-    <div class="rank">일반 회원</div>
-
-    <div class="correction">
-        <a th:href="@{/user/mypage/profile/profilePage}">
-        </a>
-    </div>
-
-</div>
 
 <div class="edit-nickname-container">
     <button id="nicknameEditButton" class="edit-nickname-button">닉네임 변경</button>
@@ -45,23 +31,10 @@
     <button id="confirmButton" class="confirm-button" style="display: none;">확인</button>
 </div>
 </div>
+
 <script src="/front/mypage/js/common.js"></script>
-<script>
-    $(document).ready(function() {
-        // AJAX 호출을 위한 CSRF 설정
-        var csrfToken = $("meta[name='_csrf']").attr("content");
-        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 
-        $.ajaxSetup({
-            beforeSend: function(xhr) {
-                xhr.setRequestHeader(csrfHeader, csrfToken);
-            }
-        });
-
-        // ... 나머지 스크립트 ...
-    });
-</script>
-
+<!-- 모델에 추가된 사용자 번호 userNo를 가져오고 id "userData" 로 저장, 보이지 않게 함  -->
 <div id="userData" th:data-user-no="${userNo}" style="display: none;"></div>
 
 </body>

@@ -2,29 +2,45 @@
 
 * {
     box-sizing: border-box;
-    color: #000; outline: none;
+    margin: 0;
+    padding: 0;
+    color: #000;
+    outline: none;
 }
 
-
-/* 주문 양식 컨테이너의 최대 너비를 설정하고 화면 중앙에 배치합니다. */
-.order-form {
+/* 기본 배경 색상과 그림자 효과를 설정합니다. */
+.order-form, .order-confirmation-card {
     font-family: 'Gowun Dodum', sans-serif;
-    box-sizing: border-box;
-    color: #000; outline: none;
     background-color: #FEF7F6;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     line-height: 1.6;
-    padding: 20px;
     max-width: 600px;
-    margin: auto;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 추가 */
-    border-radius: 8px; /* 테두리 둥글게 */
-    font-family: 'Gowun Dodum', sans-serif;
+    padding: 20px;  /* 테두리 둥글게 */
+    margin : auto;
 }
-.order-form h1, p {
+
+.order-confirmation-card h1,
+.order-confirmation-card p {
+    font-family: 'Gowun Dodum', sans-serif;
     text-align: center;
     margin-bottom: 10px;
     color: #333;
 }
+
+.highlight-text {
+    font-family: 'Gowun Dodum', sans-serif;
+    width: 100%; /* 이 값을 조정하여 가로 크기를 조절할 수 있습니다. */
+    margin: 0 auto; /* 위 아래 마진은 0, 좌우 마진은 auto로 설정하여 중앙 정렬합니다. */
+    text-align: center; /* 텍스트를 중앙 정렬합니다. */
+    color: #333;
+}
+
+.highlight-text h1,
+.highlight-text p {
+    margin-bottom: 10px; /* 요소 간의 마진을 조절합니다. */
+}
+
 
 /* 강조 텍스트를 포함하여 모든 div 태그 내부의 텍스트도 가운데 정렬합니다. */
 .order-form div {
@@ -83,26 +99,33 @@
 .input-group select,
 .input-group textarea {
     flex-grow: 1;
+    padding: 3px;
+    font-family: 'Gowun Dodum', sans-serif;
+
 }
 
 /* 버튼 컨테이너를 가운데 정렬하기 위한 스타일을 설정합니다. */
 .button-container {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
 }
 
 /* 버튼의 기본 스타일을 설정하고 호버 효과를 추가합니다. */
 .btn2 {
     font-family: 'Gowun Dodum', sans-serif;
-    background-color: #d4d4d4;
-    padding: 10px 20px;
-    border: 1px solid #b4b4b4;;
+    background-color: #e5e5e5;
+    padding: 1% 4%;
+    margin: 0 10px;
+    border: 1px solid #e5e5e5;;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
     transition: all 0.3s ease;
     display: inline-block;
-    margin-top: 20px;
+    /*
+    margin-top: 10px;
+    */
 }
 
 .btn2:hover {
@@ -137,7 +160,7 @@
 /* 텍스트 영역을 다른 입력 요소와 동일한 너비로 설정하고 수직 리사이징만 허용합니다. */
 .input-group textarea {
     width: 100%;
-    height: 150px;
+    height: 30%;
     resize: vertical;
 }
 
@@ -146,26 +169,15 @@
     font-family: 'Gowun Dodum', sans-serif;
     box-sizing: border-box;
     color: #000; outline: none;
-
     background-color: #faf3e0;
-
     line-height: 1.6;
     padding: 20px;
 }
 
-/* 카드 스타일 컨테이너 */
-.order-confirmation-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-}
 
 /* 강조 텍스트 스타일링 */
 .highlight-text {
-    background-color: #e9f6ff;
+    background-color: white;
     color: #333;
     padding: 10px;
     border-radius: 5px;
