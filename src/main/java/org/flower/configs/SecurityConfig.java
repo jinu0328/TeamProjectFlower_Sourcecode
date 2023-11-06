@@ -38,7 +38,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests()
                 .anyRequest().permitAll();
 
-        http.csrf().disable();
+        //http.csrf().disable();
 
         /*
         * authorizeRequests() -> HttpServletRequest에 대한 액세스 제한을 설정
