@@ -2,11 +2,14 @@ package org.flower.controllers.postCard;
 
 import org.flower.models.postCard.OpenAIService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("/postCard")
+import java.util.Map;
+
+@RestController
+@RequestMapping("/postCard")
 public class OpenAIController {
 
     private final OpenAIService openAIService;
@@ -16,8 +19,9 @@ public class OpenAIController {
         this.openAIService = openAIService;
     }
 
-    @GetMapping("/generate-image")
-    public String generateImage(@RequestParam String prompt) {
-        return openAIService.generateImage(prompt);
+    @PostMapping("/create-image")
+    public ResponseEntity<Map<String, Object>> createImage(@RequestBody String prompt) {
+        // 반환 유형을 ResponseEntity<Map<String, Object>>로 수정합니다.
+        return openAIService.createImage(prompt);
     }
 }
