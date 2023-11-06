@@ -12,77 +12,12 @@
   <!-- ... -->
 </head>
 <body>
-
-<!-- 헤더 부분 중 마이페이지로 들어갔을 때 마이페이지 대신 알람창이 뜰 수 있도록 하면 좋을 것 같음 -대윤- -->
 <header th:replace="~{front/outlines/header::common}"></header>
-<!-- <div class = "profile-and-status-container"> -->
 <div class="header-image">
     <div class="overlay-text playfair-display">MYPAGE</div>
 </div>
 
-<div class = "all">
-  <div>
-    <div class="profile-container">
-      <img src="/front/images/%20userprofile.png" alt="프로필 사진" class="profile-image">
-
-      <div class="name" th:text="${userNickNm}">홍길동</div>
-      <div class="rank">일반 회원</div>
-
-      <div class="correction">
-        <a th:href="@{/user/mypage/profile/profilePage}">
-          <button>회원 정보 수정</button>
-        </a>
-      </div>
-
-    </div>
-    <!-- </a>-->
-    <div class="shippingStatusContainer">
-
-      <div class="title">
-        주문/픽업조회
-      </div>
-      <div class="status">
-
-        <div class="item">
-          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
-            <div>
-              <div class="green number">0</div>
-              <div class="text">확인 대기</div>
-            </div>
-          </a>
-          <div class="icon"> > </div>
-        </div>
-        <div class="item">
-          <div>
-            <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
-              <div>
-                <div class="green number">0</div>
-                <div class="text">확인 완료</div>
-              </div>
-            </a>
-          </div>
-          <div class="icon"> > </div>
-        </div>
-        <div class="item">
-          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
-            <div>
-              <div class="green number">0</div>
-              <div class="text">상품 준비중</div>
-            </div>
-          </a>
-          <div class="icon"> > </div>
-        </div>
-        <div class="item">
-          <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
-            <div>
-              <div class="green number">0</div>
-              <div class="text">픽업 완료</div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div th:replace="~{/front/mypage/layouts/duplication :: duplicated-profile}"></div>
 
 
   <div>
