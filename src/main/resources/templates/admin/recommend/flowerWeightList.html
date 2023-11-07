@@ -6,9 +6,9 @@
 <section layout:fragment="content">
         <nav th:replace="~{admin/recommend/_submenu::menus}"></nav>
 
-    <form>
+    <form method="post" th:action="@{/admin/recommend/flowerWeightList}">
         <div role="region" aria-label="data table" tabindex="0" class="primary">
-            <table class="keywords-table">
+            <table class="weights-table">
                 <thead>
                 <tr class="header-row">
                     <th class = "checkbox-col">
@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="weightList, iterStat : ${weightsList}" th:object="${weightList}" class="table-rows">
+                <tr class="data-row" th:each="weightList, iterStat : ${weightsList}" th:object="${weightList}" >
                     <td class="checkbox-col">
                         <input type="checkbox" th:id="${'weightCheckbox' + id}" th:value="*{id}" name="selectedWeight">
                     </td>
@@ -49,6 +49,7 @@
 
     <div style="text-align: right; margin-top: 15px;">
         <button type="button" class="btn2" onclick="editWeight()">수정</button>
+        <button type="button" class="btn2" onclick="deleteWeights()">삭제</button>
     </div>
 
 </section>

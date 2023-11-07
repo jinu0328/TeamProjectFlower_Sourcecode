@@ -14,6 +14,7 @@ import java.util.Map;
 public class OpenAIService {
 
     private final RestTemplate restTemplate;
+
     private final String apiEndpoint = "https://api.openai.com/v1/images/generations";
     private final String apiKey;
 
