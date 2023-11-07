@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,8 +32,16 @@ public class OpenAIController {
     @PostMapping("/create-image")
     public String createImage(@RequestParam("prompt") String prompt, Model model) {
         ResponseEntity<Map<String, Object>> response = openAIService.createImage(prompt);
-        model.addAttribute("imageData", response.getBody().get("data"));
-        System.out.println(response.getBody().get("data"));
+        List<Map<String, Object>> dataList = (List<Map<String, Object>>) response.getBody().get("data");
+        String imageUrl = "";
+        if (dataList != null && !dataList.isEmpty()) {
+            // 첫 번째 아이템의 맵에서 'url' 키에 해당하는 값을 가져옵니다.
+            imageUrl = (String) dataList.get(0).get("url");
+            // imageUrl 변수를 사용합니다. 예를 들어 콘솔에 출력하거나 모델에 추가할 수 있습니다.
+            System.out.println(imageUrl);
+        }
+       model.addAttribute("imageData", imageUrl);
+//        System.out.println(response.getBody().get("data"));
         return "front/postcard/result"; // result.html로 반환됩니다.
     }
 

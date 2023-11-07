@@ -8,7 +8,7 @@
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
     <div th:if="${imageData}">
-        <img th:src="@{'data:image/png;base64,' + ${imageData}}" />
+        <img th:src="${imageData}" />
     </div>
 
 </main>
