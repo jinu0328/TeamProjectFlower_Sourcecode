@@ -23,15 +23,6 @@ public class WeightEditService {
         weightRepository.save(weight);
     }
 
-    @Transactional
-    public void deleteWeights(List<Long> ids) throws Exception{
-        try{
-            weightRepository.deleteAllById(ids);
-        }catch (Exception e){
-            e.printStackTrace();
-            throw new Exception(("가중치 삭제 중 오류가 발생했습니다."));
-        }
-    }
 
 
 }

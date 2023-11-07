@@ -70,23 +70,6 @@ public class WeightController {
         }
     }
 
-    @DeleteMapping("/deleteWeights")
-    public ResponseEntity<Map<String, Object>> deleteWeights(@RequestParam Map<String, List<Long>> payload) {
-        Map<String, Object> response = new HashMap<>();
-        try {
-            List<Long> ids = payload.get("ids");
-            weightEditService.deleteWeights(ids);
-            response.put("success", true);
-            response.put("message", "가중치가 성공적으로 삭제되었습니다.");
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }catch (Exception e){
-            response.put("success", false);
-            response.put("message", "가중치 삭제 중 오류가 발생했습니다.");
-            e.printStackTrace();
-            return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     /*
     @GetMapping("/{flowerNo}")
     public ResponseEntity<List<FlowerWeight>> getWeightsByFlowerNo(@PathVariable Long flowerNo) {
