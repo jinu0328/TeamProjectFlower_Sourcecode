@@ -1,4 +1,9 @@
-.center-container {
+.postCard-parent{
+    display: flex;
+    justify-content: center;
+}
+
+.card-img-container {
     display: flex;
     flex-direction: column;
     justify-content: center;

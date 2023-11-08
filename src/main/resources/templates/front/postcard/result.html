@@ -3,16 +3,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 
-<main layout:fragment="content">
+<main layout:fragment="content" class="postCard-parent">
     <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
-    <div class="center-container">
+
+    <div class="card-img-container">
         <h1>RESULT</h1>
         <div th:if="${imageData}">
             <img class="centered-img" th:src="${imageData}" />
         </div>
     </div>
+
 
 </main>
 </html>
