@@ -1,9 +1,12 @@
 package org.flower.controllers.user.mypage;
 
 
+import org.flower.commons.constants.OrderState;
+import org.flower.commons.constants.UserRole;
 import org.flower.entities.Order;
 import org.flower.models.order.order.OrderInfoService;
 import org.flower.models.user.UserInfo;
+import org.flower.repositories.OrderRepository;
 import org.flower.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,6 +25,9 @@ public class MypageHomeController {
     private OrderInfoService orderInfoService;
 
     @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
     UserRepository userRepository;
 
     // 화면 닉네임 동적으로 받아오는 메소드
@@ -31,6 +37,14 @@ public class MypageHomeController {
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
+
+            // 로그인한 사용자의 ACCEPTING 상태인 주문 수 계산
+            long acceptingOrderCount = orderRepository.findByUser_UserNo(userNo).stream()
+                    .filter(order -> order.getOrderStatus() == OrderState.ACCEPTING)
+                    .count();
+
+            // 주문 상태 개수를 모델에 추가
+            model.addAttribute("acceptingOrderCount", acceptingOrderCount);
 
             //로그인한 사용자의 닉네임을 모델에 추가
             String userNickNm = currentUser.getUserNickNm();
@@ -56,6 +70,15 @@ public class MypageHomeController {
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
+
+            // 로그인한 사용자의 ACCEPTING 상태인 주문 수 계산
+            long acceptingOrderCount = orderRepository.findByUser_UserNo(userNo).stream()
+                    .filter(order -> order.getOrderStatus() == OrderState.ACCEPTING)
+                    .count();
+
+            // 주문 상태 개수를 모델에 추가
+            model.addAttribute("acceptingOrderCount", acceptingOrderCount);
+
 
             // 로그인한 사용자의 주문 목록을 가져와서 모델에 추가
             List<Order> userOrders = orderInfoService.getOrdersByUserNo(userNo);
