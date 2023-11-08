@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Long>, QuerydslPredicateExecutor<Order> {
     List<Order> findByUser_UserNo(Long userNo); // 사용자 번호로 주문 목록 조회
+
 }

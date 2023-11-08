@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.flower.commons.constants.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -68,4 +69,5 @@ public class UserInfo implements UserDetails {
     public boolean isEnabled() {                // 사용자가 활성화 상태인지를 반환
         return true;
     }
+
 }
