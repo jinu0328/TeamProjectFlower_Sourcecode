@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
+
+
 @Controller
 @RequestMapping("/user/mypage")
 public class MypageHomeController {
@@ -37,6 +39,8 @@ public class MypageHomeController {
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
+
+
 
             // 로그인한 사용자의 ACCEPTING 상태인 주문 수 계산
             long acceptingOrderCount = orderRepository.findByUser_UserNo(userNo).stream()
@@ -70,6 +74,8 @@ public class MypageHomeController {
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
+            //UserRole currentUserRole = currentUser.getRole();
+
 
             // 로그인한 사용자의 ACCEPTING 상태인 주문 수 계산
             long acceptingOrderCount = orderRepository.findByUser_UserNo(userNo).stream()
@@ -92,12 +98,20 @@ public class MypageHomeController {
             // 예: userProfile, userPosts 등
             // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
             model.addAttribute("userNo", userNo);
+
+
+            if (currentUser.getAuthorities().stream()
+                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))) {
+                return "/front/mypage/main/orderList_Owner"; // OWNER를 위한 뷰 또는 리다이렉트 경로
+            } else {
+                return "/front/mypage/main/home_orderlist"; // 일반 사용자를 위한 뷰 또는 리다이렉트 경로
+            }
+
         } else {
             // 로그인하지 않은 사용자 또는 기타 상황에 대한 처리
             return "redirect:/user/login"; //
         }
-
-        return "/front/mypage/main/home_orderlist"; // 주문내역 페이지 리턴
+        
     }
 
 }

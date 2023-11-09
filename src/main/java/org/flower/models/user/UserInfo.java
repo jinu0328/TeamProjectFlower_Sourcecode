@@ -28,6 +28,7 @@ public class UserInfo implements UserDetails {
     private String userNickNm;      // 닉네임
     private String cellPhone;       // 전화번호
     private String address;          // 주소
+    private UserRole role;          // role 값
 
     private Collection<GrantedAuthority> authorities;
 

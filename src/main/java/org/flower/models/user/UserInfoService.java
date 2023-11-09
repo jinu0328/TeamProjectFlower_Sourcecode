@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service        // 스프링이 이 클래스를 서비스로 인식하고 관리하도록 하는 어노테이션
@@ -40,7 +41,7 @@ public class UserInfoService implements UserDetailsService {
         * 권한 정보를 GrantedAuthrity 타입의 리스트로 생성.
         * SimpleGrantedAuthrity를 사용하여 사용자의 역할 정보 (user.getRole())를 GrantedAuthority로 변환
         * */
-        List<GrantedAuthority> authorities= Arrays.asList(new SimpleGrantedAuthority(user.getRole().toString()));
+        List<GrantedAuthority> authorities= Arrays.asList(new SimpleGrantedAuthority(user.getRole().name()));
 
         /*
         * UserInfo 클래스의 빌더를 사용하여 UserDetails 객체를 생성하고 반환.
@@ -54,6 +55,8 @@ public class UserInfoService implements UserDetailsService {
                 .userNickNm(user.getUserNickNm())
                 .cellPhone(user.getCellPhone())
                 .authorities(authorities)
+                .role(user.getRole())
+                .authorities(Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name())))
                 .build();
     }
 
@@ -66,4 +69,9 @@ public class UserInfoService implements UserDetailsService {
     * UserInfoService는 사용자 인증 시 사용자명을 기반으로 사용자 정보를 데이터 소스에서 조회하고,
     * 이를 Spring Security에서 사용할 수 있는 UserDetails 타입으로 반환하여 인증과 권환 확인 과정에서 활용됨
     * */
+
+
+       // UserInfo userInfo = UserInfo.builder()
+
+
 }
