@@ -182,7 +182,7 @@ function deleteFlower() {
 
     // 체크된 키워드가 없으면 함수 종료
     if (flowerNos.length === 0) {
-        alert('삭제할 키워드를 선택하세요.');
+        alert('삭제할 꽃을 선택하세요.');
         return;
     }
 
@@ -306,4 +306,3 @@ function deleteKeywords() {
         })
         .catch(error => console.error('Error:', error));
 }
-/* 키워드 삭제 E */

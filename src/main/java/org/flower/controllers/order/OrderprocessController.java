@@ -1,10 +1,12 @@
 
 package org.flower.controllers.order;
 
+import org.flower.entities.Flower;
 import org.flower.entities.Order;
 import org.flower.models.order.order.OrderInfoService;
 import org.flower.models.order.orderform.OrderFormInfo;
 import org.flower.models.order.orderform.OrderFormService;
+import org.flower.models.recommend.flower.FlowerInfoService;
 import org.flower.models.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/order")
@@ -26,6 +30,9 @@ public class OrderprocessController {
 
     @Autowired
     private OrderInfoService orderInfoService;
+
+    @Autowired
+    private FlowerInfoService flowerInfoService;
 
 
     /*
@@ -39,6 +46,9 @@ public class OrderprocessController {
         }
 
         UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+        List<Flower> flowers = flowerInfoService.getAllFlowers(); // Assuming this returns a list of all flowers.
+        model.addAttribute("flowers", flowers);
+
 
         OrderFormInfo orderFormInfo = OrderFormInfo.builder()
                 .userNo(currentUser.getUserNo()) // 회원 번호 설정

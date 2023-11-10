@@ -6,6 +6,9 @@ import org.flower.models.recommend.keyword.KeywordInfo;
 import org.flower.repositories.WeightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class WeightEditService {
@@ -19,6 +22,7 @@ public class WeightEditService {
         weight.setWeight(weightInfo.getWeight());
         weightRepository.save(weight);
     }
+
 
 
 }
