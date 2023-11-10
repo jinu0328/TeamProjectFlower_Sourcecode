@@ -27,31 +27,19 @@
 
             <div class="input-group">
                 <label th:for="pickupDate">픽업날짜</label>
-                <input type="date" th:field="*{pickupDate}"/>
+                <input type="date" id="pickupDate" th:field="*{pickupDate}"/>
             </div>
 
             <div class="input-group">
                 <label th:for="pickupTime">픽업시간</label>
-                <input type="time" th:field="*{pickupTime}"/>
+                <input type="time" id="pickupTime" th:field="*{pickupTime}"/>
             </div>
 
             <div class="input-group">
                 <label th:for="flowertype">꽃 종류</label>
                 <select th:field="*{flowertype}">
-                    <!-- 실제 꽃 종류에 따라 옵션 추가 -->
-                    <option value="sample">주문하실 꽃다발의 메인 꽃을 선택하세요</option>
-
-                    <option value="맨스필드 장미">맨스필드 장미</option>
-                    <option value="하젤">하젤</option>
-                    <option value="거베라">거베라</option>
-                    <option value="칼라 릴리">칼라 릴리</option>
-                    <option value="리시안셔스">리시안셔스</option>
-                    <option value="코스모스">코스모스</option>
-                    <option value="메리 골드">메리 골드</option>
-                    <option value="벨 플라워">벨 플라워</option>
-                    <option value="릴리">릴리</option>
-                    <option value="하이드렌자">하이드렌자</option>
-                    <option value="안개꽃">안개꽃</option>
+                    <option value="">주문하실 꽃다발의 메인 꽃을 선택하세요</option>
+                    <option th:each="flower : ${flowers}" th:value="${flower.flowerNm}" th:text="${flower.flowerNm}">Flower Name</option>
                 </select>
             </div>
 
