@@ -118,6 +118,43 @@ $(document).ready(function() {
 
 });
 
+$(document).ready(function() {
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+    // 모든 AJAX 요청에 CSRF 토큰을 헤더로 보내도록 설정
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            if (csrfToken && csrfHeader) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            }
+        }
+    });
+
+    $('.OKButton').on('click', function() {
+        console.log('버튼 클릭됨!');
+        var orderNo = $(this).closest('tr').attr('data-order-no');
+        $.ajax({
+            type: "POST",
+            url: "/user/mypage/orders/accept", // URL 수정
+            data: { orderNo: orderNo }, // 데이터로 orderNo 전달
+
+            success: function(response) {
+                console.log('response : ', response);
+                alert("주문이 수락되었습니다.");
+                location.reload();
+                // 여기서 UI를 업데이트하거나 페이지를 새로 고침할 수 있습니다.
+            },
+            error: function(xhr) {
+                console.error('Error occurred: ', xhr);
+                var errorMsg = xhr.status + ": " + (xhr.statusText || "Unknown error");
+                alert("오류가 발생했습니다: " + errorMsg);
+            }
+        });
+    });
+});
+
+
 // CSRF 토큰 설정, Post 방식 오류 제거 방법임
 $(document).ready(function() {
     // AJAX 호출을 위한 CSRF 설정
@@ -126,7 +163,9 @@ $(document).ready(function() {
 
     $.ajaxSetup({
         beforeSend: function(xhr) {
-            xhr.setRequestHeader(csrfHeader, csrfToken);
+            if (csrfToken) { // CSRF 토큰이 존재하는지 확인
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            }
         }
     });
 

@@ -28,8 +28,8 @@ public class OrderController {
     private OrderEditService orderEditService;
 
     /*
-    *   주문 리스트 - GET
-    * */
+     *   주문 리스트 - GET
+     * */
     @GetMapping("/orderList")
     public String orderList(Model model) {
         List<Order> orderList = orderInfoService.getAllOrders(); // 주문 목록을 가져오는 서비스 메서드 호출
@@ -39,16 +39,16 @@ public class OrderController {
     }
 
     /*
-    *   주문추가 - GET
-    * */
+     *   주문추가 - GET
+     * */
     @GetMapping("/addOrderList")
     public String showAddOrderForm() {
         return "admin/order/addorderlist"; // 주문 추가 페이지 템플릿 경로
     }
 
     /*
-    *   주문추가 - POST
-    * */
+     *   주문추가 - POST
+     * */
     @PostMapping("/addOrderList")
     public String addOrderList(@ModelAttribute OrderInfo orderInfo, RedirectAttributes redirectAttributes) {
         try {
@@ -80,9 +80,9 @@ public class OrderController {
     }
 
     /*
-    * 주문 삭제 - DELETE
-    *
-    * */
+     * 주문 삭제 - DELETE
+     *
+     * */
     @DeleteMapping("/deleteSelected")
     public ResponseEntity<Map<String, String>> deleteSelectedOrders(@RequestBody List<Long> orderIds) {
         Map<String, String> response = new HashMap<>();
@@ -90,10 +90,11 @@ public class OrderController {
             orderEditService.deleteOrders(orderIds);
             response.put("message", "선택된 주문이 성공적으로 삭제되었습니다.");
             return ResponseEntity.ok(response);
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             response.put("message", "주문 삭제 중 오류가 발생했습니다.");
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
 }
