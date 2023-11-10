@@ -48,7 +48,7 @@
                         <div>
                             <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
                                 <div>
-                                    <div class="green number">0</div>
+                                    <div class="green number" th:text="${acceptedOrderCount}">0</div>
                                     <div class="text">확인 완료</div>
                                 </div>
                             </a>

@@ -104,4 +104,14 @@ public class OrderEditService {
             orderRepository.deleteById(orderId);
         }
     }
+
+    @Transactional
+    public void acceptOrder(Long orderNo) throws Exception {
+        Order order = orderRepository.findById(orderNo)
+                .orElseThrow(() -> new Exception("Order not found"));
+        order.setOrderStatus(OrderState.ACCEPTED);
+        orderRepository.save(order);
+    }
+
+
 }
