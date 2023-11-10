@@ -1,4 +1,4 @@
-<script>
+
     document.getElementById('submitOrderForm').addEventListener('click', function() {
     var pickupDate = document.getElementById('pickupDate').value;
     if (pickupDate === '') {
@@ -7,9 +7,9 @@
     document.getElementById('orderForm').submit();
 }
 });
-</script>
 
-<script>
+
+
     document.getElementById('submitOrderForm').addEventListener('click', function() {
     var pickupTime = document.getElementById('pickupTime').value;
     if (pickupTime === '') {
@@ -18,4 +18,3 @@
     document.getElementById('orderForm').submit();
 }
 });
-</script>
