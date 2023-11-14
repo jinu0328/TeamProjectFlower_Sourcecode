@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### openAPI key 유지
+src/main/resources/application.properties
