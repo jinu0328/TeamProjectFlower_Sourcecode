@@ -101,7 +101,7 @@ $(document).ready(function() {
             dataType: "json",
             success: function(response) {
                 // 서버에서 응답으로 온 UserEditInfo 객체 사용
-                alert('닉네임이 <' + response.userNickNm + '>으로 변경되었습니다. 다시 로그인 해주세요');
+                alert('닉네임이 <' + response.userNickNm + '>으로 변경되었습니다.');
                 console.log('Nickname updated to: ', response.userNickNm);
                 // 페이지 내 닉네임을 표시하는 요소를 업데이트 할 수 있습니다.
                 $('#userNicknameDisplay').text(response.userNickNm);

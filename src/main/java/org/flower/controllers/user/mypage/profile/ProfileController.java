@@ -7,6 +7,7 @@ import org.flower.models.user.UserInfo;
 import org.flower.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class ProfileController {
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
-            
+
             //userNo 모델에 추가
             String userNickNm = currentUser.getUserNickNm();
             model.addAttribute("userNickNm", userNickNm);
@@ -47,6 +48,8 @@ public class ProfileController {
             // userNo를 사용하여 추가적인 회원 정보를 조회할 수 있습니다.
             
             // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
+
+
             model.addAttribute("userNo", userNo);
         } else {
             // 로그인하지 않은 사용자 또는 기타 상황에 대한 처리
@@ -69,17 +72,27 @@ public class ProfileController {
     @PostMapping("/profilePage/update/updateNickname")
     public ResponseEntity<?> updateNickname(@RequestBody UserEditInfo userEditInfo) {
         try {
-
             UserEditInfo updatedUserEditInfo = userEditService.updateUserNickname(userEditInfo);
-            
-            //json 파일 반환 코드
+
+            // 사용자 인증 정보 업데이트
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            if (authentication != null && authentication.getPrincipal() instanceof UserInfo) {
+                UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+                currentUser.setUserNickNm(updatedUserEditInfo.getUserNickNm());
+                // 필요한 경우 여기에서 추가 정보를 업데이트
+
+                // 인증 정보를 SecurityContext에 다시 설정
+                Authentication newAuth = new UsernamePasswordAuthenticationToken(currentUser, authentication.getCredentials(), authentication.getAuthorities());
+                SecurityContextHolder.getContext().setAuthentication(newAuth);
+            }
+
             return ResponseEntity.ok(updatedUserEditInfo);
-            
+
         } catch (Exception e) {
-            // 예외 발생 시 클라이언트에게 오류 메시지와 함께 500 Internal Server Error 상태 코드를 전송
             return ResponseEntity.internalServerError().body("An error occurred while updating the nickname: " + e.getMessage());
         }
     }
+
 
 
 }
