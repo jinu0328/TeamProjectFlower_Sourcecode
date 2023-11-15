@@ -231,11 +231,11 @@ ul.sidebar li a.active {
 .confirm-button {
     font-family: 'Gowun Dodum', sans-serif;
     padding: 8px 16px;
-    background-color: #007BFF;
+    background-color: #4685c2;
     color: #FFF;
     border: none;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .nickname-edit-box {
@@ -253,6 +253,7 @@ ul.sidebar li a.active {
 
 .confirm-button {
     background-color: #28a745;
+    margin-top: 10px;
 }
 
 .confirm-button:hover {

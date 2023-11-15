@@ -41,7 +41,7 @@ $(document).ready(function() {
 
         // 중복 확인 박스와 확인 버튼 표시
         nicknameEditBox.css('display', 'flex');
-        confirmButton.show();
+
     });
 
 
@@ -67,6 +67,7 @@ $(document).ready(function() {
                     alert("닉네임이 이미 존재합니다.");
                 } else {
                     alert("사용 가능한 닉네임입니다.");
+                    confirmButton.show();
                 }
             },
             error: function(error) {
