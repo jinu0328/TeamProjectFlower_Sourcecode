@@ -48,13 +48,19 @@ public class Flower {
     @Column(nullable = false, columnDefinition = "int default 0")
     private int likes = 0; // 초기값은 0으로 설정
 
+    // 새로 추가된 필드
+    @Column(length = 50, nullable = false)
+    private String englishNm = "a"; // 영문 이름 필드, 기본값 "a"
+
     public Flower(FlowerInfo flowerInfo) {
         this.flowerNm = flowerInfo.getFlowerNm();
+        this.englishNm = flowerInfo.getEnglishNm();
         this.flowerMean = flowerInfo.getFlowerMean();
         this.bloomseason = flowerInfo.getBloomseason();
         this.season = flowerInfo.getSeason();
         this.flowerIamges = flowerInfo.getFlowerIamges();
         this.likes = flowerInfo.getLikes();
+
     }
 
 

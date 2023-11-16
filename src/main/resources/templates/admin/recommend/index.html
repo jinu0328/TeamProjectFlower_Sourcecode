@@ -30,6 +30,7 @@
                     </th>
                     <th>꽃번호</th>
                     <th>꽃 이름</th>
+                    <th>영어 이름</th>
                     <th>꽃말</th>
                     <th>개화시기</th>
                     <th>계절</th>
@@ -47,6 +48,8 @@
                     <td th:text="${iterStat.index + 1}" class="no-input"></td>
                     <!-- 꽃 이름 -->
                     <td th:text="*{flowerNm}" data-field="flowerNm"></td>
+                    <!-- 영어 이름-->
+                    <td th:text="*{englishNm}" data-field="englishNm"></td>
                     <!-- 꽃말 -->
                     <td th:text="*{flowerMean}" data-field="flowerMean"></td>
                     <!-- 개화시기 -->
@@ -67,6 +70,7 @@
         <!-- action 태그의 경로와 PostMapping 경로가 다름에도 불구하고 데이터가 잘 들어가는 이유를 모르겠음.. -->
         <form method="post" th:action="@{/admin/recommend/addFlower}">
             <input type="text" name="flowerNm" placeholder="꽃 이름" required>
+            <input type="text" name="englishNm" placeholder="영어 이름" required>
             <input type="text" name="flowerMean" placeholder="꽃말" required>
             <input type="text" name="bloomseason" placeholder="개화시기" required>
             <input type="text" name="season" placeholder="계절" required>

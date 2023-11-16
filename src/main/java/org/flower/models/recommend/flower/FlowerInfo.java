@@ -13,6 +13,8 @@ public class FlowerInfo {
 
     private String flowerNm;       // 꽃 이름
 
+    private String englishNm;          // 영어 이름
+
     private String flowerMean;          // 꽃말
 
     private String bloomseason;          // 개화 시기(월별)
@@ -22,6 +24,8 @@ public class FlowerInfo {
     private String flowerIamges;   // 꽃 추천 시 뜨는 이미지
 
     private int likes; // 좋아용
+
+
 
 
 }

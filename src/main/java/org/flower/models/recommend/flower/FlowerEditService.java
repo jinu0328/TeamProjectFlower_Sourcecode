@@ -58,6 +58,7 @@ public class FlowerEditService {
             Flower flower = flowerRepository.findById(flowerInfo.getFlowerNo())
                     .orElseThrow(() -> new Exception("Flower with ID " + flowerInfo.getFlowerNo() + " not found"));
             flower.setFlowerNm(flowerInfo.getFlowerNm());
+            flower.setEnglishNm(flowerInfo.getEnglishNm());
             flower.setFlowerMean(flowerInfo.getFlowerMean());
             flower.setBloomseason(flowerInfo.getBloomseason());
             flower.setSeason(flowerInfo.getSeason());
@@ -68,6 +69,7 @@ public class FlowerEditService {
             FlowerInfo updatedFlowerInfo = new FlowerInfo(
                     flower.getFlowerNo(),
                     flower.getFlowerNm(),
+                    flower.getEnglishNm(),
                     flower.getFlowerMean(),
                     flower.getBloomseason(),
                     flower.getSeason(),
