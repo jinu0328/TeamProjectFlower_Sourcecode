@@ -31,6 +31,7 @@ public class OpenAIService {
 
         Map<String, Object> requestPayload = Map.of(
                 "prompt", prompt,
+                "model", "dall-e-3",
                 "n", 1
         );
 
