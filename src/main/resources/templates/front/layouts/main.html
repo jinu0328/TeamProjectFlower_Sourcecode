@@ -28,6 +28,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:src="@{/front/js/common.js}"></script>
     <script th:src="@{/front/recommend/js/common.js}"></script>
+    <script th:src="@{/front/postcard/js/common.js}"></script>
     <script th:each="jsFile : ${addScript}" th:src="@{/front/js/{file}.js(file=${jsFile})}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>

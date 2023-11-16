@@ -14,12 +14,12 @@
                 th:text="${flower.flowerNm}"
                 th:data-englishnm="${flower.englishNm}"
                 draggable="true"
-                ondragstart="drag(event)">
+                ondragstart="dragFlower(event)">
             </li>
         </ul>
     </div>
 
-    <div id="dropZone" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <div id="dropZone" ondrop="dropFlower(event)" ondragover="allowDropFlower(event)">
         <p>여기는 박스입니다. 아무튼 박스임</p>
     </div>
 
