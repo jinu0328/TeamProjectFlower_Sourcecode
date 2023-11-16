@@ -13,8 +13,10 @@
         <div th:if="${imageData}">
             <img class="centered-img" th:src="${imageData}" />
         </div>
+        <div>
+            <a th:href="@{/postCard/create-image}" class="button">다시하기</a>
+        </div>
     </div>
-
 
 </main>
 </html>

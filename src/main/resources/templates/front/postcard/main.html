@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!-- 필요한 CSS 및 JavaScript 포함 -->
-</head>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
 <body>
-<main>
+<main layout:fragment="content">
+
     <div>
         <!-- 나중에 표시되는 건 한글 이름으로 바꿔야됨 -->
         <h3>꽃</h3>
         <ul id="flowerList">
             <!-- flowers 리스트에서 각 flower의 englishNm을 표시 -->
             <li th:each="flower : ${flowers}"
-                th:text="${flower.englishNm}"
+                th:text="${flower.flowerNm}"
+                th:data-englishnm="${flower.englishNm}"
                 draggable="true"
                 ondragstart="drag(event)">
             </li>
@@ -28,23 +29,5 @@
     </form>
 </main>
 
-<!-- 나중에 따로 파일 나눌거임-->
-<script>
-    // JavaScript 로직
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
-
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.innerText);
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        var promptInput = document.getElementById("prompt");
-        promptInput.value += data + " "; // 여기서 공백을 추가하여 여러 이름을 연결
-    }
-</script>
 </body>
 </html>
