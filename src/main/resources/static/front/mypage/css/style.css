@@ -235,10 +235,12 @@ ul.sidebar li a.active {
     padding: 7px 15px;
     background-color: #4685c2;
     color: #FFF;
-    border: none;
+    border: 1px solid #b4b4b4;
+    border-radius: 4px;
     cursor: pointer;
+    transition: all 0.3s ease;
     margin-bottom: 0px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .nickname-edit-box {
