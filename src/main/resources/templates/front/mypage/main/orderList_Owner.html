@@ -8,6 +8,7 @@
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/front/mypage/css/style.css}">  <!-- 마이페이지 css -->
     <link rel="stylesheet" type="text/css" th:href="@{/front/css/style.css}">  <!-- 헤더 통일 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/front/recommend/css/style.css}">
     <link th:each="cssFile : ${addCss}" rel="stylesheet" type="text/css"
           th:href="@{/front/css/{file}.css(file=${cssFile})}">
     <th:block layout:fragment="addCss"></th:block>
