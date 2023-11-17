@@ -81,12 +81,13 @@
 }
 .correction button {
     font-family: 'Gowun Dodum', sans-serif;
-    background-color: #d4d4d4;
-    padding: 5px 10px;
+    background-color: #4685c2;
+    color: #FFF;
+    padding: 5px 14px;
     border: 1px solid #b4b4b4;
     border-radius: 4px;
     cursor: pointer;
-    font-size: 13px;
+    font-size: 14px;
     transition: all 0.3s ease;
     display: inline-block;
 }
@@ -110,7 +111,7 @@
 }
 
 .correction button:hover {
-    background-color: #bcbcbc; /* 호버 상태의 배경색 */
+    background-color: #076cd5; /* 호버 상태의 배경색 */
 }
 
 .profile-image {
@@ -123,7 +124,7 @@
 }
 
 .profile-info {
-    /* 여기에는 추가적인 스타일을 설정하지 않아도 됩니다, 필요하다면 추가하세요 */
+
 }
 
 .name, .rank {
@@ -224,18 +225,20 @@ ul.sidebar li a.active {
     align-items: center;
     width: 100%;
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 .edit-nickname-button,
 .check-duplicate-button,
 .confirm-button {
     font-family: 'Gowun Dodum', sans-serif;
-    padding: 8px 16px;
+    padding: 7px 15px;
     background-color: #4685c2;
     color: #FFF;
     border: none;
     cursor: pointer;
     margin-bottom: 0px;
+    font-size: 13px;
 }
 
 .nickname-edit-box {
@@ -252,7 +255,7 @@ ul.sidebar li a.active {
 }
 
 .confirm-button {
-    background-color: #28a745;
+    background-color: #5bcc4e;
     margin-top: 10px;
 }
 
@@ -327,7 +330,6 @@ ul.sidebar li a.active {
     background-size: cover;
     background-repeat: no-repeat;
     position: relative;
-    margin-bottom: 40px;
 }
 
 /* 헤더 이미지에 반투명 오버레이 효과를 추가합니다. */

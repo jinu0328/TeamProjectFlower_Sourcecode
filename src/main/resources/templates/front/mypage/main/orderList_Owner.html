@@ -17,7 +17,6 @@
 <div class="header-image">
     <div class="overlay-text playfair-display">MYPAGE</div>
 </div>
-
 <!-- 중복 부분 replace 태그 처리 -->
 <div th:replace="~{/front/mypage/layouts/duplication :: duplicated-shipping}"></div>
 
@@ -38,7 +37,7 @@
                 <th>가격대</th>
                 <th>메세지</th>
                 <th>매칭상태</th>
-                <th>주문수락</th>
+                <th>주문상태</th>
             </tr>
             </thead>
             <tbody>
@@ -55,7 +54,7 @@
                 <td th:text="${order.flowercolor}">꽃다발 색상</td>
                 <td th:text="${order.pricerange}">가격대</td>
                 <td th:text="${order.message}">메시지</td>
-                <td th:text="${order.orderStatus}">매칭상태</td>
+                <td th:text="${order.orderStatus}">주문상태</td>
                 <td>
                     <button type="button" class="OKButton" data-order-no="${order.orderNo}">주문 수락</button>
                 </td>
