@@ -12,6 +12,7 @@
     justify-content: space-between;
     list-style-type: none;
     padding: 0;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 .pink-background li {
@@ -99,10 +100,12 @@
 
 #selectedKeywordsArea h6 {
     margin-bottom: 15px;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 #selectedKeywordsArea h2, h6 {
     user-select: none;  /* 마우스로 드래그하지 못하게 함 */
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 #selectedKeywordsList {
@@ -127,7 +130,7 @@
 
 .pink-background li {
     padding: 5px 10px;
-    background-color: #ffe6e6;
+    background-color: #fcf0f0;
     margin-bottom: 5px;
     cursor: grab;
     border-radius: 3px;
@@ -146,6 +149,7 @@
     background-color: #c2f0c2;
     border-radius: 3px;
     margin-bottom: 5px; /* For spacing between keywords */
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 .button-container {
@@ -268,6 +272,7 @@
     background-image: url('../../images/background-loading.jpg');
     background-position: center center;
     background-size: cover;
+    font-family: 'Gowun Dodum', sans-serif;
 }
 
 /* centered-container 스타일 */
