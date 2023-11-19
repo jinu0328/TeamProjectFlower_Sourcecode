@@ -43,11 +43,13 @@ nav {
 
 .right .buttons .btn1 {
     margin-left: 20px; /* 버튼 간의 간격 */
+    text-decoration: none;
 }
 
 /* 볼드체 적용 */
 .bold-text {
     font-weight: bold;
+    text-decoration: none;
 }
 
 .size-24 {
