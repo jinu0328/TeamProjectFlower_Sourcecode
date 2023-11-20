@@ -3,20 +3,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <body>
-<main layout:fragment="content">
+<main layout:fragment="content" class="main-container">
 
-    <div>
-        <!-- 나중에 표시되는 건 한글 이름으로 바꿔야됨 -->
-        <h3>꽃</h3>
-        <ul id="flowerList">
-            <!-- flowers 리스트에서 각 flower의 englishNm을 표시 -->
-            <li th:each="flower : ${flowers}"
-                th:text="${flower.flowerNm}"
-                th:data-englishnm="${flower.englishNm}"
-                draggable="true"
-                ondragstart="dragFlower(event)">
-            </li>
-        </ul>
+    <div class="header-image">
+        <div class="overlay-text playfair-display">POSTCARD</div>
+    </div>
+    <div class="interaction-area">
+        <div class="pink-background">
+            <ul id="flowerList">
+                <!-- flowers 리스트에서 각 flower의 englishNm을 표시 -->
+                <li th:each="flower : ${flowers}"
+                    th:text="${flower.flowerNm}"
+                    th:data-englishnm="${flower.englishNm}"
+                    draggable="true"
+                    ondragstart="dragFlower(event)">
+                </li>
+            </ul>
+        </div>
+
     </div>
 
     <div id="dropZone" ondrop="dropFlower(event)" ondragover="allowDropFlower(event)">
@@ -28,13 +32,10 @@
             </tr>
             </thead>
             <tbody id="droppedFlowersBody">
-            <!-- 여기에 드롭된 항목이 표시됩니다 -->
+            <!-- 여기에 드롭된 항목이 표시 -->
             </tbody>
         </table>
     </div>
-
-
-
 
     <form th:action="@{/postCard/create-image}" method="post">
         <input type="hidden" id="prompt" name="prompt" />

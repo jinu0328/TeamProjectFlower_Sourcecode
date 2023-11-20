@@ -31,5 +31,3 @@ function dropFlower(ev) {
     var dropZoneImage = document.getElementById("dropZoneImage");
     dropZoneImage.src = "/front/images/openedEnvelope.png";
 }
-
-// checkIfTableIsEmptyAndRemoveRow 함수는 더 이상 필요하지 않으므로 제거
