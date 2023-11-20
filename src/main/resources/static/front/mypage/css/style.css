@@ -344,3 +344,47 @@ ul.sidebar li a.active {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
+#passForm {
+    font-family: 'Gowun Dodum', sans-serif;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 270px;
+    margin-top: -230px; /* 살짝 위로 */
+}
+
+#passFormButton {
+    font-family: 'Gowun Dodum', sans-serif;
+    border: 1px solid #b4b4b4;;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px 5px;
+    width: 50px;
+    margin-left: 1px;
+}
+
+#passForm label {
+    font-size: 19px;
+    margin-bottom: 20px;
+
+}
+
+#passForm input[type="password"] {
+    border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+#passwordConfirm{
+    font-family: 'Gowun Dodum', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff0f0;
+
+}
