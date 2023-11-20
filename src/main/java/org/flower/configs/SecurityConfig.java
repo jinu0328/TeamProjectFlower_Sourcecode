@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-public class SecurityConfig {
+public class    SecurityConfig {
 
     /*
      * SecurityFilterChain은 Spring Security의 보안 체인을 정의함.

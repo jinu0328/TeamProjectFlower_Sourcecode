@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -29,6 +31,9 @@ public class ProfileController {
 
     @Autowired
     private UserEditService userEditService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
 
     @Autowired
@@ -46,7 +51,7 @@ public class ProfileController {
             model.addAttribute("userNickNm", userNickNm);
 
             // userNo를 사용하여 추가적인 회원 정보를 조회할 수 있습니다.
-            
+
             // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
 
 
@@ -93,6 +98,44 @@ public class ProfileController {
         }
     }
 
+    @GetMapping("/passwordConfirm")
+    public String checkMypassword(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof UserInfo) {
+            UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+            Long userNo = currentUser.getUserNo();
 
+            //userNo 모델에 추가
+            String userNickNm = currentUser.getUserNickNm();
+            model.addAttribute("userNickNm", userNickNm);
+
+            // userNo를 사용하여 추가적인 회원 정보를 조회할 수 있습니다.
+
+            // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
+
+
+            model.addAttribute("userNo", userNo);
+        } else {
+            // 로그인하지 않은 사용자 또는 기타 상황에 대한 처리
+            return "redirect:/user/login"; //
+        }
+
+        return "/front/mypage/main/passwordConfirm"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
+    }
+
+    @PostMapping("/password-confirm")
+    public String confirmPassword(@RequestParam String password, RedirectAttributes redirectAttributes, Authentication authentication) {
+        UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+        String storedEncodedPassword = currentUser.getUserPw();
+
+        if (passwordEncoder.matches(password, storedEncodedPassword)) {
+            // 비밀번호가 일치하는 경우
+            return "redirect:/user/mypage/profile/profilePage";
+        } else {
+            // 비밀번호가 일치하지 않는 경우
+            redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다");
+            return "redirect:/user/mypage/profile/passwordConfirm";
+        }
+    }
 
 }
