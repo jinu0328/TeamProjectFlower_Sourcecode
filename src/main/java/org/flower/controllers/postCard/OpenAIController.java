@@ -38,7 +38,7 @@ public class OpenAIController {
 
     @PostMapping("/create-image")
     public String createImage(@RequestParam("prompt") String prompt, Model model) {
-        prompt = "a postcard filled image with " + prompt + " flower on it";
+        prompt = "understated message postcard design with " + prompt + "flower";
         ResponseEntity<Map<String, Object>> response = openAIService.createImage(prompt);
         List<Map<String, Object>> dataList = (List<Map<String, Object>>) response.getBody().get("data");
         String imageUrl = "";
