@@ -24,7 +24,7 @@
     </div>
 
     <div id="dropZone" ondrop="dropFlower(event)" ondragover="allowDropFlower(event)">
-        <img id="dropZoneImage" src="/front/images/closedEnvelope.png" alt="편지 봉투">
+        <img id="dropZoneImage" src="/front/images/closedEnvelope.png" alt="편지 봉투" draggable="false">
         <table id="droppedFlowersTable">
             <thead>
             <tr>
@@ -39,8 +39,22 @@
 
     <form th:action="@{/postCard/create-image}" method="post">
         <input type="hidden" id="prompt" name="prompt" />
-        <button type="submit">엽서 그리기</button>
+        <button type="submit" id="createPostCard">엽서 그리기</button>
     </form>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="watch__face">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <div class="loading-text">이미지를 생성하고 있습니다!!</div>
+        </div>
+    </div>
 </main>
 
 </body>

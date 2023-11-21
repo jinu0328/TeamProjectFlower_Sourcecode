@@ -16,4 +16,126 @@
 .centered-img {
     max-width: 100%;
     max-height: 100%;
+    margin-bottom: 50px;
 }
+
+/* 엽서 만들기 로딩창 css S */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+}
+.circle{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    position: absolute;
+    mix-blend-mode: screen;
+}
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.loading-text {
+    color: white; /* 텍스트 색상 */
+    margin-top: 100px; /* 원형 로딩 애니메이션과의 간격 */
+    font-size: 30px; /* 텍스트 크기 */
+    text-align: center; /* 가운데 정렬 */
+}
+
+.watch__face{
+    animation: spring 3s cubic-bezier(0.5, 0, 0.5, 1) alternate infinite;
+    width: 125px;
+    height: 125px;
+}
+.circle:nth-child(odd){
+    background-color: pink;
+}
+.circle:nth-child(even){
+    background-color: lightpink;
+}
+.circle:nth-child(1){
+    animation: circle1 3s ease alternate infinite
+}
+.circle:nth-child(2){
+    animation: circle2 3s ease alternate infinite
+}
+.circle:nth-child(3){
+    animation: circle3 3s ease alternate infinite
+}
+.circle:nth-child(4){
+    animation: circle4 3s ease alternate infinite
+}
+.circle:nth-child(5){
+    animation: circle5 3s ease alternate infinite
+}
+.circle:nth-child(6){
+    animation: circle6 3s ease alternate infinite
+}
+@keyframes spring {
+    0%{
+        transform: scale(0.15) rotate(180deg);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+@keyframes circle1 {
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(-35px, -50px);
+    }
+}
+@keyframes circle2{
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(35px, 50px);
+    }
+}
+@keyframes circle3 {
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(-60px, 0px);
+    }
+}
+@keyframes circle4 {
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(60px, 0px);
+    }
+}
+@keyframes circle5 {
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(-35px, 50px);
+    }
+}
+@keyframes circle6{
+    0%{
+        transform: translate(0,0);
+    }
+    100%{
+        transform: translate(35px, -50px);
+    }
+}
+
+/* 엽서 만들기 로딩창 css E */

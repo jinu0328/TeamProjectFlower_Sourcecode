@@ -31,3 +31,13 @@ function dropFlower(ev) {
     var dropZoneImage = document.getElementById("dropZoneImage");
     dropZoneImage.src = "/front/images/openedEnvelope.png";
 }
+
+/* 로딩창 관련 */
+document.addEventListener('DOMContentLoaded', function() {
+    var button = document.getElementById('createPostCard');
+    if (button) {
+        button.addEventListener('click', function() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        });
+    }
+});
