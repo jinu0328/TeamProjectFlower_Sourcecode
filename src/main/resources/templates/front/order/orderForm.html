@@ -11,6 +11,7 @@
 <main layout:fragment="content" class="noFlex">
     <div class="header-image">
         <div class="overlay-text playfair-display">ORDER</div>
+        <div class="subtext">꽃을 선물할 대상을 떠올리며 작성해보세요</div>
     </div>
     <section class="order-form">
         <form th:action="@{/order/submitOrder}" th:object="${orderForm}" method="post">
@@ -35,12 +36,27 @@
                 <input type="time" id="pickupTime" th:field="*{pickupTime}"/>
             </div>
 
-            <div class="input-group">
+            <!--<div class="input-group">
                 <label th:for="flowertype">꽃 종류</label>
                 <select th:field="*{flowertype}">
+                    <img th:src="@{${flower.flowerIamges}}">
                     <option value="">주문하실 꽃다발의 메인 꽃을 선택하세요</option>
                     <option th:each="flower : ${flowers}" th:value="${flower.flowerNm}" th:text="${flower.flowerNm}">Flower Name</option>
                 </select>
+            </div>-->
+
+            <div class="input-group custom-flower-group">
+                <label class="flower-label">꽃 종류</label>
+                <div class="flower-selection">
+                    <th:block th:each="flower, iterStat : ${flowers}">
+                        <label class="flower-option" th:classappend="${iterStat.index % 5 == 4 ? 'last-in-row' : ''}">
+                            <input type="radio" th:field="*{flowertype}" th:value="${flower.flowerNm}" th:id="${#strings.replace(flower.flowerNm, ' ', '')}">
+                            <img th:src="@{${flower.flowerIamges}}" alt="Image of a flower" class="flower-image">
+                            <span th:text="${flower.flowerNm}"></span>
+                            <span class="flower-meaning" th:text="'꽃말 : ' + ${flower.flowerMean}"></span>
+                        </label>
+                    </th:block>
+                </div>
             </div>
 
             <div class="input-group">
@@ -57,6 +73,7 @@
                     <option value="custom">꽃 색상과 맞춤</option>
                 </select>
             </div>
+
             <div class="input-group">
                 <label th:for="pricerange">크기 및 가격대</label>
                 <select th:field="*{pricerange}">

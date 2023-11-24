@@ -15,7 +15,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     line-height: 1.6;
-    max-width: 600px;
+    max-width: 800px;
     padding: 20px;  /* 테두리 둥글게 */
     margin : auto;
 }
@@ -50,7 +50,7 @@
 /* 헤더 이미지의 스타일을 설정합니다. */
 .header-image {
     width: 100%;
-    height: 80px;
+    height: 100px;
     background-image: url('https://i.ibb.co/C87SPzN/image.png');
     background-position: center center;
     background-size: cover;
@@ -68,6 +68,26 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
+}
+
+.overlay-text {
+    font-size: 2em;
+    position: absolute;
+    top: 25%; /* 상단에서 25% 떨어진 위치에 배치 */
+    left: 50%; /* 왼쪽에서 50% 떨어진 위치에 배치 */
+    transform: translate(-50%, -50%); /* X축과 Y축을 기준으로 50% 이동하여 정중앙에 오도록 함 */
+}
+
+.subtext {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 1em; /* 새로운 문구의 크기 조정 */
+    color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+    text-align: center; /* 중앙 정렬 */
+    position: absolute; /* 절대 위치 지정 */
+    width: 100%; /* 부모 컨테이너의 전체 너비 */
+    top: 75%; /* 상단에서 50% 떨어진 위치에 배치 */
+    left: 50%; /* 왼쪽에서 0% 떨어진 위치에 배치 */
+    transform: translate(-50%, -50%); /* Y축을 기준으로 50% 이동하여 정중앙에 오도록 함 */
 }
 
 /* 메인 컨테이너를 수직으로 정렬합니다. */
@@ -95,6 +115,14 @@
 .input-group label {
     flex-basis: 20%;
     margin-right: 5%;
+}
+.custom-flower-group .flower-label {
+    display: block; /* 레이블을 블록 요소로 만듭니다 */
+    margin-bottom: 10px; /* 레이블과 이미지 사이의 간격 */
+}
+
+.flower-meaning {
+    font-size: 0.8em; /* 또는 단위(px, %)에 맞게 조정 */
 }
 
 /* 텍스트, 전화번호, 날짜, 시간 입력 요소 및 선택 요소, 텍스트 영역의 스타일을 설정합니다. */
@@ -143,7 +171,7 @@
 .bouquet-samples {
     display: flex;
     justify-content: space-around;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 /* 각 꽃다발 예시 사진에 스타일을 적용합니다. */
@@ -203,4 +231,54 @@
 .small-text {
     font-size: 0.8em;
     color: #777;
+}
+.flower-selection {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5개의 동일한 크기의 열을 만듭니다 */
+    grid-gap: 10px; /* 그리드 아이템 사이의 간격 */
+}
+
+.flower-option {
+    position: relative; /* 이미지 컨테이너의 위치 지정 기준 */
+    width: 100%; /* 컨테이너 너비 */
+    margin-bottom: 20px; /* 이미지와 텍스트 사이의 간격 */
+    padding-top: 10%; /* 컨테이너 높이를 너비와 동일하게 설정하여 정사각형 만듬 */
+    text-align: center;
+}
+
+.flower-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px; /* 행과 행 사이의 간격 */
+}
+
+.last-in-row {
+    margin-right: 0; /* 마지막 아이템은 오른쪽 마진이 없습니다. */
+}
+
+.clear-float {
+    clear: both;
+}
+
+.flower-option input[type="radio"] {
+    display: none; /* 라디오 버튼을 숨깁니다 */
+}
+
+.flower-option img {
+    width: 100%; /* 이미지 너비를 컨테이너에 맞춤 */
+    height: 80%; /* 이미지 높이를 자동으로 설정하여 비율 유지 */
+    object-fit: cover; /* 이미지가 컨테이너를 꽉 채우도록 크기 조정 */
+    display: block; /* 이미지를 블록 요소로 설정 */
+    border: 1px solid #ccc;
+}
+
+.flower-option span {
+    display: block; /* 텍스트를 블록 요소로 설정 */
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    margin-top: 5px; /* 텍스트 상단 마진 설정 */
+}
+
+/* 선택된 라디오 버튼의 이미지에 스타일 적용 */
+.flower-option input[type="radio"]:checked + img {
+    border-color: #d35400; /* 선택된 아이템의 테두리를 강조합니다 */
 }
