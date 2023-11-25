@@ -15,6 +15,7 @@
                 <li th:each="flower : ${flowers}"
                     th:text="${flower.flowerNm}"
                     th:data-englishnm="${flower.englishNm}"
+                    th:data-flowerImage="${flower.flowerIamges}"
                     draggable="true"
                     ondragstart="dragFlower(event)">
                 </li>

@@ -5,7 +5,8 @@ function allowDropFlower(ev) {
 function dragFlower(ev) {
     var dragData = {
         flowerNm: ev.target.innerText,
-        englishNm: ev.target.getAttribute('data-englishnm')
+        englishNm: ev.target.getAttribute('data-englishnm'),
+        flowerImage: ev.target.getAttribute('data-flowerImage')
     };
     ev.dataTransfer.setData("text", JSON.stringify(dragData));
 }
@@ -30,6 +31,19 @@ function dropFlower(ev) {
 
     var dropZoneImage = document.getElementById("dropZoneImage");
     dropZoneImage.src = "/front/images/openedEnvelope.png";
+
+    var existingImage = document.getElementById("flowerImage");
+    if(existingImage) {
+        existingImage.parentNode.removeChild(existingImage);
+    }
+
+    var flowerImage = dragData.flowerImage;
+    var imageElement = document.createElement("img");
+    imageElement.id = "flowerImage"
+    imageElement.src = flowerImage;
+    imageElement.style.maxWidth = "100px"; // 이미지 크기 조절
+    imageElement.style.margin = "10px"; // 이미지 간격 조절
+    document.getElementById("dropZone").appendChild(imageElement);
 }
 
 /* 로딩창 관련 */

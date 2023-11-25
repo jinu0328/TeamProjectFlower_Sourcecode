@@ -1,3 +1,13 @@
+#dropZone {
+    display: flex; /* flex 컨테이너 설정 */
+    align-items: center; /* 수직 가운데 정렬 */
+}
+
+#flowerImage {
+    max-width: 100px; /* 이미지 크기 조절 */
+    margin-left: 20px; /* 편지 봉투와의 간격 조절 */
+}
+
 .postCard-parent{
     display: flex;
     justify-content: center;

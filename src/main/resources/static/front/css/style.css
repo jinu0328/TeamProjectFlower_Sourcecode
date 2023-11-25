@@ -139,3 +139,9 @@ html, body {
     width: 100px;
     height: auto;
 }
+
+.subtext2 {
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 15px; /* 새로운 문구의 크기 조정 */
+    color: #fff; /* 텍스트 색상을 흰색으로 설정 */
+}
