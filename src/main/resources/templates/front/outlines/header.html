@@ -15,7 +15,7 @@
             <div class="buttons">
                 <th:block sec:authorize="isAuthenticated()">
                     <a th:href="@{/user/logout}" th:text="#{user.logout}" class="btn1 bold-text">logout</a>
-                    <a th:href="@{/user/mypage/main/home/orderlist}" th:text="#{mypage}" class="btn1 red bold-text">mypage</a>
+                    <a th:href="@{/user/mypage/main/home/orderlist(status='ACCEPTING')}" th:text="#{mypage}" class="btn1 red bold-text">mypage</a>
                     <!-- 주문내역 버튼 안눌러도 바로 주문내역 확인할 수 있게 - 동균 -->
                 </th:block>
                 <th:block sec:authorize="isAnonymous()">
