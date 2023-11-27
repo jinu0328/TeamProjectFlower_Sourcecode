@@ -58,7 +58,7 @@
                     <div class="item">
                         <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
                             <div>
-                                <div class="green number">0</div>
+                                <div class="green number" th:text="${preparingOrderCount}">0</div>
                                 <div class="text">상품 준비중</div>
                             </div>
                         </a>
@@ -67,7 +67,7 @@
                     <div class="item">
                         <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
                             <div>
-                                <div class="green number">0</div>
+                                <div class="green number" th:text="${preparedOrderCount}">0</div>
                                 <div class="text">픽업 대기</div>
                             </div>
                         </a>
@@ -76,7 +76,7 @@
                     <div class="item">
                         <a th:href="@{/user/mypage/main/home/orderlist}" class="block-link">
                             <div>
-                                <div class="green number">0</div>
+                                <div class="green number" th:text="${pickedUpOrderCount}">0</div>
                                 <div class="text">주문 완료</div>
                             </div>
                         </a>
