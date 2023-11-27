@@ -55,9 +55,14 @@
                 <td th:text="${order.flowercolor}">꽃다발 색상</td>
                 <td th:text="${order.pricerange}">가격대</td>
                 <td th:text="${order.message}">메시지</td>
-                <td th:text="${order.orderStatus}">주문상태</td>
+                <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '확인 대기' : (order.orderStatus.name() == 'ACCEPTED' ? '확인 완료' : '주문 상태')}">주문 상태</td>
                 <td>
-                    <button type="button" class="OKButton" data-order-no="${order.orderNo}">주문 수락</button>
+                    <button type="button"
+                            th:class="${order.orderStatus.name() == 'ACCEPTING' ? 'OKButton' : (order.orderStatus.name() == 'ACCEPTED' ? 'StartButton' : 'OtherButton')}"
+                            th:data-order-no="${order.orderNo}"
+                            th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 수락' : (order.orderStatus.name() == 'ACCEPTED' ? '제작 시작' : '기본 텍스트')}">
+                        기본 텍스트
+                    </button>
                 </td>
             </tr>
             </tbody>
