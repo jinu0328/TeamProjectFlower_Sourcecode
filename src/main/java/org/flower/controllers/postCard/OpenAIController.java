@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/postCard")
@@ -38,6 +39,21 @@ public class OpenAIController {
 
     @PostMapping("/create-image")
     public String createImage(@RequestParam("prompt") String prompt, Model model) {
+
+        List<Flower> flowers = flowerInfoService.getAllFlowers();
+
+        String finalPrompt = prompt;
+
+        // prompt에서 꽃 이름을 찾기
+        Optional<Flower> matchingFlower = flowers.stream()
+                .filter(flower -> finalPrompt.contains(flower.getEnglishNm()))
+                .findFirst();
+
+        String flowerName = "";
+        if (matchingFlower.isPresent()) {
+            flowerName = matchingFlower.get().getFlowerNm();
+        }
+
         prompt = "understated message postcard design with " + prompt + "flower";
         ResponseEntity<Map<String, Object>> response = openAIService.createImage(prompt);
         List<Map<String, Object>> dataList = (List<Map<String, Object>>) response.getBody().get("data");
@@ -48,6 +64,7 @@ public class OpenAIController {
             // imageUrl 변수를 사용. 예를 들어 콘솔에 출력하거나 모델에 추가.
         }
         model.addAttribute("imageData", imageUrl);
+        model.addAttribute("flowers", flowerName);
         return "front/postcard/result"; // result.html로 반환됩니다.
     }
 
