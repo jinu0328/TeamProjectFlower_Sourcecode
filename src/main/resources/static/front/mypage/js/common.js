@@ -157,7 +157,7 @@ $(document).ready(function() {
 
     $('.OKButton').on('click', function() {
         var orderNo = $(this).closest('tr').attr('data-order-no');
-        sendOrderRequest(orderNo, "/user/mypage/orders/accept", "주문이 수락되었습니다.");
+        sendOrderRequest(orderNo, "/user/mypage/orders/accept", "주문이 접수되었습니다.");
     });
 
     $('.StartButton').on('click', function() {
@@ -166,7 +166,7 @@ $(document).ready(function() {
     });
     $('.PreparedButton').on('click', function() {
         var orderNo = $(this).closest('tr').attr('data-order-no');
-        sendOrderRequest(orderNo, "/user/mypage/orders/prepared", "픽업 대기 상태입니다.");
+        sendOrderRequest(orderNo, "/user/mypage/orders/prepared", "픽업 대기 상태로 변경되었습니다.");
     });
     $('.PickedUpButton').on('click', function() {
         var orderNo = $(this).closest('tr').attr('data-order-no');

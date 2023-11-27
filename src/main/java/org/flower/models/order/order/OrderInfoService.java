@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderInfoService {
@@ -42,5 +43,12 @@ public class OrderInfoService {
         return orderRepository.findAll().stream()
                 .filter(order -> order.getOrderStatus() == orderState)
                 .count();
+    }
+
+    // 선택된 주문 상태에 따라 주문 목록을 반환하는 메서드
+    public List<Order> getOrdersByStatus(Long userNo, OrderState orderState) {
+        return orderRepository.findAll().stream()
+                .filter(order -> order.getOrderStatus() == orderState)
+                .collect(Collectors.toList());
     }
 }
