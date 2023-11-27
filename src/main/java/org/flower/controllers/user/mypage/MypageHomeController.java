@@ -84,75 +84,50 @@ public class MypageHomeController {
 
     // 현재 로그인한 사용자의 userNo를 가져오고 모델에 주문 내역 엔티티 추가, 주문 내역 html 페이지 리턴
     @GetMapping("/main/home/orderlist")
-    public String showMyOrder(Model model) {
+    public String showMyOrder(@RequestParam(required = false) String status, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.getPrincipal() instanceof UserInfo) {
             UserInfo currentUser = (UserInfo) authentication.getPrincipal();
             Long userNo = currentUser.getUserNo();
-            //UserRole currentUserRole = currentUser.getRole();
-
 
             String userNickNm = currentUser.getUserNickNm();
             model.addAttribute("userNickNm", userNickNm);
-
-            // userNo를 사용하여 추가적인 회원 정보를 조회할 수 있습니다.
-            // 예: userProfile, userPosts 등
-            // 아래는 단순히 userNo만 모델에 추가하는 예입니다.
             model.addAttribute("userNo", userNo);
 
-
-            if (currentUser.getAuthorities().stream()
-                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))) {
-                List<Order> userOrder = orderInfoService.getAllOrders(); // 주문 목록을 가져오는 서비스 메서드 호출
-                model.addAttribute("userOrders", userOrder); // 모델에 주문 목록 추가
-
-                // OrderInfoService 인스턴스를 통해 메서드 호출
-                long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING); // ACCEPTING 개수 확인 후 모델에 추가
-                model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
-
-                long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED); // ACCEPTED 개수 확인 후 모델에 추가
-                model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
-
-                long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING); // PREPARING 개수 확인 후 모델에 추가
-                model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
-
-                long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED); // PREPARED 개수 확인 후 모델에 추가
-                model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
-
-                long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP); // PICKEDUP 개수 확인 후 모델에 추가
-                model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
-
-                return "/front/mypage/main/orderList_Owner"; // OWNER를 위한 뷰 또는 리다이렉트 경로
+            List<Order> userOrders; // URL의 status 파라미터에 따라 주문 목록을 필터링하거나 모든 주문을 가져옴
+            if (status != null && !status.isEmpty()) {
+                OrderState orderState = OrderState.valueOf(status.toUpperCase());
+                userOrders = orderInfoService.getOrdersByStatus(userNo, orderState);
             } else {
-                // 로그인한 사용자의 주문 목록을 가져와서 모델에 추가
-                List<Order> userOrders = orderInfoService.getOrdersByUserNo(userNo);
-                model.addAttribute("userOrders", userOrders);
-
-                // OrderInfoService 인스턴스를 통해 메서드 호출
-                long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING); // ACCEPTING 개수 확인 후 모델에 추가
-                model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
-
-                long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED); // ACCEPTED 개수 확인 후 모델에 추가
-                model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
-
-                long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING); // PREPARING 개수 확인 후 모델에 추가
-                model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
-
-                long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED); // PREPARED 개수 확인 후 모델에 추가
-                model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
-
-                long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP); // PICKEDUP 개수 확인 후 모델에 추가
-                model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
-
-
-                return "/front/mypage/main/home_orderlist"; // 일반 사용자를 위한 뷰 또는 리다이렉트 경로
+                userOrders = currentUser.getAuthorities().stream() // 사용자의 권한에 따라 OWNER는 모든 주문을, 일반 사용자는 자신의 주문만을 가져옴
+                        .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))
+                        ? orderInfoService.getAllOrders()
+                        : orderInfoService.getOrdersByUserNo(userNo);
             }
+            model.addAttribute("userOrders", userOrders);
 
+            long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING);
+            model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
+
+            long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED);
+            model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
+
+            long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING);
+            model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
+
+            long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED);
+            model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
+
+            long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP);
+            model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
+
+            return currentUser.getAuthorities().stream()
+                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))
+                    ? "/front/mypage/main/orderList_Owner"
+                    : "/front/mypage/main/home_orderlist";
         } else {
-            // 로그인하지 않은 사용자 또는 기타 상황에 대한 처리
-            return "redirect:/user/login"; //
+            return "redirect:/user/login";
         }
-
     }
 
     // 주문수락 버튼 누르면 orderEditService 호출

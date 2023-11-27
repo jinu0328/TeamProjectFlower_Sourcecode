@@ -37,8 +37,8 @@
                 <th>꽃다발 색상</th>
                 <th>가격대</th>
                 <th>메세지</th>
-                <th>주문</th>
-                <th>주문상태</th>
+                <th>주문 상태</th>
+                <th>주문 처리</th>
             </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                               (order.orderStatus.name() == 'PREPARING' ? '상품 준비 중' :
                               (order.orderStatus.name() == 'PREPARED' ? '픽업 대기' :
                               (order.orderStatus.name() == 'PICKEDUP' ? '주문 완료' :
-                              '주문 상태'))))}">주문
+                              '주문'))))}">주문
                 </td>
                 <td>
                     <button type="button"
@@ -71,11 +71,11 @@
                              (order.orderStatus.name() == 'PICKEDUP' ? 'button-common PickedUpButton' :
                              'OtherButton'))))}"
                             th:data-order-no="${order.orderNo}"
-                            th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 수락' :
-                            (order.orderStatus.name() == 'ACCEPTED' ? '상품 준비' :
-                            (order.orderStatus.name() == 'PREPARING' ? '픽업 대기' :
-                            (order.orderStatus.name() == 'PREPARED' ? '주문 완료' :
-                            (order.orderStatus.name() == 'PICKEDUP' ? '주문 내역' :
+                            th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 접수' :
+                            (order.orderStatus.name() == 'ACCEPTED' ? '주문 확인' :
+                            (order.orderStatus.name() == 'PREPARING' ? '상품 준비 완료' :
+                            (order.orderStatus.name() == 'PREPARED' ? '픽업 완료' :
+                            (order.orderStatus.name() == 'PICKEDUP' ? '주문 완료' :
                              '기본 텍스트'))))}">
                         버튼
                     </button>
