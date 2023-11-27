@@ -91,7 +91,7 @@
     transition: all 0.3s ease;
     display: inline-block;
 }
-.OKButton{
+.button-common{
 
     font-family: 'Gowun Dodum', sans-serif;
     background-color: #d4d4d4;
@@ -106,27 +106,10 @@
 
 }
 
-.OKButton:hover {
+.button-common:hover {
     background-color: #bcbcbc;
 }
-.StartButton{
 
-    font-family: 'Gowun Dodum', sans-serif;
-    background-color: #d4d4d4;
-    padding: 6px 8px;
-    border: 1px solid #b4b4b4;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 15px;
-    display: inline-block;
-    text-decoration: none;
-    color : black;
-
-}
-
-.StartButton:hover {
-    background-color: #bcbcbc;
-}
 
 .correction button:hover {
     background-color: #076cd5; /* 호버 상태의 배경색 */

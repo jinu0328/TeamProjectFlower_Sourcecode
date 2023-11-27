@@ -157,6 +157,43 @@ $(document).ready(function() {
     });
 });
 
+// 제작 시작 버튼 누르면 발생하는 이벤트 - OWNER
+$(document).ready(function() {
+    var csrfToken = $("meta[name='_csrf']").attr("content");
+    var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+
+    // 모든 AJAX 요청에 CSRF 토큰을 헤더로 보내도록 설정
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            if (csrfToken && csrfHeader) {
+                xhr.setRequestHeader(csrfHeader, csrfToken);
+            }
+        }
+    });
+
+    $('.StartButton').on('click', function() {
+        console.log('버튼 클릭됨!');
+        var orderNo = $(this).closest('tr').attr('data-order-no');
+        $.ajax({
+            type: "POST",
+            url: "/user/mypage/orders/start", // URL 수정
+            data: { orderNo: orderNo }, // 데이터로 orderNo 전달
+
+            success: function(response) {
+                console.log('response : ', response);
+                alert("상품준비를 시작합니다.");
+                location.reload();
+                // 여기서 UI를 업데이트하거나 페이지를 새로 고침할 수 있습니다.
+            },
+            error: function(xhr) {
+                console.error('Error occurred: ', xhr);
+                var errorMsg = xhr.status + ": " + (xhr.statusText || "Unknown error");
+                alert("오류가 발생했습니다: " + errorMsg);
+            }
+        });
+    });
+});
+
 
 // CSRF 토큰 설정, Post 방식 오류 제거 방법임
 $(document).ready(function() {

@@ -152,11 +152,28 @@ public class MypageHomeController {
             return "redirect:/user/login"; //
         }
 
-    }@PostMapping("/orders/accept")
+    }
+
+    // 주문수락 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/accept")
     public ResponseEntity<String> acceptOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
         try {
             System.out.println("Attempting to accept order: " + orderNo);
             orderEditService.acceptOrder(orderNo);
+            return ResponseEntity.ok("Order accepted");
+        } catch (Exception e) {
+            System.out.println("Error accepting order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 제작 시작 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/start")
+    public ResponseEntity<String> startOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to accept order: " + orderNo);
+            orderEditService.startOrder(orderNo);
             return ResponseEntity.ok("Order accepted");
         } catch (Exception e) {
             System.out.println("Error accepting order: " + e.getMessage());

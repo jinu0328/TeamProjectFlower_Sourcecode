@@ -37,7 +37,7 @@
                 <th>꽃다발 색상</th>
                 <th>가격대</th>
                 <th>메세지</th>
-                <th>매칭상태</th>
+                <th>주문</th>
                 <th>주문상태</th>
             </tr>
             </thead>
@@ -55,13 +55,27 @@
                 <td th:text="${order.flowercolor}">꽃다발 색상</td>
                 <td th:text="${order.pricerange}">가격대</td>
                 <td th:text="${order.message}">메시지</td>
-                <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '확인 대기' : (order.orderStatus.name() == 'ACCEPTED' ? '확인 완료' : '주문 상태')}">주문 상태</td>
+                <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 확인' :
+                              (order.orderStatus.name() == 'ACCEPTED' ? '주문 확정' :
+                              (order.orderStatus.name() == 'PREPARING' ? '상품 준비 중' :
+                              (order.orderStatus.name() == 'PREPARED' ? '픽업 대기' :
+                              (order.orderStatus.name() == 'PICKEDUP' ? '주문 완료' :
+                              '주문 상태'))))}">주문
+                </td>
                 <td>
                     <button type="button"
-                            th:class="${order.orderStatus.name() == 'ACCEPTING' ? 'OKButton' : (order.orderStatus.name() == 'ACCEPTED' ? 'StartButton' : 'OtherButton')}"
+                            th:class="${order.orderStatus.name() == 'ACCEPTING' ? 'button-common OKButton' :
+                             (order.orderStatus.name() == 'ACCEPTED' ? 'button-common StartButton' :
+                             (order.orderStatus.name() == 'PREPARING' ? 'button-common PreparedButton' :
+                             (order.orderStatus.name() == 'PREPARED' ? 'button-common PickedUpButton' : 'OtherButton')))}"
                             th:data-order-no="${order.orderNo}"
-                            th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 수락' : (order.orderStatus.name() == 'ACCEPTED' ? '제작 시작' : '기본 텍스트')}">
-                        기본 텍스트
+                            th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 수락' :
+                            (order.orderStatus.name() == 'ACCEPTED' ? '제작 시작' :
+                            (order.orderStatus.name() == 'PREPARING' ? '픽업 대기' :
+                            (order.orderStatus.name() == 'PREPARED' ? '주문 완료' :
+                            (order.orderStatus.name() == 'PICKEDUP' ? '주문 내역' :
+                             '기본 텍스트'))))}">
+                        버튼
                     </button>
                 </td>
             </tr>

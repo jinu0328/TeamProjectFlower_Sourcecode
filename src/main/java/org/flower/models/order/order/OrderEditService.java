@@ -105,6 +105,7 @@ public class OrderEditService {
         }
     }
 
+    // 주문수락 시 오더 스테이트 변경 - ACCEPTING -> ACCEPTED
     @Transactional
     public void acceptOrder(Long orderNo) throws Exception {
         Order order = orderRepository.findById(orderNo)
@@ -112,6 +113,17 @@ public class OrderEditService {
         order.setOrderStatus(OrderState.ACCEPTED);
         orderRepository.save(order);
     }
+
+
+    // 주문수락 시 오더 스테이트 변경 - ACCEPTED -> PREPARING
+    @Transactional
+    public void startOrder(Long orderNo) throws Exception {
+        Order order = orderRepository.findById(orderNo)
+                .orElseThrow(() -> new Exception("Order not found"));
+        order.setOrderStatus(OrderState.PREPARING);
+        orderRepository.save(order);
+    }
+
 
 
 }
