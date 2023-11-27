@@ -55,8 +55,8 @@
                 <td th:text="${order.flowercolor}">꽃다발 색상</td>
                 <td th:text="${order.pricerange}">가격대</td>
                 <td th:text="${order.message}">메시지</td>
-                <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 확인' :
-                              (order.orderStatus.name() == 'ACCEPTED' ? '주문 확정' :
+                <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 접수' :
+                              (order.orderStatus.name() == 'ACCEPTED' ? '주문 확인' :
                               (order.orderStatus.name() == 'PREPARING' ? '상품 준비 중' :
                               (order.orderStatus.name() == 'PREPARED' ? '픽업 대기' :
                               (order.orderStatus.name() == 'PICKEDUP' ? '주문 완료' :
@@ -67,10 +67,12 @@
                             th:class="${order.orderStatus.name() == 'ACCEPTING' ? 'button-common OKButton' :
                              (order.orderStatus.name() == 'ACCEPTED' ? 'button-common StartButton' :
                              (order.orderStatus.name() == 'PREPARING' ? 'button-common PreparedButton' :
-                             (order.orderStatus.name() == 'PREPARED' ? 'button-common PickedUpButton' : 'OtherButton')))}"
+                             (order.orderStatus.name() == 'PREPARED' ? 'button-common PickedUpButton' :
+                             (order.orderStatus.name() == 'PICKEDUP' ? 'button-common PickedUpButton' :
+                             'OtherButton'))))}"
                             th:data-order-no="${order.orderNo}"
                             th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 수락' :
-                            (order.orderStatus.name() == 'ACCEPTED' ? '제작 시작' :
+                            (order.orderStatus.name() == 'ACCEPTED' ? '상품 준비' :
                             (order.orderStatus.name() == 'PREPARING' ? '픽업 대기' :
                             (order.orderStatus.name() == 'PREPARED' ? '주문 완료' :
                             (order.orderStatus.name() == 'PICKEDUP' ? '주문 내역' :

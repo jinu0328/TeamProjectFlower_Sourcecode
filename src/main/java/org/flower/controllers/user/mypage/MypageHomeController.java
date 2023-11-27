@@ -172,11 +172,39 @@ public class MypageHomeController {
     @PostMapping("/orders/start")
     public ResponseEntity<String> startOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
         try {
-            System.out.println("Attempting to accept order: " + orderNo);
+            System.out.println("Attempting to start order: " + orderNo);
             orderEditService.startOrder(orderNo);
-            return ResponseEntity.ok("Order accepted");
+            return ResponseEntity.ok("Order started");
         } catch (Exception e) {
-            System.out.println("Error accepting order: " + e.getMessage());
+            System.out.println("Error starting order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 픽업 대기 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/prepared")
+    public ResponseEntity<String> preparedOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to prepared order: " + orderNo);
+            orderEditService.preparedOrder(orderNo);
+            return ResponseEntity.ok("Order prepared");
+        } catch (Exception e) {
+            System.out.println("Error preparing order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 주문 완료 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/pickup")
+    public ResponseEntity<String> pickupOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to pickup order: " + orderNo);
+            orderEditService.pickupOrder(orderNo);
+            return ResponseEntity.ok("wait for pickup");
+        } catch (Exception e) {
+            System.out.println("Error pickup: " + e.getMessage());
             e.printStackTrace(); // 로그에 예외를 출력
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
         }

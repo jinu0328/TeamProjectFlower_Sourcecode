@@ -115,12 +115,30 @@ public class OrderEditService {
     }
 
 
-    // 주문수락 시 오더 스테이트 변경 - ACCEPTED -> PREPARING
+    // 제작 시작 시 오더 스테이트 변경 - ACCEPTED -> PREPARING
     @Transactional
     public void startOrder(Long orderNo) throws Exception {
         Order order = orderRepository.findById(orderNo)
                 .orElseThrow(() -> new Exception("Order not found"));
         order.setOrderStatus(OrderState.PREPARING);
+        orderRepository.save(order);
+    }
+
+    // 픽업 대기 클릭 시 오더 스테이트 변경 - PREPARING -> PREPARED
+    @Transactional
+    public void preparedOrder(Long orderNo) throws Exception {
+        Order order = orderRepository.findById(orderNo)
+                .orElseThrow(() -> new Exception("Order not found"));
+        order.setOrderStatus(OrderState.PREPARED);
+        orderRepository.save(order);
+    }
+
+    // 주문 완료 클릭 시 오더 스테이트 변경 - PREPARED -> PICKEDUP
+    @Transactional
+    public void pickupOrder(Long orderNo) throws Exception {
+        Order order = orderRepository.findById(orderNo)
+                .orElseThrow(() -> new Exception("Order not found"));
+        order.setOrderStatus(OrderState.PICKEDUP);
         orderRepository.save(order);
     }
 
