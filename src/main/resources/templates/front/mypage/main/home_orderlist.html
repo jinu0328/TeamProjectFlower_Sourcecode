@@ -56,7 +56,13 @@
                       <td th:text="${order.flowercolor}">꽃다발 색상</td>
                       <td th:text="${order.pricerange}">가격대</td>
                       <td th:text="${order.message}">메시지</td>
-                      <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '확인 대기' : (order.orderStatus.name() == 'ACCEPTED' ? '확인 완료' : '주문 상태')}">주문 상태</td>
+                      <td th:text="${order.orderStatus.name() == 'ACCEPTING' ? '주문 접수' :
+                              (order.orderStatus.name() == 'ACCEPTED' ? '주문 확인' :
+                              (order.orderStatus.name() == 'PREPARING' ? '상품 준비 중' :
+                              (order.orderStatus.name() == 'PREPARED' ? '픽업 대기' :
+                              (order.orderStatus.name() == 'PICKEDUP' ? '주문 완료' :
+                              '주문 상태'))))}">주문
+                      </td>
                    </tr>
                    </tbody>
                </table>
