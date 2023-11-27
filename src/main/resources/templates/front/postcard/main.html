@@ -21,22 +21,21 @@
                 </li>
             </ul>
         </div>
-
     </div>
 
-    <div id="dropZone" ondrop="dropFlower(event)" ondragover="allowDropFlower(event)">
-        <img id="dropZoneImage" src="/front/images/closedEnvelope.png" alt="편지 봉투" draggable="false">
-        <table id="droppedFlowersTable">
-            <thead>
-            <tr>
-                <th>선택한 꽃</th>
-            </tr>
-            </thead>
-            <tbody id="droppedFlowersBody">
-            <!-- 여기에 드롭된 항목이 표시 -->
-            </tbody>
-        </table>
+    <div class="flex-flowerContainer">
+        <div id="dropZone" ondrop="dropFlower(event)" ondragover="allowDropFlower(event)">
+            <img id="dropZoneImage" src="/front/images/closedEnvelope.png" alt="편지 봉투" draggable="false">
+        </div>
+        <div id="flowerImagesZone"></div>
     </div>
+
+    <table id="droppedFlowersTable" class="bold-text">
+        <tbody id="droppedFlowersBody">
+        <!-- 여기에 드롭된 항목이 표시 -->
+        </tbody>
+    </table>
+
 
     <form th:action="@{/postCard/create-image}" method="post">
         <input type="hidden" id="prompt" name="prompt" />

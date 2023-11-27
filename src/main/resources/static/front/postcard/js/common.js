@@ -21,30 +21,34 @@ function dropFlower(ev) {
         droppedFlowersTable.removeChild(droppedFlowersTable.firstChild);
     }
 
-    // 새로 드롭된 꽃 추가
+    // 새로 드롭된 꽃의 이름을 테이블에 추가
     var newTableRow = droppedFlowersTable.insertRow();
     var newCell = newTableRow.insertCell(0);
     newCell.innerText = dragData.flowerNm;
 
+    // 드롭된 꽃의 영문 이름을 입력 필드에 저장
     var promptInput = document.getElementById("prompt");
-    promptInput.value = dragData.englishNm; // 기존에 저장된 꽃의 영문 이름을 새로운 것으로 대체
+    promptInput.value = dragData.englishNm;
 
+    // 드롭 영역 이미지 변경 (옵션)
     var dropZoneImage = document.getElementById("dropZoneImage");
     dropZoneImage.src = "/front/images/openedEnvelope.png";
 
-    var existingImage = document.getElementById("flowerImage");
-    if(existingImage) {
-        existingImage.parentNode.removeChild(existingImage);
+    // 새로운 꽃 이미지 영역에 이미지 추가
+    var flowerImagesZone = document.getElementById("flowerImagesZone");
+
+    // 기존에 추가된 이미지가 있으면 제거
+    while (flowerImagesZone.firstChild) {
+        flowerImagesZone.removeChild(flowerImagesZone.firstChild);
     }
 
-    var flowerImage = dragData.flowerImage;
+    // 새로운 이미지 요소 생성 및 추가
     var imageElement = document.createElement("img");
-    imageElement.id = "flowerImage"
-    imageElement.src = flowerImage;
-    imageElement.style.maxWidth = "100px"; // 이미지 크기 조절
-    imageElement.style.margin = "10px"; // 이미지 간격 조절
-    document.getElementById("dropZone").appendChild(imageElement);
+    imageElement.id = "flowerImage";
+    imageElement.src = dragData.flowerImage;
+    flowerImagesZone.appendChild(imageElement);
 }
+
 
 /* 로딩창 관련 */
 document.addEventListener('DOMContentLoaded', function() {
