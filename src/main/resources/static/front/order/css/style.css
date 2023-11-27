@@ -80,7 +80,7 @@
 
 .subtext {
     font-family: 'Gowun Dodum', sans-serif;
-    font-size: 1em; /* 새로운 문구의 크기 조정 */
+    font-size: 1.2em; /* 새로운 문구의 크기 조정 */
     color: #fff; /* 텍스트 색상을 흰색으로 설정 */
     text-align: center; /* 중앙 정렬 */
     position: absolute; /* 절대 위치 지정 */

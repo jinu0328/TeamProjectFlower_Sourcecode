@@ -106,21 +106,21 @@ public class MypageHomeController {
                 List<Order> userOrder = orderInfoService.getAllOrders(); // 주문 목록을 가져오는 서비스 메서드 호출
                 model.addAttribute("userOrders", userOrder); // 모델에 주문 목록 추가
 
-                //모든 주문 ACCEPTING 주문상태 개수 확인
-                long acceptingOrderCountOwner = orderRepository.findAll().stream()
-                        .filter(order -> order.getOrderStatus() == OrderState.ACCEPTING)
-                        .count();
-
-                //모든 주문 ACCEPTING 상태 개수를 모델에 추가
+                // OrderInfoService 인스턴스를 통해 메서드 호출
+                long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING); // ACCEPTING 개수 확인 후 모델에 추가
                 model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
 
-                //모든 주문 ACCEPTED 주문상태 개수 확인
-                long acceptedOrderCountOwner = orderRepository.findAll().stream()
-                        .filter(order -> order.getOrderStatus() == OrderState.ACCEPTED)
-                        .count();
-
-                // ACCEPTED 상태 개수를 모델에 추가
+                long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED); // ACCEPTED 개수 확인 후 모델에 추가
                 model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
+
+                long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING); // PREPARING 개수 확인 후 모델에 추가
+                model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
+
+                long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED); // PREPARED 개수 확인 후 모델에 추가
+                model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
+
+                long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP); // PICKEDUP 개수 확인 후 모델에 추가
+                model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
 
                 return "/front/mypage/main/orderList_Owner"; // OWNER를 위한 뷰 또는 리다이렉트 경로
             } else {
@@ -128,20 +128,21 @@ public class MypageHomeController {
                 List<Order> userOrders = orderInfoService.getOrdersByUserNo(userNo);
                 model.addAttribute("userOrders", userOrders);
 
-                // 로그인한 사용자의 ACCEPTING 상태인 주문 수 계산
-                long acceptingOrderCount = orderRepository.findByUser_UserNo(userNo).stream()
-                        .filter(order -> order.getOrderStatus() == OrderState.ACCEPTING)
-                        .count();
-                // 로그인한 사용자의 주문 상태 개수를 모델에 추가
-                model.addAttribute("acceptingOrderCount", acceptingOrderCount);
+                // OrderInfoService 인스턴스를 통해 메서드 호출
+                long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING); // ACCEPTING 개수 확인 후 모델에 추가
+                model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
 
-                //로그인한 사용자의 ACCEPTED 주문상태 개수 확인
-                long acceptedOrderCount= orderRepository.findByUser_UserNo(userNo).stream()
-                        .filter(order -> order.getOrderStatus() == OrderState.ACCEPTED)
-                        .count();
+                long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED); // ACCEPTED 개수 확인 후 모델에 추가
+                model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
 
-                // ACCEPTED 상태 개수를 모델에 추가
-                model.addAttribute("acceptedOrderCount", acceptedOrderCount);
+                long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING); // PREPARING 개수 확인 후 모델에 추가
+                model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
+
+                long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED); // PREPARED 개수 확인 후 모델에 추가
+                model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
+
+                long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP); // PICKEDUP 개수 확인 후 모델에 추가
+                model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
 
 
                 return "/front/mypage/main/home_orderlist"; // 일반 사용자를 위한 뷰 또는 리다이렉트 경로
@@ -152,7 +153,10 @@ public class MypageHomeController {
             return "redirect:/user/login"; //
         }
 
-    }@PostMapping("/orders/accept")
+    }
+
+    // 주문수락 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/accept")
     public ResponseEntity<String> acceptOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
         try {
             System.out.println("Attempting to accept order: " + orderNo);
@@ -160,6 +164,48 @@ public class MypageHomeController {
             return ResponseEntity.ok("Order accepted");
         } catch (Exception e) {
             System.out.println("Error accepting order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 제작 시작 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/start")
+    public ResponseEntity<String> startOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to start order: " + orderNo);
+            orderEditService.startOrder(orderNo);
+            return ResponseEntity.ok("Order started");
+        } catch (Exception e) {
+            System.out.println("Error starting order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 픽업 대기 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/prepared")
+    public ResponseEntity<String> preparedOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to prepared order: " + orderNo);
+            orderEditService.preparedOrder(orderNo);
+            return ResponseEntity.ok("Order prepared");
+        } catch (Exception e) {
+            System.out.println("Error preparing order: " + e.getMessage());
+            e.printStackTrace(); // 로그에 예외를 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
+        }
+    }
+
+    // 주문 완료 버튼 누르면 orderEditService 호출
+    @PostMapping("/orders/pickup")
+    public ResponseEntity<String> pickupOrder(@RequestParam("orderNo") Long orderNo) { // @RequestParam 사용
+        try {
+            System.out.println("Attempting to pickup order: " + orderNo);
+            orderEditService.pickupOrder(orderNo);
+            return ResponseEntity.ok("wait for pickup");
+        } catch (Exception e) {
+            System.out.println("Error pickup: " + e.getMessage());
             e.printStackTrace(); // 로그에 예외를 출력
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error accepting order");
         }

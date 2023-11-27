@@ -91,7 +91,7 @@
     transition: all 0.3s ease;
     display: inline-block;
 }
-.OKButton{
+.button-common{
 
     font-family: 'Gowun Dodum', sans-serif;
     background-color: #d4d4d4;
@@ -106,9 +106,10 @@
 
 }
 
-.OKButton:hover {
+.button-common:hover {
     background-color: #bcbcbc;
 }
+
 
 .correction button:hover {
     background-color: #076cd5; /* 호버 상태의 배경색 */
