@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class UserEditInfo {
     private Long userNo;        // User Number
     private String userNickNm;  // Nickname
+    //private String cellPhone; // cellphone
 }

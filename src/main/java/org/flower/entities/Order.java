@@ -77,7 +77,7 @@ public class Order extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = true, length = 30)
-    private OrderState orderStatus = OrderState.ACCEPTING;  // '접수중', '매장 선택중','매칭 실패', '매칭 완료' 중 하나의 상태
+    private OrderState orderStatus = OrderState.ACCEPTING;  // 'ACCEPTING', 'ACCEPTED', 'PREPARING', 'PREPARED' , 'PICKEDUP' 중 하나의 상태
                                                             // 기본값은 '접수중'
 
 }

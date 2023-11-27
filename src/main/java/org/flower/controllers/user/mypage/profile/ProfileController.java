@@ -123,6 +123,8 @@ public class ProfileController {
         return "/front/mypage/main/passwordConfirm"; // mypage.html 또는 mypage.jsp와 같은 뷰 파일을 렌더링
     }
 
+    // 비밀번호 확인 - 로그인한 사용자의 비밀번호와 입력한 비밀번호를 비교
+    // 일치하면 변경페이지, 불일치하면 다시 입력 페이지 리턴
     @PostMapping("/password-confirm")
     public String confirmPassword(@RequestParam String password, RedirectAttributes redirectAttributes, Authentication authentication) {
         UserInfo currentUser = (UserInfo) authentication.getPrincipal();

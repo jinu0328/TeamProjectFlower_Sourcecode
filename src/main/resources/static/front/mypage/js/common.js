@@ -120,6 +120,7 @@ $(document).ready(function() {
 
 });
 
+// 주문 수락 버튼 - OWNER
 $(document).ready(function() {
     var csrfToken = $("meta[name='_csrf']").attr("content");
     var csrfHeader = $("meta[name='_csrf_header']").attr("content");
