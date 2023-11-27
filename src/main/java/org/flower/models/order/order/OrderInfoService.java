@@ -1,5 +1,6 @@
 package org.flower.models.order.order;
 
+import org.flower.commons.constants.OrderState;
 import org.flower.commons.constants.UserRole;
 import org.flower.entities.Order;
 import org.flower.repositories.OrderRepository;
@@ -34,5 +35,12 @@ public class OrderInfoService {
             // USER인 경우 해당 사용자의 주문만 반환
             return orderRepository.findByUser_UserNo(userNo);
         }
+    }
+
+    // 주문 상태별 개수를 계산하는 메서드
+    public long countOrdersByStatus(OrderState orderState) {
+        return orderRepository.findAll().stream()
+                .filter(order -> order.getOrderStatus() == orderState)
+                .count();
     }
 }
