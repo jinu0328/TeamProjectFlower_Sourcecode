@@ -7,13 +7,20 @@
     <!-- 어트리뷰트 pageTitle 속성에서 받아옴-->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
+    <div class="header-image">
+        <div class="overlay-text playfair-display">POSTCARD</div>
+        <div class="subtext">특별한 순간을 위한 당신만의 엽서 디자인</div>
+    </div>
 
     <div class="card-img-container">
-        <h1>RESULT</h1>
-        <div th:if="${imageData}">
-            <img class="centered-img" th:src="${imageData}" />
+        <div class="background-color">
+            <div th:if="${imageData}">
+                <img class="centered-img" th:src="${imageData}" />
+            </div>
         </div>
-        <div>
+        <div th:text="${flowers} + '로 만든 도화다 추천 엽서'" class="playfair-display margin-top-30px bold-text">
+        </div>
+        <div class="margin-top-50px">
             <a th:href="@{/postCard/create-image}" class="button">다시하기</a>
         </div>
     </div>
