@@ -28,18 +28,19 @@
             <img id="dropZoneImage" src="/front/images/closedEnvelope.png" alt="편지 봉투" draggable="false">
         </div>
         <div id="flowerImagesZone"></div>
+        <table id="droppedFlowersTable" class="bold-text">
+            <tbody id="droppedFlowersBody">
+            <!-- 여기에 드롭된 항목이 표시 -->
+            </tbody>
+        </table>
+
     </div>
 
-    <table id="droppedFlowersTable" class="bold-text">
-        <tbody id="droppedFlowersBody">
-        <!-- 여기에 드롭된 항목이 표시 -->
-        </tbody>
-    </table>
 
 
     <form th:action="@{/postCard/create-image}" method="post">
         <input type="hidden" id="prompt" name="prompt" />
-        <button type="submit" id="createPostCard">엽서 그리기</button>
+        <button type="submit" id="createPostCard" class="postCardButton">엽서 그리기</button>
     </form>
 
     <div class="loading-overlay" id="loadingOverlay">
