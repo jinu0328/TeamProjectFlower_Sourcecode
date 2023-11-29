@@ -65,13 +65,13 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
 }
-.overlay-text {
-    font-size: 2em;
-    position: absolute;
-    top: 25%; /* 상단에서 25% 떨어진 위치에 배치 */
-    left: 50%; /* 왼쪽에서 50% 떨어진 위치에 배치 */
-    transform: translate(-50%, -50%); /* X축과 Y축을 기준으로 50% 이동하여 정중앙에 오도록 함 */
-}
+/*.overlay-text {*/
+/*    font-size: 2em;*/
+/*    position: absolute;*/
+/*    top: 25%; !* 상단에서 25% 떨어진 위치에 배치 *!*/
+/*    left: 50%; !* 왼쪽에서 50% 떨어진 위치에 배치 *!*/
+/*    transform: translate(-50%, -50%); !* X축과 Y축을 기준으로 50% 이동하여 정중앙에 오도록 함 *!*/
+/*}*/
 .subtext {
     font-family: 'Gowun Dodum', sans-serif;
     font-size: 1.2em; /* 새로운 문구의 크기 조정 */
