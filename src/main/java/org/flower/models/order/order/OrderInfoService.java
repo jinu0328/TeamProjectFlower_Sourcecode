@@ -39,14 +39,28 @@ public class OrderInfoService {
     }
 
     // 주문 상태별 개수를 계산하는 메서드
-    public long countOrdersByStatus(OrderState orderState) {
-        return orderRepository.findAll().stream()
-                .filter(order -> order.getOrderStatus() == orderState)
-                .count();
+    public long countUserOrdersByStatus(Long userNo, UserRole userRole, OrderState orderState) {
+        if (userRole == UserRole.OWNER) {
+            // OWNER는 모든 주문을 카운트
+            return orderRepository.findAll().stream()
+                    .filter(order -> order.getOrderStatus() == orderState)
+                    .count();
+        } else {
+            // USER는 자신의 주문만 카운트
+            return orderRepository.findByUser_UserNo(userNo).stream()
+                    .filter(order -> order.getOrderStatus() == orderState)
+                    .count();
+        }
     }
 
     // 선택된 주문 상태에 따라 주문 목록을 반환하는 메서드
-    public List<Order> getOrdersByStatus(Long userNo, OrderState orderState) {
+    public List<Order> getOrdersByStatusByuserNo(Long userNo, OrderState orderState) {
+        return orderRepository.findAll().stream()
+                .filter(order -> order.getOrderStatus() == orderState && order.getUser().getUserNo().equals(userNo))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> getOrdersByStatus(OrderState orderState) {
         return orderRepository.findAll().stream()
                 .filter(order -> order.getOrderStatus() == orderState)
                 .collect(Collectors.toList());

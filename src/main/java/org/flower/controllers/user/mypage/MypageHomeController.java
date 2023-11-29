@@ -86,48 +86,43 @@ public class MypageHomeController {
     @GetMapping("/main/home/orderlist")
     public String showMyOrder(@RequestParam(required = false) String status, Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication.getPrincipal() instanceof UserInfo) {
-            UserInfo currentUser = (UserInfo) authentication.getPrincipal();
-            Long userNo = currentUser.getUserNo();
-
-            String userNickNm = currentUser.getUserNickNm();
-            model.addAttribute("userNickNm", userNickNm);
-            model.addAttribute("userNo", userNo);
-
-            List<Order> userOrders; // URL의 status 파라미터에 따라 주문 목록을 필터링하거나 모든 주문을 가져옴
-            if (status != null && !status.isEmpty()) {
-                OrderState orderState = OrderState.valueOf(status.toUpperCase());
-                userOrders = orderInfoService.getOrdersByStatus(userNo, orderState);
-            } else {
-                userOrders = currentUser.getAuthorities().stream() // 사용자의 권한에 따라 OWNER는 모든 주문을, 일반 사용자는 자신의 주문만을 가져옴
-                        .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))
-                        ? orderInfoService.getAllOrders()
-                        : orderInfoService.getOrdersByUserNo(userNo);
-            }
-            model.addAttribute("userOrders", userOrders);
-
-            long acceptingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTING);
-            model.addAttribute("acceptingOrderCount", acceptingOrderCountOwner);
-
-            long acceptedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.ACCEPTED);
-            model.addAttribute("acceptedOrderCount", acceptedOrderCountOwner);
-
-            long preparingOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARING);
-            model.addAttribute("preparingOrderCount", preparingOrderCountOwner);
-
-            long preparedOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PREPARED);
-            model.addAttribute("preparedOrderCount", preparedOrderCountOwner);
-
-            long pickedUpOrderCountOwner = orderInfoService.countOrdersByStatus(OrderState.PICKEDUP);
-            model.addAttribute("pickedUpOrderCount", pickedUpOrderCountOwner);
-
-            return currentUser.getAuthorities().stream()
-                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))
-                    ? "/front/mypage/main/orderList_Owner"
-                    : "/front/mypage/main/home_orderlist";
-        } else {
+        if (!(authentication.getPrincipal() instanceof UserInfo)) {
             return "redirect:/user/login";
         }
+
+        UserInfo currentUser = (UserInfo) authentication.getPrincipal();
+        Long userNo = currentUser.getUserNo();
+        String userNickNm = currentUser.getUserNickNm();
+        UserRole userRole = currentUser.getAuthorities().stream()
+                .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_" + UserRole.OWNER.name()))
+                ? UserRole.OWNER
+                : UserRole.USER;
+
+        model.addAttribute("userNickNm", userNickNm);
+        model.addAttribute("userNo", userNo);
+
+        List<Order> userOrders;
+        if (status != null && !status.isEmpty() && userRole != UserRole.OWNER) { //Role이  USER 이고 주문 상태가 null 이 아닐때
+            OrderState orderState = OrderState.valueOf(status.toUpperCase());
+            userOrders = orderInfoService.getOrdersByStatusByuserNo(userNo, orderState);
+        } else if(status != null && !status.isEmpty() && userRole == UserRole.OWNER){ // Role이 OWNER이고 주문 상태가 null이 아닐때
+            OrderState orderStateOwner = OrderState.valueOf(status.toUpperCase());
+            userOrders = orderInfoService.getOrdersByStatus(orderStateOwner);
+        } else{//status가 null 이고 USER 일경우
+            OrderState orderState = OrderState.valueOf(status.toUpperCase());
+            userOrders = orderInfoService.getOrdersByStatusByuserNo(userNo, orderState);
+        }
+        model.addAttribute("userOrders", userOrders);
+
+        // 상태별 주문 개수 계산
+        model.addAttribute("acceptingOrderCount", orderInfoService.countUserOrdersByStatus(userNo, userRole, OrderState.ACCEPTING));
+        model.addAttribute("acceptedOrderCount", orderInfoService.countUserOrdersByStatus(userNo, userRole, OrderState.ACCEPTED));
+        model.addAttribute("preparingOrderCount", orderInfoService.countUserOrdersByStatus(userNo, userRole, OrderState.PREPARING));
+        model.addAttribute("preparedOrderCount", orderInfoService.countUserOrdersByStatus(userNo, userRole, OrderState.PREPARED));
+        model.addAttribute("pickedUpOrderCount", orderInfoService.countUserOrdersByStatus(userNo, userRole, OrderState.PICKEDUP));
+
+        return userRole == UserRole.OWNER ? "/front/mypage/main/orderList_Owner"
+                : "/front/mypage/main/home_orderlist";
     }
 
     // 주문수락 버튼 누르면 orderEditService 호출
